@@ -1,20 +1,25 @@
+import os
 import numpy as np
 import pandas as pd
 
 from ConfLearning.models.rl_simple import RLModel, RLModelWithoutFeedback, ConfidencePE, ConfidencePEgeneric, ConfidenceIdealObserver, BayesModel, BayesIdealObserver
 from ConfLearning.fitting.maximum_likelihood import ParameterFit
+from pathlib import Path
 
 fitting = ParameterFit()
 
-matrix = pd.read_pickle('C:/Users/esthe/Desktop/data.pkl', compression=None)
+cwd = Path.cwd()
+path_data = os.path.join(cwd, '../data/')
 
-stim_left = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/stim_left.npy')
-stim_right = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/stim_right.npy')
-chosen_stim = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/chosen_stim.npy')
-outcome_value = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/outcome_value.npy')
-confidence_value = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/confidence_value.npy')
-correct_value = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/correct_value.npy')
-true_value = np.load('C:/Users/esthe/PycharmProjects/MetaCognition/data/true_value.npy')
+matrix = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
+
+stim_left = np.load(os.path.join(path_data, 'stim_left.npy'))
+stim_right = np.load(os.path.join(path_data, 'stim_right.npy'))
+chosen_stim = np.load(os.path.join(path_data, 'chosen_stim.npy'))
+outcome_value = np.load(os.path.join(path_data, 'outcome_value.npy'))
+confidence_value = np.load(os.path.join(path_data, 'confidence_value.npy'))
+correct_value = np.load(os.path.join(path_data, 'correct_value.npy'))
+true_value = np.load(os.path.join(path_data, 'true_value.npy'))
 
 set_model = 4   # CHANGE HERE
 

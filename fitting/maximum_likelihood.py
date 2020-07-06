@@ -1,7 +1,24 @@
 import numpy as np
 import scipy as stats
-from scipy.optimize import minimize
+from scipy.optimize import minimize, fmin, basinhopping, fmin_slsqp
+from scipy.optimize import Bounds, LinearConstraint, minimize, SR1
 
+
+class RandomDisplacementBounds(object):
+    """random displacement with bounds"""
+    def __init__(self, xmin, xmax, stepsize=0.5):
+        self.xmin = xmin
+        self.xmax = xmax
+        self.stepsize = stepsize
+
+    def __call__(self, x):
+        """take a random step but ensure the new position is within the bounds"""
+        while True:
+            # this could be done in a much more clever way, but it will work for example purposes
+            xnew = x + np.random.uniform(-self.stepsize, self.stepsize, np.shape(x))
+            if np.all(xnew < self.xmax) and np.all(xnew > self.xmin):
+                break
+        return xnew
 
 class ParameterFit:
 
@@ -28,27 +45,29 @@ class ParameterFit:
         self.nparams = nparams
         self.data = np.full((nsubjects, nparams), np.nan, float)
 
-    def neg_log_likelihood(self, params):
-        """ Negative log likelihood for choice probability. """
-
-        self.choice_probab = self.run_model(self.model, params, self.subj)
-
-        self.negll = -np.sum(np.log(np.maximum(self.choice_probab, 1e-8)))
-
-        return self.negll
-
     def local_minima(self, expect, bounds):
         """ Returns optimized parameters alpha, beta, alpha_c and gamma."""
 
-        self.data[self.subj] = stats.optimize.minimize(self.neg_log_likelihood, x0=expect, bounds=bounds).x
+        # unbounded optimization: quite fast and finds good minima
+        self.data[self.subj], self.negll = fmin(self.run_model, expect, args=(self.model, self.subj), full_output=True, disp=False)[:2]
 
-        return self.data
+        # scipy's minimize: seems to get stuck in local minima - maybe some parameters would have to be tweaked to make this work
+        # result = stats.optimize.minimize(self.run_model, args=(self.model, self.subj), x0=expect, bounds=bounds, method='L-BFGS-B', options=dict(disp=False))
+        # self.data[self.subj], self.negll = result.x, result.fun
 
-    def model_fit(self, neg_ll):
+        # basinhopping: slow, but finds good minima and respects bounds
+        # result = basinhopping(self.run_model, expect, minimizer_kwargs=dict(method="L-BFGS-B", bounds=bounds, args=(self.model, self.subj)))
+        # apparently specifying the take_step variable as below, enforces the bounds more strictly, see https://stackoverflow.com/a/21967888/2320035
+        # result = basinhopping(self.run_model, expect, minimizer_kwargs=dict(method="L-BFGS-B", bounds=bounds, args=(self.model, self.subj)), take_step=RandomDisplacementBounds(bounds[:, 0], bounds[:, 1]))
+        # self.data[self.subj], self.negll = result.x, result.fun
+
+        return self.data, self.negll
+
+    def model_fit(self, neg_ll, nsamples):
         """Computes BIC and AIC model fit."""
 
         aic = 2 * self.nparams + 2 * neg_ll
 
-        bic = self.nparams * np.log(len(self.choice_probab)) + 2 * neg_ll
+        bic = self.nparams * np.log(nsamples) + 2 * neg_ll
 
         return aic, bic

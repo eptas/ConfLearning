@@ -26,10 +26,6 @@ class RLModel:
         self.values = np.full(self.nbandits, 0, float)
         self.value_history = [[] for _ in range(self.nbandits)]
 
-    def set_stimuli(self, stims):
-        """This function sets current stimuli of experimental data."""
-
-        self.stims = stims
 
     def get_current_trial(self, trial):
 
@@ -42,12 +38,15 @@ class RLModel:
 
         self.choice_probab = 1 / (1 + np.exp(-self.beta * (value2 - value1)))
 
-        return self.choice_probab
+        return self.choice_probab if self.stim_chosen == self.stims[1] else 1 - self.choice_probab
 
     def choice(self):
         """Function outputs actual choice for left stimulus, if below random."""
 
-        self.stim_chosen = self.stims[int(np.random.rand() < self.choice_probab)]
+        value1, value2 = self.values[self.stims[0]], self.values[self.stims[1]]
+        choice_probab = 1 / (1 + np.exp(-self.beta * (value2 - value1)))
+
+        self.stim_chosen = self.stims[int(np.random.rand() < choice_probab)]
 
         return self.stim_chosen
 
@@ -196,7 +195,7 @@ class BayesModel(RLModel):
 
         self.choice_probab = 1 / (1 + np.exp(-self.beta * (delta_values + self.phi * delta_values_sigma)))
 
-        return self.choice_probab
+        return self.choice_probab if self.stim_chosen == self.stims[1] else 1 - self.choice_probab
 
     def update(self, outcome, confidence):
 

@@ -26,14 +26,14 @@ class ParameterFit:
         self.run_model = run_model
 
         self.nparams = nparams
-        self.data = np.full((nsubjects, nparams), 0, float)
+        self.data = np.full((nsubjects, nparams), np.nan, float)
 
     def neg_log_likelihood(self, params):
         """ Negative log likelihood for choice probability. """
 
         self.choice_probab = self.run_model(self.model, params, self.subj)
 
-        self.negll = -np.sum(np.log(self.choice_probab + 1e-8))
+        self.negll = -np.sum(np.log(np.maximum(self.choice_probab, 1e-8)))
 
         return self.negll
 

@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from models.rl_simple import RLModel, RLModelWithoutFeedback, ConfidencePE, ConfidencePEgeneric, ConfidenceIdealObserver, BayesModel, BayesIdealObserver
-from fitting.maximum_likelihood import ParameterFit
+from ConfLearning.models.rl_simple import RLModel, RLModelWithoutFeedback, ConfidencePE, ConfidencePEgeneric, ConfidenceIdealObserver, BayesModel, BayesIdealObserver
+from ConfLearning.fitting.maximum_likelihood import ParameterFit
 
 fitting = ParameterFit()
 

@@ -4,10 +4,10 @@ import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 
-class RLModel:
+class Rescorla:
+    """simple reinforcement learning model using the Rescorla Wagner learning rule"""
 
     def __init__(self, alpha=0.1, beta=3, nbandits=5):
-        """This function defines / initializes (free) parameters for a two-armed bandit task."""
 
         self.alpha = alpha
         self.beta = beta
@@ -26,59 +26,53 @@ class RLModel:
         self.values = np.full(self.nbandits, 0, float)
         self.value_history = [[] for _ in range(self.nbandits)]
 
-
     def get_current_trial(self, trial):
 
         self.trial = trial + 1
 
     def get_choice_probab(self):
-        """Function outputs choice probability for left stimulus."""
+        """function outputs choice probability for chosen stimulus"""
 
-        value1, value2 = self.values[self.stims[0]], self.values[self.stims[1]]
-
-        self.choice_probab = 1 / (1 + np.exp(-self.beta * (value2 - value1)))
+        self.choice_probab = 1 / (1 + np.exp(-self.beta * (self.values[self.stims[1]] - self.values[self.stims[0]])))
 
         return self.choice_probab if self.stim_chosen == self.stims[1] else 1 - self.choice_probab
 
     def choice(self):
-        """Function outputs actual choice for left stimulus, if below random."""
+        """function simulates choice based on choice probability of left stimulus"""
 
-        value1, value2 = self.values[self.stims[0]], self.values[self.stims[1]]
-        choice_probab = 1 / (1 + np.exp(-self.beta * (value2 - value1)))
-
-        self.stim_chosen = self.stims[int(np.random.rand() < choice_probab)]
+        self.stim_chosen = self.stims[int(np.random.rand() < self.choice_probab)]
 
         return self.stim_chosen
 
     def update(self, outcome, confidence):
 
-        return self.learn_value(outcome)
+        return self.learn_value(outcome) if ~np.isnan(outcome) else self.values[self.stim_chosen]
 
     def learn_value(self, outcome):
-        """This function updates reward values according to Rescorla Wagner learning rule."""
+        """function updates learned bandit values according to Rescorla Wagner learning rule"""
 
-        if ~np.isnan(outcome):
-            self.PE = outcome - self.values[self.stim_chosen]
-
-            self.values[self.stim_chosen] += self.alpha * self.PE
+        self.PE = outcome - self.values[self.stim_chosen]
+        self.values[self.stim_chosen] += self.alpha * self.PE
 
         return self.values[self.stim_chosen]
 
     def learn_history(self):
-        """This function stores learning history of all bandit values."""
+        """function stores learning history of all bandit values"""
 
         self.value_history[self.stim_chosen] = self.value_history[self.stim_chosen] + [self.values[self.stim_chosen]]
 
         return self.value_history
 
     def get_confidence(self):
+        """function simulates confidence ratings based on choice probability of left stimulus"""
 
         self.confidence = (np.abs(self.choice_probab - (self.choice_probab < 0.5)) - 0.5) * 2
 
         return self.confidence
 
 
-class RLModelWithoutFeedback(RLModel):
+class RescorlaZero(Rescorla):
+    """model learns in phase 1 based on outcome value of zero (no feedback)"""
 
     def __init__(self, alpha=0.1, beta=3, alpha_n=0.1, nbandits=5):
 
@@ -90,22 +84,23 @@ class RLModelWithoutFeedback(RLModel):
 
         if np.isnan(outcome):
             return self.learn_without_outcome()
-
         else:
             return self.learn_value(outcome)
 
     def learn_without_outcome(self):
+        """function introduces new learning parameter alpha_n to capture the dynamics of learning in phase 1"""
 
         self.PE = 0 - self.values[self.stim_chosen]
-
         self.values[self.stim_chosen] += self.alpha_n * self.PE
 
         return self.values[self.stim_chosen]
 
 
-class ConfidencePE(RLModel):
+class RescorlaConf(Rescorla):
+    """model updates expected values according to confidence prediction error in phase 1"""
 
     def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+        """function introduces distinct learning parameters, alpha_c and gamma, for confidence-based updates"""
 
         super().__init__(alpha=alpha, beta=beta, nbandits=nbandits)
 
@@ -117,23 +112,23 @@ class ConfidencePE(RLModel):
 
     def update(self, outcome, confidence):
 
-        self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-        self.conf_values[self.stim_chosen] += self.gamma * self.conf_PE
-
         if np.isnan(outcome):
             return self.learn_confidence_value(confidence)
         else:
             return self.learn_value(outcome)
 
     def learn_confidence_value(self, confidence):
-        """This function updates participants' expected values according to confidence predition error."""
+        """confidence update operates in line with Rescorla Wagner learning rule"""
 
+        self.conf_PE = confidence - self.conf_values[self.stim_chosen]
+        self.conf_values[self.stim_chosen] += self.gamma * self.conf_PE
         self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
 
         return self.values[self.stim_chosen]
 
 
-class ConfidencePEgeneric(ConfidencePE):
+class RescorlaConfGen(RescorlaConf):
+    """model uses generic confidence value to update belief estimates"""
 
     def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
 
@@ -142,18 +137,17 @@ class ConfidencePEgeneric(ConfidencePE):
         self.conf_values = 0
 
     def learn_confidence_value(self, confidence):
-        """This function updates participants' expected values according to confidence predition error."""
+        """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
 
         self.conf_PE = confidence - self.conf_values
-
         self.conf_values += self.gamma * self.conf_PE
-
         self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
 
         return self.values[self.stim_chosen]
 
 
-class ConfidenceIdealObserver(ConfidencePE):
+class RescorlaConfBase(RescorlaConf):
+    """model implements confidence baseline, which tracks confidence updates in phase 0 and 2"""
 
     def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
 
@@ -163,7 +157,6 @@ class ConfidenceIdealObserver(ConfidencePE):
 
         if np.isnan(outcome):
             return self.learn_confidence_value(confidence)
-
         else:
             self.track_confidence_value(confidence)
 
@@ -172,11 +165,90 @@ class ConfidenceIdealObserver(ConfidencePE):
     def track_confidence_value(self, confidence):
 
         self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-
         self.conf_values[self.stim_chosen] += self.gamma * self.conf_PE
 
 
-class BayesModel(RLModel):
+class RescorlaConfBaseGen(RescorlaConfGen):
+    """model implments confidence baseline for generic (overall) confidence value"""
+
+    def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+
+        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+
+    def update(self, outcome, confidence):
+
+        if np.isnan(outcome):
+            return self.learn_confidence_value(confidence)
+        else:
+            self.track_confidence_value(confidence)
+
+            return self.learn_value(outcome)
+
+    def track_confidence_value(self, confidence):
+
+        self.conf_PE = confidence - self.conf_values
+        self.conf_values += self.gamma * self.conf_PE
+
+
+class RescorlaConfWeighted(RescorlaConf):
+    """function includes confidence prediction error in value update of all phases"""
+
+    def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+
+        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+
+    def update(self, outcome, confidence):
+
+        if np.isnan(outcome):
+            return self.learn_confidence_value(confidence)
+        else:
+            self.learn_confidence_value(confidence)
+
+            return self.learn_value(outcome)
+
+
+class RescorlaConfWeightedGen(RescorlaConfGen):
+    """function includes generic (overall) confidence PE in value update of all phases"""
+
+    def __init__(self, alpha=0.1, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+
+        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+
+    def update(self, outcome, confidence):
+
+        if np.isnan(outcome):
+            return self.learn_confidence_value(confidence)
+        else:
+            self.learn_confidence_value(confidence)
+
+            return self.learn_value(outcome)
+
+
+class RescorlaConfAll(RescorlaConf):
+    """function updates learned values according to confidence PE"""
+
+    def __init__(self, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+
+        super().__init__(beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+
+    def update(self, outcome, confidence):
+
+        return self.learn_confidence_value(confidence)
+
+
+class RescorlaConfAllGen(RescorlaConfGen):
+    """function updates expected values according to generic confidence PE"""
+
+    def __init__(self, beta=3, alpha_c=0.1, gamma=0.1, nbandits=5):
+
+        super().__init__(beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+
+    def update(self, outcome, confidence):
+
+        return self.learn_confidence_value(confidence)
+
+
+class BayesModel(Rescorla):
 
     def __init__(self, alpha=0.1, beta=3, phi=0.1, gamma=3, nsamples=None):
 

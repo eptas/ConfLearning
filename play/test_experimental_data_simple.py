@@ -22,7 +22,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 7   # CHANGE HERE
+set_model = 0   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -121,7 +121,13 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False):
                         if k == model.stim_chosen:
                             new_values_choice[b, p, i, k] = new_value_choice
                         else:
-                            new_values_choice[b, p, i, k] = 0 if t == 0 else new_values_choice[b, p, i - 1, k]
+                            if (p > 0) & (i == 0):
+                                if np.all(np.isnan(new_values_choice[b, p - 1, :, k])):
+                                    new_values_choice[b, p, i, k] = new_values_choice[b, p-2 , :, k][~np.isnan(new_values_choice[b, p-2, :, k])][-1]
+                                else:
+                                    new_values_choice[b, p, i, k] = new_values_choice[b, p - 1, :, k][~np.isnan(new_values_choice[b, p - 1, :, k])][-1]
+                            else:
+                                new_values_choice[b, p, i, k] = 0 if t == 0 else new_values_choice[b, p, i - 1, k]
 
         if return_full:
             true_values_choice[b, :] = true_value[s, b, :]
@@ -164,5 +170,5 @@ if __name__ == '__main__':
             saveChoiceProbab = pd.concat([saveChoiceProbab, eval("choice_probab_m" + str(m))], axis=1)
             locals()["param_corr_m" + str(m)] = eval("parameter_m" + str(m)).corr()
 
-pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl")
-saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl")
+    pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl")
+    saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl")

@@ -2,8 +2,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver
-from fitting.maximum_likelihood import ParameterFit
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver
+from ConfLearning.fitting.maximum_likelihood import ParameterFit
 from pathlib import Path
 
 fitting = ParameterFit()

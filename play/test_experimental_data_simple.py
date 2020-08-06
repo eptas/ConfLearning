@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfWeighted, RescorlaConfWeightedGen, RescorlaConfAll, RescorlaConfAllGen, BayesModel, BayesIdealObserver
+from models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver
 from fitting.maximum_likelihood import ParameterFit
 from pathlib import Path
 
@@ -10,6 +10,9 @@ fitting = ParameterFit()
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../data/')
+
+# os.makedirs('../results/fittingData')
+# os.makedirs('../results/choiceProbab')
 
 matrix = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 
@@ -19,7 +22,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 5   # CHANGE HERE
+set_model = 7   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -31,7 +34,7 @@ nbandits = 5
 alpha = 0.1
 alpha_n = 0.1
 alpha_c = 0.1
-beta = 3
+beta = 1
 gamma = 0.1
 phi = 0.1
 
@@ -45,27 +48,27 @@ lower_phi, lp = 0, 0
 upper_alpha, ua = 1, 1
 upper_alpha_n, uan = 1, 1
 upper_alpha_c, uac = 1, 1
-upper_beta, ub = 10, 10
+upper_beta, ub = 2, 2
 upper_gamma, ug = 1, 1
 upper_phi, up = 1, 1
 
 bounds = [np.c_[np.array([la, lb]), np.array([ua, ub])],
           np.c_[np.array([la, lb, lan]), np.array([ua, ub, uan])],
-          *[np.c_[np.array([la, lb, lac, lg]), np.array([ua, ub, uac, ug])] for _ in range(6)],
-          *[np.c_[np.array([lb, lac, lg]), np.array([ub, uac, ug])] for _ in range(2)],
+          *[np.c_[np.array([la, lb, lac, lg]), np.array([ua, ub, uac, ug])] for _ in range(4)],
+          *[np.c_[np.array([la, lb, lac, lg, lan]), np.array([ua, ub, uac, ug, uan])] for _ in range(4)],
           *[np.c_[np.array([la, lb, lp, lg]), np.array([ua, ub, up, ug])] for _ in range(2)]]
 
 expect = [(np.array([ua, ub]) - np.array([la, lb])) / 2,
           (np.array([ua, ub, uan]) - np.array([la, lb, lan])) / 2,
-          *[(np.array([ua, ub, uac, ug]) - np.array([la, lb, lac, lg])) / 2 for _ in range(6)],
-          *[(np.array([ub, uac, ug]) - np.array([lb, lac, lg])) / 2 for _ in range(2)],
+          *[(np.array([ua, ub, uac, ug]) - np.array([la, lb, lac, lg])) / 2 for _ in range(4)],
+          *[(np.array([ua, ub, uac, ug, uan]) - np.array([la, lb, lac, lg, lan])) / 2 for _ in range(4)],
           *[(np.array([ua, ub, up, ug]) - np.array([la, lb, lp, lg])) / 2 for _ in range(2)]]
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
-modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfWeighted, RescorlaConfWeightedGen, RescorlaConfAll, RescorlaConfAllGen, BayesModel, BayesIdealObserver]
-paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, alpha_c, gamma] for _ in range(6)], *[[beta, alpha_c, gamma] for _ in range(2)], *[[alpha, beta, phi, gamma] for _ in range(2)]]
-nparams = [2, 3, 4, 4, 4, 4, 4, 4, 3, 3, 4, 4]
+modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver]
+paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, alpha_c, gamma] for _ in range(4)], *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)], *[[alpha, beta, phi, gamma] for _ in range(2)]]
+nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4]
 nmodels = len(modellist)
 
 probab_choice = np.full((nmodels, nsubjects, nblocks, nphases, ntrials_phase_max), np.nan)
@@ -152,8 +155,8 @@ if __name__ == '__main__':
             AIC[m, n], BIC[m, n] = fitting.model_fit(negll[m, n], nsamples)
 
             locals()["parameter_m" + str(m)] = pd.DataFrame(data={"ALPHA": paramfit[m, :, 0], "BETA": paramfit[m, :, 1],
-                                                                  "ALPHA_C": paramfit[m, :, 2], "GAMMA": paramfit[m, :, 3]},
-                                                            columns=["ALPHA", "BETA", "ALPHA_C", "GAMMA"])
+                                                                  "ALPHA_C": paramfit[m, :, 2], "GAMMA": paramfit[m, :, 3], "ALPHA_N": paramfit[m, :, 4]},
+                                                            columns=["ALPHA", "BETA", "ALPHA_C", "GAMMA", "ALPHA_N"])
             locals()["fit_m" + str(m)] = pd.DataFrame(data={"AIC": AIC[m, :], "BIC": BIC[m, :], "NEGLL": negll[m, :]},
                                                       columns=["AIC", "BIC", "NEGLL"])
             locals()["choice_probab_m" + str(m)] = pd.DataFrame(data={"choice_probab_subj" + str(n): probab_choice[m, n][~np.isnan(probab_choice[m, n])]},
@@ -161,6 +164,5 @@ if __name__ == '__main__':
             saveChoiceProbab = pd.concat([saveChoiceProbab, eval("choice_probab_m" + str(m))], axis=1)
             locals()["param_corr_m" + str(m)] = eval("parameter_m" + str(m)).corr()
 
-
-# pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingDataM" + str(set_model) + ".pkl")
-# saveChoiceProbab.to_pickle("../results/choiceProbabM" + str(set_model) + ".pkl")
+pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl")
+saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl")

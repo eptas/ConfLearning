@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from pathlib import Path
-from play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
+from ConfLearning.play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
 
 model = 6
 

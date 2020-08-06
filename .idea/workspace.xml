@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="update">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/ConfLearning.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play/test_experimental_data_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/play/test_experimental_data_simple.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/learning_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/learning_plot.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ConfLearning" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="JupyterTrust" id="6f43de73-5a11-4334-8be0-bbd5f17196f0" />
+  <component name="ProjectId" id="1egGXuAIgFreR9J0ZYRkphdIiNq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myShowDebugConsoleByDefault" value="true" />
+  </component>
+  <component name="RunManager" selected="Python.learning_plot">
+    <configuration name="corr_alpha_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="corr_gamma_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="fitting_plot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/fitting_plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="learning_plot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/learning_plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_experimental_data_simple" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/play/test_experimental_data_simple.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.learning_plot" />
+        <item itemvalue="Python.test_experimental_data_simple" />
+        <item itemvalue="Python.corr_alpha_alpha_c" />
+        <item itemvalue="Python.fitting_plot" />
+        <item itemvalue="Python.corr_gamma_alpha_c" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="" />
+      <created>1594735865920</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594735865920</updated>
+      <workItem from="1594735868204" duration="2366000" />
+      <workItem from="1594807209552" duration="6571000" />
+      <workItem from="1594920875278" duration="2037000" />
+      <workItem from="1594923023597" duration="904000" />
+      <workItem from="1594923949024" duration="1923000" />
+      <workItem from="1594926329745" duration="1684000" />
+      <workItem from="1594928276200" duration="977000" />
+      <workItem from="1594935665954" duration="4567000" />
+      <workItem from="1594941664890" duration="18000" />
+      <workItem from="1594974023797" duration="2808000" />
+      <workItem from="1594984342990" duration="680000" />
+      <workItem from="1594985085760" duration="1763000" />
+      <workItem from="1594987435989" duration="34000" />
+      <workItem from="1594989507760" duration="791000" />
+      <workItem from="1595173351012" duration="883000" />
+      <workItem from="1595182830823" duration="12198000" />
+      <workItem from="1595237623304" duration="3423000" />
+      <workItem from="1595242688568" duration="6115000" />
+      <workItem from="1595251822758" duration="5313000" />
+      <workItem from="1595365907918" duration="998000" />
+      <workItem from="1595431997669" duration="24000" />
+      <workItem from="1595509365567" duration="1811000" />
+      <workItem from="1595585055015" duration="15275000" />
+      <workItem from="1595610238304" duration="16046000" />
+      <workItem from="1595631996184" duration="31000" />
+      <workItem from="1595764412231" duration="20110000" />
+      <workItem from="1595788159020" duration="1018000" />
+      <workItem from="1595789196204" duration="5030000" />
+      <workItem from="1595841842445" duration="23476000" />
+      <workItem from="1595867935128" duration="11666000" />
+      <workItem from="1595933473377" duration="275000" />
+      <workItem from="1595934944357" duration="17105000" />
+      <workItem from="1595956857214" duration="16168000" />
+      <workItem from="1595973188493" duration="2065000" />
+      <workItem from="1596099257183" duration="12450000" />
+      <workItem from="1596123174039" duration="656000" />
+      <workItem from="1596636243593" duration="4484000" />
+      <workItem from="1596640782367" duration="3110000" />
+      <workItem from="1596644318151" duration="40000" />
+      <workItem from="1596706514535" duration="3733000" />
+      <workItem from="1596721670143" duration="7339000" />
+    </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1596104080256</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1596104080256</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update">
+      <created>1596722347706</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596722347706</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update">
+      <created>1596723052728</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1596723052728</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596710567510">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596710567510" />
+    <state x="389" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1594923278441" />
+    <state x="378" y="0" key="CommitChangelistDialog2" timestamp="1596723051188">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="1831" y="99" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595974488106" />
+    <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596723051188" />
+    <state width="626" height="466" key="DebuggerActiveHint" timestamp="1595844008345">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state width="626" height="466" key="DebuggerActiveHint/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595844008345" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1596722982949">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="1935" y="164" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595856752189" />
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596722982949" />
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1596730879930">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1596730879930">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1596730879930">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044679" />
+    <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1596730879930">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
+    <state width="1637" height="284" key="GridCell.Tab.1.bottom" timestamp="1596713044681">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044681" />
+    <state width="1323" height="188" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
+    <state width="1637" height="284" key="GridCell.Tab.1.center" timestamp="1596713044681">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044681" />
+    <state width="1323" height="188" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
+    <state width="1637" height="284" key="GridCell.Tab.1.left" timestamp="1596713044680">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1323" height="188" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
+    <state width="1637" height="284" key="GridCell.Tab.1.right" timestamp="1596713044681">
+      <screen x="1366" y="0" width="1680" height="1010" />
+    </state>
+    <state width="1637" height="284" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044681" />
+    <state width="1323" height="188" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
+    <state x="277" y="12" key="SettingsEditor" timestamp="1596722988160">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="1707" y="147" key="SettingsEditor/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1594736780058" />
+    <state x="277" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596722988160" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1596723057086">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596723057086" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1596730929027">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1596123174368" />
+    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596706515419" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1596730929027" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596722120616">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="1971" y="388" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595974502814" />
+    <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1596722120616" />
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog" timestamp="1596731008236">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1596731008236" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="subj_data" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ConfLearning$choice_probability.coverage" NAME="choice_probability Coverage Results" MODIFIED="1596641303109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$param_corr.coverage" NAME="param_corr Coverage Results" MODIFIED="1596641754514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot.coverage" NAME="fitting_plot Coverage Results" MODIFIED="1596711216771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$maximum_likelihood.coverage" NAME="maximum_likelihood Coverage Results" MODIFIED="1595848964995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fitting" />
+    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot__1_.coverage" NAME="fitting_plot (1) Coverage Results" MODIFIED="1596641052919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$conf_corr.coverage" NAME="conf_corr Coverage Results" MODIFIED="1596641725034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$plotting.coverage" NAME="plotting Coverage Results" MODIFIED="1595253048661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_gamma_alpha_c.coverage" NAME="corr_gamma_alpha_c Coverage Results" MODIFIED="1596641917160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$learning_plot.coverage" NAME="learning_plot Coverage Results" MODIFIED="1596723549762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data.coverage" NAME="test_experimental_data Coverage Results" MODIFIED="1594990054273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
+    <SUITE FILE_PATH="coverage/ConfLearning$extraction.coverage" NAME="extraction Coverage Results" MODIFIED="1595588930329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_alpha_c.coverage" NAME="corr_alpha_alpha_c Coverage Results" MODIFIED="1596711302024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data_simple.coverage" NAME="test_experimental_data_simple Coverage Results" MODIFIED="1596723003084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
+  </component>
+</project>

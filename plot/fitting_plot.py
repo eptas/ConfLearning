@@ -6,17 +6,17 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path_data = os.path.join(cwd, '../results/')
 # os.makedirs('../figures/fitting')
 
-n_models = 6
+n_models = 12
 n_subjects = 66
 
 AIC, BIC, alpha, beta, alpha_c, gamma, alpha_n = None, None, None, None, None, None, None
 
 for n in range(n_models):
 
-    fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(n) + '.pkl'))
+    fittingData = pd.read_pickle(os.path.join(path_data, 'fittingData/fittingDataM' + str(n) + '.pkl'))
 
     AIC = np.append(AIC, np.mean(fittingData.AIC))
     BIC = np.append(BIC, np.mean(fittingData.BIC))
@@ -49,7 +49,7 @@ for m, model in enumerate(model_fit):
     plt.bar(range(n_models), model[1:len(model)], width=0.8, color='g')
 
     for t in range(n_models):
-        plt.text(t, 200, str(round(model[1:len(model)][t], 2)), color='w')
+        plt.text(t, 200, str(round(model[1:len(model)][t], 0)), color='w', fontsize=6)
 
     plt.title('model fit')
     plt.xlabel('model', fontweight='bold')
@@ -66,7 +66,7 @@ for p, para in enumerate(param_fit):
     plt.bar(range(n_models), para[1:len(para)], width=0.8, color='g')
 
     for t in range(n_models):
-        plt.text(t, 0.01, str(round(para[1:len(para)][t], 2)), color='w')
+        plt.text(t, 0.01, str(round(para[1:len(para)][t], 2)), color='w', fontsize=6)
         plt.scatter(np.full(len(range(n_subjects)), t), eval(param_name[p] + '_M' + str(t)), s=4, c='y', marker='o', zorder=10)
 
     plt.xlabel('model', fontweight='bold')

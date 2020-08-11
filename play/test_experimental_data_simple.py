@@ -22,7 +22,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 0   # CHANGE HERE
+set_model = 11   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -170,5 +170,5 @@ if __name__ == '__main__':
             saveChoiceProbab = pd.concat([saveChoiceProbab, eval("choice_probab_m" + str(m))], axis=1)
             locals()["param_corr_m" + str(m)] = eval("parameter_m" + str(m)).corr()
 
-    pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl")
-    saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl")
+    pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl", protocol=4)
+    saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl", protocol=4)

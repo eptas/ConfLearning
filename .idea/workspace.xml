@@ -1,18 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="update">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ConfLearning.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/AIC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/BIC.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M0_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M0_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M1_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M1_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M2_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M2_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M3_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M3_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M4_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M4_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M5_learning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/M5_learning_phase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/alpha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/alpha_c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/beta.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/corr_alpha_c_alpha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/corr_beta_cp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/corr_gamma_alpha_c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/AIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/AIC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/BIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/BIC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/beta.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/beta.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/gamma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/gamma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play/test_experimental_data_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/play/test_experimental_data_simple.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/corr_beta_cp.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_beta_cp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/fitting_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/fitting_plot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plot/learning_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/learning_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM7.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM7.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbabM5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM7.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM7.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingDataM5.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM0.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM1.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM2.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM3.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM4.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learningM5.pkl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +100,7 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myShowDebugConsoleByDefault" value="true" />
   </component>
-  <component name="RunManager" selected="Python.learning_plot">
+  <component name="RunManager" selected="Python.corr_alpha_alpha_c">
     <configuration name="corr_alpha_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -64,6 +115,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="corr_beta_cp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_beta_cp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -138,35 +211,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_experimental_data_simple" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ConfLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/play/test_experimental_data_simple.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.learning_plot" />
-        <item itemvalue="Python.test_experimental_data_simple" />
         <item itemvalue="Python.corr_alpha_alpha_c" />
-        <item itemvalue="Python.fitting_plot" />
+        <item itemvalue="Python.corr_beta_cp" />
         <item itemvalue="Python.corr_gamma_alpha_c" />
+        <item itemvalue="Python.fitting_plot" />
+        <item itemvalue="Python.learning_plot" />
       </list>
     </recent_temporary>
   </component>
@@ -233,6 +284,8 @@
       <workItem from="1596644318151" duration="40000" />
       <workItem from="1596706514535" duration="3733000" />
       <workItem from="1596721670143" duration="7339000" />
+      <workItem from="1596730928512" duration="361000" />
+      <workItem from="1597137984240" duration="9895000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1596104080256</created>
@@ -255,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596723052728</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update">
+      <created>1596731085937</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1596731085937</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,11 +331,11 @@
     </state>
     <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596710567510" />
     <state x="389" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1594923278441" />
-    <state x="378" y="0" key="CommitChangelistDialog2" timestamp="1596723051188">
+    <state x="378" y="0" key="CommitChangelistDialog2" timestamp="1596731083091">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1831" y="99" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595974488106" />
-    <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596723051188" />
+    <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596731083091" />
     <state width="626" height="466" key="DebuggerActiveHint" timestamp="1595844008345">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
@@ -285,25 +345,25 @@
     </state>
     <state x="1935" y="164" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595856752189" />
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596722982949" />
-    <state width="1323" height="178" key="GridCell.Tab.0.bottom" timestamp="1596730879930">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="270" key="GridCell.Tab.0.bottom" timestamp="1597147854252">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="284" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1637" height="270" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1597147854252" />
     <state width="1323" height="178" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
-    <state width="1323" height="178" key="GridCell.Tab.0.center" timestamp="1596730879930">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="270" key="GridCell.Tab.0.center" timestamp="1597147854252">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="284" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1637" height="270" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1597147854252" />
     <state width="1323" height="178" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
-    <state width="1323" height="178" key="GridCell.Tab.0.left" timestamp="1596730879930">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="270" key="GridCell.Tab.0.left" timestamp="1597147854252">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="284" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044679" />
+    <state width="1637" height="270" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1597147854252" />
     <state width="1323" height="178" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
-    <state width="1323" height="178" key="GridCell.Tab.0.right" timestamp="1596730879930">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="270" key="GridCell.Tab.0.right" timestamp="1597147854252">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="284" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596713044680" />
+    <state width="1637" height="270" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1597147854252" />
     <state width="1323" height="178" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1596730879930" />
     <state width="1637" height="284" key="GridCell.Tab.1.bottom" timestamp="1596713044681">
       <screen x="1366" y="0" width="1680" height="1010" />
@@ -330,25 +390,25 @@
     </state>
     <state x="1707" y="147" key="SettingsEditor/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1594736780058" />
     <state x="277" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596722988160" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1596723057086">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1596731174214">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596723057086" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1596730929027">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596731174214" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1597138033186">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1596123174368" />
     <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1596706515419" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1596730929027" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1597138033186" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596722120616">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1971" y="388" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595974502814" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1596722120616" />
-    <state x="415" y="155" key="git4idea.merge.GitPullDialog" timestamp="1596731008236">
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog" timestamp="1596731117740">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="415" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1596731008236" />
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1596731117740" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -369,16 +429,17 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConfLearning$choice_probability.coverage" NAME="choice_probability Coverage Results" MODIFIED="1596641303109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$param_corr.coverage" NAME="param_corr Coverage Results" MODIFIED="1596641754514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot.coverage" NAME="fitting_plot Coverage Results" MODIFIED="1596711216771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot.coverage" NAME="fitting_plot Coverage Results" MODIFIED="1597145654180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$maximum_likelihood.coverage" NAME="maximum_likelihood Coverage Results" MODIFIED="1595848964995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fitting" />
     <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot__1_.coverage" NAME="fitting_plot (1) Coverage Results" MODIFIED="1596641052919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$conf_corr.coverage" NAME="conf_corr Coverage Results" MODIFIED="1596641725034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$plotting.coverage" NAME="plotting Coverage Results" MODIFIED="1595253048661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_gamma_alpha_c.coverage" NAME="corr_gamma_alpha_c Coverage Results" MODIFIED="1596641917160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$learning_plot.coverage" NAME="learning_plot Coverage Results" MODIFIED="1596723549762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$learning_plot.coverage" NAME="learning_plot Coverage Results" MODIFIED="1597145176913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_gamma_alpha_c.coverage" NAME="corr_gamma_alpha_c Coverage Results" MODIFIED="1597147568475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_beta_cp.coverage" NAME="corr_beta_cp Coverage Results" MODIFIED="1597147721028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data.coverage" NAME="test_experimental_data Coverage Results" MODIFIED="1594990054273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
     <SUITE FILE_PATH="coverage/ConfLearning$extraction.coverage" NAME="extraction Coverage Results" MODIFIED="1595588930329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_alpha_c.coverage" NAME="corr_alpha_alpha_c Coverage Results" MODIFIED="1596711302024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data_simple.coverage" NAME="test_experimental_data_simple Coverage Results" MODIFIED="1596723003084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_alpha_c.coverage" NAME="corr_alpha_alpha_c Coverage Results" MODIFIED="1597147854242" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data_simple.coverage" NAME="test_experimental_data_simple Coverage Results" MODIFIED="1597144837029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
   </component>
 </project>

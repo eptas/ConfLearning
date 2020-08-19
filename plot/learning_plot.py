@@ -47,7 +47,7 @@ for m, models in enumerate(modellist):
                     else:
                         vals = new_value_choice[b, p, :, k][~np.isnan(new_value_choice[b, p, :, k])]
                     learned_values = pd.DataFrame(data={"s" + str(n) + "b" + str(b) + "p" + str(p): vals},
-                                         columns=["s" + str(n) + "b" + str(b) + "p" + str(p)])
+                                                  columns=["s" + str(n) + "b" + str(b) + "p" + str(p)])
                     locals()["learned_value" + str(k)] = pd.concat([eval("learned_value" + str(k)), learned_values], axis=1)
 
         performances = pd.DataFrame(data={"s" + str(n): performance[:, :, :][~np.isnan(performance[:, :, :])]}, columns=["s" + str(n)])

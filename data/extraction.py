@@ -69,7 +69,7 @@ if __name__ == '__main__':
     data = ExtractData()
     stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_value, true_value = data.extract_data()
 
-    np.save('stim_left', stim_left), np.save('stim_right', stim_right)
-    np.save('chosen_stim', chosen_stim), np.save('correct_value', correct_value)
-    np.save('outcome_value', outcome_value), np.save('confidence_value', confidence_value)
-    np.save('true_value', true_value)
+    variables = ['stim_left', 'stim_right', 'chosen_stim', 'outcome_value', 'confidence_value', 'correct_value', 'true_value']
+
+    for v, var in enumerate(variables):
+        np.save(var, eval(var))

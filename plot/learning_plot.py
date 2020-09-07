@@ -58,11 +58,6 @@ for m, models in enumerate(modellist):
 performance_percent = 100 * performance_matrix[performance_matrix == 1].count(axis=1) / performance_matrix.count(axis=1)
 
 for k in range(nbandits):
-    # for b in range(nblocks):
-    #     for s in range(nsubjects):
-    #         vals = eval("learned_value" + str(k)).filter(regex=f's{s}b{b}p0')[f's{s}b{b}p0'].values
-    #         learned_values_shifted = pd.DataFrame(np.hstack((np.full(np.sum(np.isnan(vals)), np.nan), vals[~np.isnan(vals)])), columns=[f's{s}b{b}p0'])
-    #         locals()["learned_value" + str(k)] = pd.concat([eval("learned_value" + str(k)), learned_values_shifted], axis=1)
     for p in range(nphases):
 
         mean_values = eval("learned_value" + str(k)).filter(regex="p" + str(p)).mean(axis=1)
@@ -83,9 +78,9 @@ for k in range(nbandits):
 
 plt.xlabel('trials across blocks', fontweight='bold')
 plt.ylabel('learned bandit value ($real_{min}= 12; real_{max}= 40$)', fontweight='bold')
-plt.title('learning curve - ' + str(modellist[model])[25:-2])
-plt.yticks(np.arange(0, 31, step=5), fontsize=6)
+plt.title('learning curve - ' + str(modellist[model])[38:-2])
 plt.xticks(np.arange(0, len(mean_value0), step=10), fontsize=6)
+plt.yticks(np.arange(0, 36, step=5), fontsize=6)
 plt.grid('silver', linestyle='-', linewidth=0.4)
 plt.savefig('../figures/learning/M' + str(model) + '_learning.png', bbox_inches='tight')
 plt.close()
@@ -103,11 +98,11 @@ for k in range(nbandits):
 plt.axvline(0, linewidth=0.5, color='k', linestyle='-')
 plt.xlabel('trials across blocks', fontweight='bold')
 plt.ylabel('learned bandit value ($real_{min}= 12; real_{max}= 40$)', fontweight='bold')
-plt.title('learning curve - ' + str(modellist[model])[25:-2])
+plt.title('learning curve - ' + str(modellist[model])[38:-2])
 plt.text(-10, 25, 'phase_zero', color='k', fontsize=8)
 plt.text(10, 25, 'phase_one', color='k', fontsize=8)
-plt.yticks(np.arange(0, 31, step=5), fontsize=6)
 plt.xticks(np.arange(-20, 20, step=5), fontsize=6)
+plt.yticks(np.arange(0, 36, step=5), fontsize=6)
 plt.grid('silver', linestyle='-', linewidth=0.4)
 plt.savefig('../figures/learning/M' + str(model) + '_learning_phase.png', bbox_inches='tight')
 plt.close()

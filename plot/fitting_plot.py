@@ -45,7 +45,7 @@ model_name = ['Rescorla', 'Rescorla\nZero', 'Rescorla\nConf', 'Rescorla\nConfGen
 
 for m, model in enumerate(model_fit):
 
-    plt.figure(m)
+    plt.figure(m, figsize=(20, 10))
     plt.bar(range(n_models), model[1:len(model)], width=0.8, color='g')
 
     for t in range(n_models):
@@ -62,7 +62,7 @@ for m, model in enumerate(model_fit):
 
 for p, para in enumerate(param_fit):
 
-    plt.figure(p)
+    plt.figure(p, figsize=(20, 10))
     plt.bar(range(n_models), para[1:len(para)], width=0.8, color='g')
 
     for t in range(n_models):

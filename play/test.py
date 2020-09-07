@@ -1,26 +1,21 @@
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-from tasks.two_armed_bandit import TwoArmedBandit
-from models.rl_simple import RLModel, ConfidencePE, ConfidencePEgeneric, ConfidenceIdealObserver, BayesModel, BayesIdealObserver
+from ConfLearning.tasks.two_armed_bandit import TwoArmedBandit
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver
 
-__all__ = [RLModel, ConfidencePE, ConfidencePEgeneric, ConfidenceIdealObserver, BayesModel, BayesIdealObserver]
+# os.makedirs('../figures/simulation')
 
 niterate = 100
 ntrials = 100
-nmodels = 6
-
-bandit0model3 = None
-bandit1model3 = None
-bandit2model3 = None
-bandit3model3 = None
-bandit4model3 = None
-
+nmodels = 12
 nbandits = 5
+
 values = np.array([0.2, 0.4, 0.5, 0.6, 0.8])
 
 task = TwoArmedBandit(values=values, nbandits=nbandits)
-models = [RLModel(), ConfidencePE(), ConfidencePEgeneric(), ConfidenceIdealObserver(), BayesModel(), BayesIdealObserver()]
+models = [Rescorla(), RescorlaZero(), RescorlaConf(), RescorlaConfGen(), RescorlaConfBase(), RescorlaConfBaseGen(), RescorlaConfZero(), RescorlaConfZeroGen(), RescorlaConfBaseZero(), RescorlaConfBaseZeroGen(), BayesModel(), BayesIdealObserver()]
 
 performance = np.full((nmodels, niterate, ntrials), np.nan)
 performance_percent = np.full((nmodels, ntrials), np.nan)
@@ -34,7 +29,7 @@ for i in range(niterate):
             model.get_current_trial(t)
 
             stims = task.get_stimuli()
-            model.set_stimuli(stims)
+            model.stims = stims
 
             model.get_choice_probab()
             choice = model.choice()
@@ -44,8 +39,7 @@ for i in range(niterate):
             else:
                 outcome = task.get_outcome(choice)
 
-            confidence = model.get_confidence()
-            new_value_choice = model.update(outcome, confidence)
+            new_value_choice = model.update(outcome, model.get_confidence())
 
             for n in range(nbandits):
 
@@ -59,16 +53,24 @@ for i in range(niterate):
             else:
                 performance[m, i, t] = 0
 
-for j in range(ntrials):
-    for o in range(nmodels):
+for o in range(nmodels):
+    for j in range(ntrials):
         performance_percent[o, j] = 100 * len([True for x in performance[o, :, j] if x == 1]) / len(performance[o, :, j])
 
-for k in range(nbandits):
-    for o in range(nmodels):
+for o, on in enumerate(models):
+    for k in range(nbandits):
+
         locals()["bandit" + str(k) + "model" + str(o)] = np.mean(new_values_choice[o, :, :, k], axis=0)
 
-plt.plot(range(ntrials), bandit0model3, 'r--', range(ntrials), bandit1model3, 'b--',
-         range(ntrials), bandit2model3, 'g--', range(ntrials), bandit3model3, 'y--',
-         range(ntrials), bandit4model3, 'm--')
-# plt.scatter(range(ntrials), performance_percent[3, :])
-plt.show()
+    plt.plot(range(ntrials), eval("bandit0model" + str(o)), 'r--', range(ntrials), eval("bandit1model" + str(o)), 'b--',
+             range(ntrials), eval("bandit2model" + str(o)), 'g--', range(ntrials), eval("bandit3model" + str(o)), 'y--',
+             range(ntrials), eval("bandit4model" + str(o)), 'm--')
+
+    plt.title('learning curve - ' + str(on)[31:-30])
+    plt.xlabel('trials', fontweight='bold')
+    plt.ylabel('simulation of learned bandit value)', fontweight='bold')
+    plt.savefig('../figures/simulation/model' + str(o) + '.png', bbox_inches='tight')
+
+    # plt.scatter(range(ntrials), performance_percent[o, :])
+
+    plt.close()

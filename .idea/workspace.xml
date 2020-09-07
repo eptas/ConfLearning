@@ -1,42 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="">
+    <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="validation scripts + figures">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/extraction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/AIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/AIC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/BIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/BIC.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/beta.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/beta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/fitting/gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/gamma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M0_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M0_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M0_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M0_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M10_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M10_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M10_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M10_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M11_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M11_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M11_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M11_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M1_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M1_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M1_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M1_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M2_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M2_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M2_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M2_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M3_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M3_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M3_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M3_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M4_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M4_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M4_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M4_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M7_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M7_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M7_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M7_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M8_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M8_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M8_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M8_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M9_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M9_learning.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/learning/M9_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M9_learning_phase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/fitting_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/fitting_plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/learning_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/learning_plot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +234,7 @@
       <workItem from="1597838177054" duration="1912000" />
       <workItem from="1598550718498" duration="25300000" />
       <workItem from="1598607857829" duration="2135000" />
-      <workItem from="1599475038135" duration="18946000" />
+      <workItem from="1599475038135" duration="19090000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1596104080256</created>
@@ -305,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597148066915</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="validation scripts + figures">
+      <created>1599514506484</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1599514506484</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,7 +286,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="validation scripts + figures" />
+    <option name="LAST_COMMIT_MESSAGE" value="validation scripts + figures" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598570739161">
@@ -321,10 +295,10 @@
     </state>
     <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1598570739161" />
     <state x="389" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1594923278441" />
-    <state x="1831" y="99" key="CommitChangelistDialog2" timestamp="1599514447665">
+    <state x="1831" y="99" key="CommitChangelistDialog2" timestamp="1599514526517">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state x="1831" y="99" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514447665" />
+    <state x="1831" y="99" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514526517" />
     <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596731083091" />
     <state width="626" height="466" key="DebuggerActiveHint" timestamp="1595844008345">
       <screen x="1366" y="0" width="1680" height="1010" />
@@ -335,61 +309,61 @@
     </state>
     <state x="1935" y="164" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595856752189" />
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596722982949" />
-    <state width="1637" height="269" key="GridCell.Tab.0.bottom" timestamp="1599513997655">
+    <state width="1637" height="269" key="GridCell.Tab.0.bottom" timestamp="1599514531483">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="269" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599513997655" />
+    <state width="1637" height="269" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531483" />
     <state width="1323" height="177" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1597432798732" />
-    <state width="1637" height="269" key="GridCell.Tab.0.center" timestamp="1599513997655">
+    <state width="1637" height="269" key="GridCell.Tab.0.center" timestamp="1599514531483">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="269" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599513997655" />
+    <state width="1637" height="269" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531483" />
     <state width="1323" height="177" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1597432798732" />
-    <state width="1637" height="269" key="GridCell.Tab.0.left" timestamp="1599513997655">
+    <state width="1637" height="269" key="GridCell.Tab.0.left" timestamp="1599514531483">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="269" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599513997655" />
+    <state width="1637" height="269" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531483" />
     <state width="1323" height="177" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1597432798732" />
-    <state width="1637" height="269" key="GridCell.Tab.0.right" timestamp="1599513997655">
+    <state width="1637" height="269" key="GridCell.Tab.0.right" timestamp="1599514531483">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="269" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599513997655" />
+    <state width="1637" height="269" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531483" />
     <state width="1323" height="177" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1597432798732" />
-    <state width="1637" height="405" key="GridCell.Tab.1.bottom" timestamp="1599511559821">
+    <state width="1637" height="405" key="GridCell.Tab.1.bottom" timestamp="1599514531476">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="405" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599511559821" />
+    <state width="1637" height="405" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531476" />
     <state width="1323" height="188" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
-    <state width="1637" height="405" key="GridCell.Tab.1.center" timestamp="1599511559821">
+    <state width="1637" height="405" key="GridCell.Tab.1.center" timestamp="1599514531475">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="405" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599511559821" />
+    <state width="1637" height="405" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531475" />
     <state width="1323" height="188" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
-    <state width="1637" height="405" key="GridCell.Tab.1.left" timestamp="1599511559821">
+    <state width="1637" height="405" key="GridCell.Tab.1.left" timestamp="1599514531475">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="405" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599511559821" />
+    <state width="1637" height="405" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531475" />
     <state width="1323" height="188" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
-    <state width="1637" height="405" key="GridCell.Tab.1.right" timestamp="1599511559821">
+    <state width="1637" height="405" key="GridCell.Tab.1.right" timestamp="1599514531475">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="405" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599511559821" />
+    <state width="1637" height="405" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514531475" />
     <state width="1323" height="188" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1596113085657" />
     <state x="277" y="12" key="SettingsEditor" timestamp="1596722988160">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1707" y="147" key="SettingsEditor/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1594736780058" />
     <state x="277" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596722988160" />
-    <state x="1704" y="133" key="Vcs.Push.Dialog.v2" timestamp="1597148156403">
+    <state x="1704" y="133" key="Vcs.Push.Dialog.v2" timestamp="1599514703069">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state x="1704" y="133" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1597148156403" />
+    <state x="1704" y="133" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514703069" />
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596731174214" />
-    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1599475041032">
+    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1599514593012">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1598550721537" />
-    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599475041032" />
+    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599514593012" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1597840130745" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596722120616">
       <screen x="0" y="0" width="1366" height="728" />

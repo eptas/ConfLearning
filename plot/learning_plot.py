@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from ConfLearning.play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
 
-model = 0
+model = 11
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../results/')
@@ -14,7 +14,7 @@ path_data = os.path.join(cwd, '../results/')
 # os.makedirs('../figures/learning')
 # os.makedirs('../results/learning')
 
-fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(model) + '.pkl'))
+fittingData = pd.read_pickle(os.path.join(path_data, 'fittingData/fittingDataM' + str(model) + '.pkl'))
 
 alpha, beta, alpha_c, gamma, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
 
@@ -41,11 +41,13 @@ for m, models in enumerate(modellist):
         for k in range(nbandits):
             for b in range(nblocks):
                 for p in range(nphases):
+
                     if p == 0:
                         vals = new_value_choice[b, p, :, k]
                         vals = np.hstack((np.full(np.sum(np.isnan(vals)), np.nan), vals[~np.isnan(vals)]))
                     else:
                         vals = new_value_choice[b, p, :, k][~np.isnan(new_value_choice[b, p, :, k])]
+
                     learned_values = pd.DataFrame(data={"s" + str(n) + "b" + str(b) + "p" + str(p): vals},
                                                   columns=["s" + str(n) + "b" + str(b) + "p" + str(p)])
                     locals()["learned_value" + str(k)] = pd.concat([eval("learned_value" + str(k)), learned_values], axis=1)
@@ -112,4 +114,4 @@ plt.close()
 
 for k in range(nbandits):
     learning = pd.concat([learning, eval("learned_value" + str(k))])
-    learning.to_pickle("../results/learning/learningM" + str(model) + ".pkl")
+    learning.to_pickle("../results/learning/learningM" + str(model) + ".pkl", protocol=4)

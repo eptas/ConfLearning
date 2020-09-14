@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from pathlib import Path
+from scipy import stats
 
 cwd = Path.cwd()
 
@@ -34,19 +35,14 @@ for m, model in enumerate(modellist):
     if m == 0:
         fittingData.ALPHA_N = fittingData.ALPHA_C
 
-    corr = np.corrcoef(fittingData.ALPHA_N, delta)[0][1]
+    rho, pval = stats.spearmanr(fittingData.ALPHA_N, delta)
     axes[row, col].scatter(fittingData.ALPHA_N, delta, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[m])
     axes[max(rows), col].set_xlabel('alpha_n')
     axes[row, 0].set_ylabel('normalized value ratings (p2-p1)')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].set_yticks(np.arange(-0.12, 0.13, step=0.05))
-    axes[row, col].text(0.5, 0 if corr >= 0 else 0, str(round(corr, 2)), color='k', fontsize=10)
+    axes[row, col].text(0.5, 0 if rho >= 0 else 0, str(round(rho, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 fig.savefig('../figures/validation/corr_rating_alpha_n.png', bbox_inches='tight')
 plt.close()
-
-
-
-
-

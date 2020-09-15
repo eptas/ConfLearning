@@ -12,7 +12,7 @@ path_data = os.path.join(cwd, '../results/fittingData')
 model_name = ['Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
 
 models = modellist[6:10]
-alpha_c, alpha_n = np.arange(0, 1, 0.02), np.arange(0, 1, 0.02)
+alpha_c, alpha_n = np.arange(0, 1, 0.02), np.arange(0, 0.01, 0.0005)
 nsubjects = 66
 
 
@@ -38,6 +38,7 @@ def extract_neg_ll():
 
 if __name__ == '__main__':
 
+    # extract_neg_ll()
     negLL = np.load('negLL_alpha_c_n.npy')
 
     fig, axes = plt.subplots(2, 2, figsize=(20, 10))
@@ -55,9 +56,9 @@ if __name__ == '__main__':
             axes[row, col].set_title(model_name[m])
             axes[max(rows), col].set_xlabel('alpha_c')
             axes[row, 0].set_ylabel('neg_log_likelihood')
-            axes[row, col].set_yticks(np.arange(210, 290, step=10))
+            axes[row, col].set_yticks(np.arange(205, 236, step=5))
             # axes[row, col].text(alpha_c[no], np.mean(mLikeli), str(round(feed, 2)), color='k', fontsize=8)
-            axes[row, col].text(0.5, 250, 'alpha_n (min=0.0, max=1.0, step=0.02)', fontsize=10)
+            axes[row, col].text(0.5, 220, 'alpha_n (min=0.0, max=0.01, step=0.0005)', fontsize=10)
             axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
             fig.savefig('../figures/validation/likelihood_alpha_c_n.png', bbox_inches='tight')
             plt.close()

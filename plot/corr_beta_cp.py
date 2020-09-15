@@ -38,10 +38,3 @@ for model in range(n_models):
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 fig.savefig('../figures/param_corr/corr_beta_cp.png', bbox_inches='tight')
 plt.close()
-
-
-
-
-
-
-

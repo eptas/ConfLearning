@@ -18,6 +18,7 @@ ntrials = 10
 nblocks = 10
 
 confidence = np.full((nblocks, ntrials), np.nan)
+confSlope = np.full(nsubjects, np.nan)
 
 
 def slope_intercept(x, y):
@@ -43,6 +44,7 @@ for s in range(nsubjects):
     slope, intercept = slope_intercept(np.arange(ntrials), confP1)
 
     regLine = [(slope * trial) + intercept for trial in np.arange(ntrials)]
+    confSlope[s] = slope
 
     row, col = rows[s], columns[s]
 
@@ -55,6 +57,8 @@ for s in range(nsubjects):
     axes[row, col].set_yticks(np.arange(0, 11, step=2))
     axes[row, col].text(5, 5, str(round(slope, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
+
+np.save('confSlope', confSlope)
+
 fig.savefig('../figures/validation/conf_slope.png', bbox_inches='tight')
 plt.close()
-

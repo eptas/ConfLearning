@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma
 from ConfLearning.fitting.maximum_likelihood import ParameterFit
 from pathlib import Path
 
@@ -22,7 +22,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 11   # CHANGE HERE
+set_model = 13   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -36,6 +36,8 @@ alpha_n = 0.1
 alpha_c = 0.1
 beta = 1
 gamma = 0.1
+gamma_f = 0.1
+gamma_wo = 0.1
 phi = 0.1
 
 lower_alpha, la = 0, 0
@@ -43,6 +45,8 @@ lower_alpha_n, lan = 0, 0
 lower_alpha_c, lac = 0, 0
 lower_beta, lb = 0, 0
 lower_gamma, lg = 0, 0
+lower_gamma_f, lgf = 0, 0
+lower_gamma_wo, lgwo = 0, 0
 lower_phi, lp = 0, 0
 
 upper_alpha, ua = 1, 1
@@ -50,25 +54,29 @@ upper_alpha_n, uan = 1, 1
 upper_alpha_c, uac = 1, 1
 upper_beta, ub = 2, 2
 upper_gamma, ug = 1, 1
+upper_gamma_f, ugf = 1, 1
+upper_gamma_wo, ugwo = 1, 1
 upper_phi, up = 1, 1
 
 bounds = [np.c_[np.array([la, lb]), np.array([ua, ub])],
           np.c_[np.array([la, lb, lan]), np.array([ua, ub, uan])],
           *[np.c_[np.array([la, lb, lac, lg]), np.array([ua, ub, uac, ug])] for _ in range(4)],
           *[np.c_[np.array([la, lb, lac, lg, lan]), np.array([ua, ub, uac, ug, uan])] for _ in range(4)],
-          *[np.c_[np.array([la, lb, lp, lg]), np.array([ua, ub, up, ug])] for _ in range(2)]]
+          *[np.c_[np.array([la, lb, lp, lg]), np.array([ua, ub, up, ug])] for _ in range(2)],
+          *[np.c_[np.array([la, lb, lac, lgf, lgwo]), np.array([ua, ub, uac, ugf, ugwo])] for _ in range(2)]]
 
 expect = [(np.array([ua, ub]) - np.array([la, lb])) / 2,
           (np.array([ua, ub, uan]) - np.array([la, lb, lan])) / 2,
           *[(np.array([ua, ub, uac, ug]) - np.array([la, lb, lac, lg])) / 2 for _ in range(4)],
           *[(np.array([ua, ub, uac, ug, uan]) - np.array([la, lb, lac, lg, lan])) / 2 for _ in range(4)],
-          *[(np.array([ua, ub, up, ug]) - np.array([la, lb, lp, lg])) / 2 for _ in range(2)]]
+          *[(np.array([ua, ub, up, ug]) - np.array([la, lb, lp, lg])) / 2 for _ in range(2)],
+          *[(np.array([ua, ub, uac, ugf, ugwo]) - np.array([la, lb, lac, lgf, lgwo])) / 2 for _ in range(2)]]
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
-modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver]
-paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, alpha_c, gamma] for _ in range(4)], *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)], *[[alpha, beta, phi, gamma] for _ in range(2)]]
-nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4]
+modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma]
+paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, alpha_c, gamma] for _ in range(4)], *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)], *[[alpha, beta, phi, gamma] for _ in range(2)], *[[alpha, beta, alpha_c, gamma_f, gamma_wo] for _ in range(2)]]
+nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 5, 5]
 nmodels = len(modellist)
 
 probab_choice = np.full((nmodels, nsubjects, nblocks, nphases, ntrials_phase_max), np.nan)

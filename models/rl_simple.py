@@ -360,3 +360,76 @@ class BayesIdealObserver(BayesModel):
         self.values[self.stim_chosen] = (self.trial * self.values[self.stim_chosen] + outcome) / (self.trial + 1)
 
         return self.values[self.stim_chosen]
+
+
+class RescorlaConfGamma(RescorlaConf):
+
+    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma_f=0.1, gamma_wo=0.1, nbandits=5):
+
+        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, nbandits=nbandits)
+
+        self.gamma_f = gamma_f
+        self.gamma_wo = gamma_wo
+
+    def update(self, outcome, confidence):
+
+        if np.isnan(outcome):
+            return self.learn_confidence_value_without_feed(confidence)
+        else:
+            self.learn_confidence_value_with_feed(confidence)
+
+            return self.learn_value(outcome)
+
+    def learn_confidence_value_with_feed(self, confidence):
+
+        self.conf_PE = confidence - self.conf_values[self.stim_chosen]
+        self.conf_values[self.stim_chosen] += self.gamma_f * self.conf_PE
+        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+
+        return self.values[self.stim_chosen]
+
+    def learn_confidence_value_without_feed(self, confidence):
+
+        self.conf_PE = confidence - self.conf_values[self.stim_chosen]
+        self.conf_values[self.stim_chosen] += self.gamma_wo * self.conf_PE
+        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+
+        return self.values[self.stim_chosen]
+
+
+class RescorlaConfGenGamma(RescorlaConfGen):
+    """Gamma 1 & gamma 2 are implemented to capture update differences in phases with & without feedback"""
+
+    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma_f=0.1, gamma_wo=0.1, nbandits=5):
+
+        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, nbandits=nbandits)
+
+        self.gamma_f = gamma_f
+        self.gamma_wo = gamma_wo
+
+    def update(self, outcome, confidence):
+
+        if np.isnan(outcome):
+            return self.learn_confidence_value_without_feed(confidence)
+        else:
+            self.learn_confidence_value_with_feed(confidence)
+
+            return self.learn_value(outcome)
+
+    def learn_confidence_value_with_feed(self, confidence):
+        """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
+
+        self.conf_PE = confidence - self.conf_values
+        self.conf_values += self.gamma_f * self.conf_PE
+        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+
+        return self.values[self.stim_chosen]
+
+    def learn_confidence_value_without_feed(self, confidence):
+        """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
+
+        self.conf_PE = confidence - self.conf_values
+        self.conf_values += self.gamma_wo * self.conf_PE
+        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+
+        return self.values[self.stim_chosen]

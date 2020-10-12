@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from pathlib import Path
+from scipy import stats
 
 n_models = 12
 
@@ -27,14 +28,15 @@ for model in range(n_models):
 
     row, col = rows[model], columns[model]
 
-    corr = np.corrcoef(fittingData.BETA, cp_subject)[0][1]
+    rho, pval = stats.spearmanr(fittingData.BETA, cp_subject)
+    # corr = np.corrcoef(fittingData.BETA, cp_subject)[0][1]
     axes[row, col].scatter(fittingData.BETA, cp_subject, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[model])
     axes[max(rows), col].set_xlabel('beta')
     axes[row, 0].set_ylabel('choice probability')
     axes[row, col].set_xticks(np.arange(0, 2.1, step=0.2))
     axes[row, col].set_yticks(np.arange(0.5, 0.75, step=0.1))
-    axes[row, col].text(1 if corr >= 0 else 1, 0.5, str(round(corr, 2)), color='k', fontsize=10)
+    axes[row, col].text(1 if rho >= 0 else 1, 0.6, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 fig.savefig('../figures/param_corr/corr_beta_cp.png', bbox_inches='tight')
 plt.close()

@@ -32,6 +32,8 @@ for m, model in enumerate(modellist):
 
     values = pd.DataFrame(data={"rating_inc": rating_inc, "conf_slope": conf_slope, "gamma": gamma}, columns=["rating_inc", "conf_slope", "gamma"])
 
+    values = (values - values.mean()) / values.std()
+
     res = smf.ols(formula='rating_inc ~ conf_slope + gamma + conf_slope:gamma', data=values).fit()
     results = res.summary()
 

@@ -7,7 +7,7 @@ from pathlib import Path
 from ConfLearning.play.test_experimental_data_simple import run_model, modellist
 
 cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path_data = os.path.join(cwd, '../../results/fittingData')
 
 model_name = ['Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
 
@@ -48,17 +48,18 @@ if __name__ == '__main__':
 
         row, col = rows[m], columns[m]
 
-        for no, feed in enumerate(alpha_n):
+        for c, conf in enumerate(alpha_c):  # for no, feed in enumerate(alpha_n):
 
-            mLikeli = np.mean(negLL[m, :, :, no], axis=0)
+            mLikeli = np.mean(negLL[m, :, c, :], axis=0)   # mLikeli = np.mean(negLL[m, :, :, no], axis=0)
 
-            axes[row, col].plot(alpha_c, mLikeli, linewidth=0.5)
+            axes[row, col].plot(alpha_n, mLikeli, linewidth=0.5)    # axes[row, col].plot(alpha_c, mLikeli, linewidth=0.5)
             axes[row, col].set_title(model_name[m])
-            axes[max(rows), col].set_xlabel('alpha_c')
+            axes[max(rows), col].set_xlabel('alpha_n')
             axes[row, 0].set_ylabel('neg_log_likelihood')
             axes[row, col].set_yticks(np.arange(205, 236, step=5))
+            axes[row, col].set_xticks(np.arange(0, 0.01, step=0.002))
             # axes[row, col].text(alpha_c[no], np.mean(mLikeli), str(round(feed, 2)), color='k', fontsize=8)
-            axes[row, col].text(0.5, 220, 'alpha_n (min=0.0, max=0.01, step=0.0005)', fontsize=10)
+            axes[row, col].text(0.004, 220, 'alpha_c (min=0.0, max=1, step=0.02)', fontsize=10)
             axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
-            fig.savefig('../figures/validation/likelihood_alpha_c_n.png', bbox_inches='tight')
+            fig.savefig('../../figures/validation/likelihood/likelihood_alpha_c_n.png', bbox_inches='tight')
             plt.close()

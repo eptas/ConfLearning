@@ -9,7 +9,7 @@ from functools import reduce
 
 
 cwd = Path.cwd()
-path_data = os.path.join(cwd, '../data/')
+path_data = os.path.join(cwd, '../../data/')
 
 conf = np.load(os.path.join(path_data + 'confidence_value.npy'))
 
@@ -38,7 +38,7 @@ for s in range(nsubjects):
 
     for b in range(nblocks):
         index = np.where(~np.isnan(conf[s, b, 1, :]))
-        confidence[b, :] = conf[s, b, 1, :][index[0][0]:(index[0][0] + ntrials)] if len(index[0]) != 0 else np.full(ntrials, np.nan)
+        confidence[b, :] = conf[s, b, 1, :][index[0][0]:(index[0][0] + ntrials)] if len(index[0]) >= 10 else np.full(ntrials, np.nan)
 
     confP1 = np.nanmean(confidence, axis=0)
     slope, intercept = slope_intercept(np.arange(ntrials), confP1)
@@ -60,5 +60,5 @@ for s in range(nsubjects):
 
 np.save('confSlope', confSlope)
 
-fig.savefig('../figures/validation/conf_slope.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/conf_slope/conf_slope.png', bbox_inches='tight')
 plt.close()

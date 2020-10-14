@@ -49,7 +49,7 @@ for m, model in enumerate(model_fit):
     plt.bar(range(n_models), model[1:len(model)], width=0.8, color='g')
 
     for t in range(n_models):
-        plt.text(t, 200, str(round(model[1:len(model)][t], 0)), color='w', fontsize=6)
+        plt.text(t, 200, str(round(model[1:len(model)][t], 2)), color='w', fontsize=6)
 
     plt.title('model fit')
     plt.xlabel('model', fontweight='bold')

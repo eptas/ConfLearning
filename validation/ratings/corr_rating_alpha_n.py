@@ -8,8 +8,8 @@ from scipy import stats
 
 cwd = Path.cwd()
 
-path_data_d = os.path.join(cwd, '../data/')
-path_data_r = os.path.join(cwd, '../results/fittingData')
+path_data_d = os.path.join(cwd, '../../data/')
+path_data_r = os.path.join(cwd, '../../results/fittingData')
 
 df = pd.read_pickle(os.path.join(path_data_d, 'data.pkl'))
 
@@ -42,7 +42,7 @@ for m, model in enumerate(modellist):
     axes[row, 0].set_ylabel('normalized value ratings (p2-p1)')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].set_yticks(np.arange(-0.12, 0.13, step=0.05))
-    axes[row, col].text(0.5, 0 if rho >= 0 else 0, str(round(rho, 2)), color='k', fontsize=10)
+    axes[row, col].text(0.4, 0 if rho >= 0 else 0, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
-fig.savefig('../figures/validation/corr_rating_alpha_n.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/ratings/corr_rating_alpha_n.png', bbox_inches='tight')
 plt.close()

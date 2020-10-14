@@ -8,8 +8,8 @@ from scipy import stats
 
 cwd = Path.cwd()
 
-path_data_d = os.path.join(cwd, '../data/')
-path_data_r = os.path.join(cwd, '../results/fittingData')
+path_data_d = os.path.join(cwd, '../../data/')
+path_data_r = os.path.join(cwd, '../../results/fittingData')
 
 df = pd.read_pickle(os.path.join(path_data_d, 'data.pkl'))
 
@@ -33,19 +33,14 @@ for m, model in enumerate(modellist):
 
         delta[s] = df[(df.subject == s) & df.type_rating2].rating.mean() - df[(df.subject == s) & df.type_rating1].rating.mean()
 
-    rho, pval = stats.spearmanr(fittingData.GAMMA, delta)
-    axes[row, col].scatter(fittingData.GAMMA, delta, s=8, c='g', marker='o')
+    rho, pval = stats.spearmanr(fittingData.ALPHA_C, delta)
+    axes[row, col].scatter(fittingData.ALPHA_C, delta, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[m])
-    axes[max(rows), col].set_xlabel('gamma')
+    axes[max(rows), col].set_xlabel('alpha_c')
     axes[row, 0].set_ylabel('norm. value ratings (p2-p1)')
     # axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
     # axes[row, col].set_yticks(np.arange(-0.12, 0.13, step=0.05))
-    axes[row, col].text(0.5, 0 if rho >= 0 else 0, str(round(rho, 2)), color='k', fontsize=10)
+    axes[row, col].text(0.4, 0 if rho >= 0 else 0, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
-fig.savefig('../figures/validation/corr_rating_gamma.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/ratings/corr_rating_alpha_c.png', bbox_inches='tight')
 plt.close()
-
-
-
-
-

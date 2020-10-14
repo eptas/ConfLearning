@@ -7,7 +7,7 @@ from pathlib import Path
 from scipy import stats
 
 cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path_data = os.path.join(cwd, '../../results/fittingData')
 
 conf_slope = np.load('confSlope.npy')
 
@@ -25,14 +25,14 @@ for m, model in enumerate(modellist):
     fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(model) + '.pkl'))
     row, col = rows[m], columns[m]
 
-    rho, pval = stats.spearmanr(fittingData.ALPHA_C, conf_slope)
-    axes[row, col].scatter(fittingData.ALPHA_C, conf_slope, s=8, c='g', marker='o')
+    rho, pval = stats.spearmanr(fittingData.GAMMA, conf_slope)
+    axes[row, col].scatter(fittingData.GAMMA, conf_slope, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[m])
-    axes[max(rows), col].set_xlabel('alpha_c')
+    axes[max(rows), col].set_xlabel('gamma')
     axes[row, 0].set_ylabel('confidence slope')
     # axes[row, col].set_xticks(np.arange(0, 1.1, step=0.2))
     # axes[row, col].set_yticks(np.arange(-0.3, 0.41, step=0.2))
-    axes[row, col].text(0.5, 0 if rho >= 0 else 0, str(round(rho, 2)), color='k', fontsize=10)
+    axes[row, col].text(0.4, 0 if rho >= 0 else 0, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
-fig.savefig('../figures/validation/corr_conf_slope_alpha_c.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/conf_slope/corr_conf_slope_gamma.png', bbox_inches='tight')
 plt.close()

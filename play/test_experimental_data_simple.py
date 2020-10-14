@@ -9,6 +9,7 @@ from pathlib import Path
 fitting = ParameterFit()
 
 cwd = Path.cwd()
+print(cwd)
 path_data = os.path.join(cwd, '../data/')
 
 # os.makedirs('../results/fittingData')
@@ -58,6 +59,15 @@ upper_gamma_f, ugf = 1, 1
 upper_gamma_wo, ugwo = 1, 1
 upper_phi, up = 1, 1
 
+grid_alpha = np.arange(0.1, 0.51, 0.2)
+grid_alpha_n = np.arange(0.01, 0.061, 0.05)
+grid_alpha_c = np.arange(0.05, 0.5, 0.1)
+grid_beta = np.arange(0.1, 0.31, 0.1)
+grid_gamma = np.arange(0.05, 0.5, 0.1)
+grid_gamma_f = np.arange(0.05, 0.5, 0.1)
+grid_gamma_wo = np.arange(0.05, 0.5, 0.1)
+grid_phi = np.arange(0.05, 0.5, 0.2)
+
 bounds = [np.c_[np.array([la, lb]), np.array([ua, ub])],
           np.c_[np.array([la, lb, lan]), np.array([ua, ub, uan])],
           *[np.c_[np.array([la, lb, lac, lg]), np.array([ua, ub, uac, ug])] for _ in range(4)],
@@ -71,6 +81,15 @@ expect = [(np.array([ua, ub]) - np.array([la, lb])) / 2,
           *[(np.array([ua, ub, uac, ug, uan]) - np.array([la, lb, lac, lg, lan])) / 2 for _ in range(4)],
           *[(np.array([ua, ub, up, ug]) - np.array([la, lb, lp, lg])) / 2 for _ in range(2)],
           *[(np.array([ua, ub, uac, ugf, ugwo]) - np.array([la, lb, lac, lgf, lgwo])) / 2 for _ in range(2)]]
+
+grid_range = [
+    [grid_alpha, grid_beta],
+    [grid_alpha, grid_beta, grid_alpha_n],
+    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma] for _ in range(4)],
+    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma, grid_alpha_n] for _ in range(4)],
+    *[[grid_alpha, grid_beta, grid_phi, grid_gamma] for _ in range(2)],
+    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma_f, grid_gamma_wo] for _ in range(2)],
+]
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
@@ -155,7 +174,7 @@ if __name__ == '__main__':
 
             params = paramlist[m]
             fitting.set_model(n, nsubjects, modellist[m], run_model, nparams[m])
-            fitting.local_minima(expect[m], bounds[m])
+            fitting.local_minima(expect[m], bounds[m], grid_range[m])
             print(n)
 
             for param in range(nparams[m]):

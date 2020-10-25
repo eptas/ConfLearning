@@ -5,23 +5,87 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/fitting/AIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/AIC.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/fitting/BIC.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/BIC.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/alpha_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/alpha_n.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/beta.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/beta.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/fitting/gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/fitting/gamma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M0_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M0_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M0_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M0_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M10_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M10_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M10_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M10_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M1_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M1_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M1_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M1_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M2_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M2_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M2_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M2_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M3_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M3_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M3_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M3_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M4_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M4_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M4_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M4_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M5_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M6_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M7_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M7_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M7_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M7_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M8_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M8_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M8_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M8_learning_phase.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M9_learning.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M9_learning.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/learning/M9_learning_phase.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/learning/M9_learning_phase.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_gamma_f.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_gamma_f.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_gamma_wo.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_gamma_wo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_beta_cp.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_beta_cp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/conf_slope.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/corr_conf_slope_alpha_c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/corr_conf_slope_gamma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/corr_conf_slope_rating.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/corr_rating_alpha_n.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/corr_rating_gamma.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/likelihood_alpha_c.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/likelihood_alpha_c_n.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/rl_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/rl_simple.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_gamma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/corr_value_inc_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/corr_value_inc_alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/likelihood/likelihood_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/likelihood/likelihood_alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/likelihood/likelihood_gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/likelihood/likelihood_gamma.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_alpha_c.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_alpha_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_alpha_n.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/ratings/corr_rating_gamma.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play/test_experimental_data_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/play/test_experimental_data_simple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/corr_beta_cp.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_beta_cp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/fitting_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/fitting_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/learning_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/learning_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM0.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM10.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM10.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM11.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM11.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM12.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM12.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM13.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM13.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM3.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM3.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM4.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM4.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM5.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM5.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM7.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM7.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM8.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM8.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM9.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/choiceProbab/choiceProbabM9.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM0.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM10.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM10.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM11.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM11.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM12.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM12.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM13.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM13.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM3.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM3.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM4.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM4.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM5.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM5.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM7.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM7.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM8.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM8.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/fittingData/fittingDataM9.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/fittingData/fittingDataM9.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM0.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM1.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM1.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM10.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM10.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM2.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM2.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM3.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM3.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM4.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM4.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM5.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM5.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM6.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM6.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM7.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM7.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM8.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM8.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/learning/learningM9.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/results/learning/learningM9.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/validation/regM2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM2.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/validation/regM3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM3.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/validation/regM4.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM4.csv" afterDir="false" />
@@ -30,17 +94,7 @@
       <change beforePath="$PROJECT_DIR$/results/validation/regM7.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM7.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/validation/regM8.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM8.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/validation/regM9.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/validation/regM9.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/confSlope.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/conf_slope.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/corr_conf_slope_alpha_c.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/corr_conf_slope_gamma.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/corr_conf_slope_rating.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/corr_rating_alpha_n.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/corr_rating_gamma.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/likelihood_alpha_c.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/likelihood_alpha_c_n.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/negLL_alpha_c_n.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/reg_rating_by_conf_and_gamma.py" beforeDir="false" afterPath="$PROJECT_DIR$/validation/reg_rating_by_conf_and_gamma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validation/reg_rating_by_conf_and_gamma.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +131,8 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myShowDebugConsoleByDefault" value="true" />
   </component>
-  <component name="RunManager" selected="Python.corr_alpha_c_gamma_wo">
-    <configuration name="corr_alpha_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.likelihood_alpha_c_n">
+    <configuration name="corr_value_inc_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -86,12 +140,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/validation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_alpha_alpha_c.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/validation/corr_value_inc_alpha_c.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,7 +154,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="corr_alpha_c_gamma_f" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="likelihood_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,12 +162,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/validation/likelihood" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_alpha_c_gamma_f.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/validation/likelihood/likelihood_alpha_c.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -122,7 +176,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="corr_alpha_c_gamma_wo" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="likelihood_alpha_c_n" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -130,12 +184,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/validation/likelihood" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_alpha_c_gamma_wo.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/validation/likelihood/likelihood_alpha_c_n.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,7 +198,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="corr_beta_cp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="likelihood_gamma" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -152,12 +206,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/validation/likelihood" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_beta_cp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/validation/likelihood/likelihood_gamma.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,7 +220,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="corr_gamma_alpha_c" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="reg_rating_by_conf_and_gamma (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -174,12 +228,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/validation/conf_slope" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/validation/conf_slope/reg_rating_by_conf_and_gamma.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,11 +244,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.corr_alpha_c_gamma_wo" />
-        <item itemvalue="Python.corr_alpha_c_gamma_f" />
-        <item itemvalue="Python.corr_gamma_alpha_c" />
-        <item itemvalue="Python.corr_alpha_alpha_c" />
-        <item itemvalue="Python.corr_beta_cp" />
+        <item itemvalue="Python.likelihood_alpha_c_n" />
+        <item itemvalue="Python.likelihood_gamma" />
+        <item itemvalue="Python.likelihood_alpha_c" />
+        <item itemvalue="Python.corr_value_inc_alpha_c" />
+        <item itemvalue="Python.reg_rating_by_conf_and_gamma (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -284,7 +338,17 @@
       <workItem from="1602265335090" duration="4000" />
       <workItem from="1602495964144" duration="24380000" />
       <workItem from="1602525448206" duration="2477000" />
-      <workItem from="1602527970849" duration="2561000" />
+      <workItem from="1602527970849" duration="2947000" />
+      <workItem from="1602676672102" duration="6537000" />
+      <workItem from="1602684866535" duration="3330000" />
+      <workItem from="1602695771957" duration="255000" />
+      <workItem from="1602696047209" duration="6796000" />
+      <workItem from="1602703222842" duration="1928000" />
+      <workItem from="1602775161711" duration="1900000" />
+      <workItem from="1602793420178" duration="1663000" />
+      <workItem from="1602855449924" duration="377000" />
+      <workItem from="1603024640761" duration="4221000" />
+      <workItem from="1603641887226" duration="13228000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1596104080256</created>
@@ -349,7 +413,21 @@
       <option name="project" value="LOCAL" />
       <updated>1600121766624</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="validate RescorlaConfGen">
+      <created>1602530677847</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1602530677847</updated>
+    </task>
+    <task id="LOCAL-00011" summary="validate RescorlaConfGen">
+      <created>1602530710809</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1602530710809</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +438,8 @@
     <MESSAGE value="validation scripts + figures" />
     <MESSAGE value="sim" />
     <MESSAGE value="validate" />
-    <option name="LAST_COMMIT_MESSAGE" value="validate" />
+    <MESSAGE value="validate RescorlaConfGen" />
+    <option name="LAST_COMMIT_MESSAGE" value="validate RescorlaConfGen" />
   </component>
   <component name="WindowStateProjectService">
     <state x="389" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602518870280">
@@ -368,11 +447,11 @@
     </state>
     <state x="1844" y="230" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1598570739161" />
     <state x="389" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1602518870280" />
-    <state x="378" y="0" key="CommitChangelistDialog2" timestamp="1602530674426">
+    <state x="378" y="0" key="CommitChangelistDialog2" timestamp="1602530709368">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1831" y="99" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599518127132" />
-    <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1602530674426" />
+    <state x="378" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1602530709368" />
     <state width="626" height="466" key="DebuggerActiveHint" timestamp="1595844008345">
       <screen x="1366" y="0" width="1680" height="1010" />
     </state>
@@ -382,70 +461,74 @@
     </state>
     <state x="1935" y="164" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595856752189" />
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1596722982949" />
-    <state width="1323" height="199" key="GridCell.Tab.0.bottom" timestamp="1602530495505">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1637" height="247" key="GridCell.Tab.0.bottom" timestamp="1603660152579">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="199" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602511118649" />
-    <state width="1323" height="199" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602530495505" />
-    <state width="1323" height="199" key="GridCell.Tab.0.center" timestamp="1602530495505">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="113" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602684269302" />
+    <state width="1637" height="247" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1603660152579" />
+    <state width="1323" height="162" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602795631904" />
+    <state width="1637" height="247" key="GridCell.Tab.0.center" timestamp="1603660152578">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="199" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602511118648" />
-    <state width="1323" height="199" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602530495505" />
-    <state width="1323" height="199" key="GridCell.Tab.0.left" timestamp="1602530495505">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="113" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602684269302" />
+    <state width="1637" height="247" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1603660152578" />
+    <state width="1323" height="162" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602795631901" />
+    <state width="1637" height="247" key="GridCell.Tab.0.left" timestamp="1603660152578">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="199" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602511118648" />
-    <state width="1323" height="199" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602530495505" />
-    <state width="1323" height="199" key="GridCell.Tab.0.right" timestamp="1602530495505">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1323" height="113" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602684269302" />
+    <state width="1637" height="247" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1603660152578" />
+    <state width="1323" height="162" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602795631901" />
+    <state width="1637" height="247" key="GridCell.Tab.0.right" timestamp="1603660152579">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state width="1637" height="199" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602511118649" />
-    <state width="1323" height="199" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602530495505" />
-    <state width="1323" height="193" key="GridCell.Tab.1.bottom" timestamp="1602530373365">
+    <state width="1323" height="113" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602684269302" />
+    <state width="1637" height="247" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1603660152579" />
+    <state width="1323" height="162" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602795631902" />
+    <state width="1323" height="193" key="GridCell.Tab.1.bottom" timestamp="1602530932972">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1637" height="321" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602261156414" />
-    <state width="1323" height="193" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602530373365" />
-    <state width="1323" height="193" key="GridCell.Tab.1.center" timestamp="1602530373365">
+    <state width="1323" height="193" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602530932972" />
+    <state width="1323" height="193" key="GridCell.Tab.1.center" timestamp="1602530932972">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1637" height="321" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602261156413" />
-    <state width="1323" height="193" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1602530373365" />
-    <state width="1323" height="193" key="GridCell.Tab.1.left" timestamp="1602530373365">
+    <state width="1323" height="193" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1602530932972" />
+    <state width="1323" height="193" key="GridCell.Tab.1.left" timestamp="1602530932972">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1637" height="321" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602261156413" />
-    <state width="1323" height="193" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1602530373365" />
-    <state width="1323" height="193" key="GridCell.Tab.1.right" timestamp="1602530373365">
+    <state width="1323" height="193" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1602530932972" />
+    <state width="1323" height="193" key="GridCell.Tab.1.right" timestamp="1602530932972">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1637" height="321" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1602261156414" />
-    <state width="1323" height="193" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1602530373365" />
+    <state width="1323" height="193" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1602530932972" />
     <state x="277" y="12" key="SettingsEditor" timestamp="1596722988160">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="1707" y="147" key="SettingsEditor/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1594736780058" />
     <state x="277" y="12" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596722988160" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1600121903795">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1602530777163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1704" y="133" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599518177595" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1600121903795" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1602527971727">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1602530777163" />
+    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog" timestamp="1603641936444">
+      <screen x="1366" y="0" width="1680" height="1010" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1598550721537" />
-    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1599727915604" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1602527971727" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602775162343" />
+    <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1603641936444" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1602855471692" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596722120616">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="1971" y="388" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1595974502814" />
     <state x="492" y="280" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1596722120616" />
-    <state x="415" y="155" key="git4idea.merge.GitPullDialog" timestamp="1596731117740">
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog" timestamp="1602693414572">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="415" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1602693414572" />
     <state x="415" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1596731117740" />
   </component>
   <component name="XDebuggerManager">
@@ -466,37 +549,39 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ConfLearning$conf_slope.coverage" NAME="conf_slope Coverage Results" MODIFIED="1602172606834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$reg_rating_by_conf_and_gamma.coverage" NAME="reg_rating_by_conf_and_gamma Coverage Results" MODIFIED="1602172790959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_gamma.coverage" NAME="corr_rating_gamma Coverage Results" MODIFIED="1602522562260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_alpha_n.coverage" NAME="corr_rating_alpha_n Coverage Results" MODIFIED="1602522547143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
-    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_alpha_c_n.coverage" NAME="likelihood_alpha_c_n Coverage Results" MODIFIED="1602174758243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_alpha_c.coverage" NAME="corr_rating_alpha_c Coverage Results" MODIFIED="1602522500078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$reg_rating_by_conf_and_gamma.coverage" NAME="reg_rating_by_conf_and_gamma Coverage Results" MODIFIED="1603658599762" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_gamma.coverage" NAME="corr_rating_gamma Coverage Results" MODIFIED="1603658504972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_alpha_n.coverage" NAME="corr_rating_alpha_n Coverage Results" MODIFIED="1603658124169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_alpha_c.coverage" NAME="corr_rating_alpha_c Coverage Results" MODIFIED="1603658110191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_alpha_c_n.coverage" NAME="likelihood_alpha_c_n Coverage Results" MODIFIED="1603660152569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/likelihood" />
     <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot__1_.coverage" NAME="fitting_plot (1) Coverage Results" MODIFIED="1596641052919" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_gamma.coverage" NAME="corr_conf_slope_gamma Coverage Results" MODIFIED="1602518430813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_c_gamma_f.coverage" NAME="corr_alpha_c_gamma_f Coverage Results" MODIFIED="1602530405329" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$learning_plot.coverage" NAME="learning_plot Coverage Results" MODIFIED="1598554684797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_beta_cp.coverage" NAME="corr_beta_cp Coverage Results" MODIFIED="1602528211276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_gamma.coverage" NAME="corr_conf_slope_gamma Coverage Results" MODIFIED="1603658095909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_c_gamma_f.coverage" NAME="corr_alpha_c_gamma_f Coverage Results" MODIFIED="1603657531547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$learning_plot.coverage" NAME="learning_plot Coverage Results" MODIFIED="1603657749266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_beta_cp.coverage" NAME="corr_beta_cp Coverage Results" MODIFIED="1603657427573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$extraction.coverage" NAME="extraction Coverage Results" MODIFIED="1597679103366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_alpha_c.coverage" NAME="corr_alpha_alpha_c Coverage Results" MODIFIED="1602528472046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_alpha_c.coverage" NAME="corr_alpha_alpha_c Coverage Results" MODIFIED="1603657541144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_block_stim_left_right.coverage" NAME="corr_rating_block_stim_left_right Coverage Results" MODIFIED="1602514026877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
     <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_stim_values.coverage" NAME="corr_rating_stim_values Coverage Results" MODIFIED="1602521059107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
     <SUITE FILE_PATH="coverage/ConfLearning$choice_probability.coverage" NAME="choice_probability Coverage Results" MODIFIED="1596641303109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$param_corr.coverage" NAME="param_corr Coverage Results" MODIFIED="1596641754514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot.coverage" NAME="fitting_plot Coverage Results" MODIFIED="1600172680689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_gamma.coverage" NAME="likelihood_gamma Coverage Results" MODIFIED="1602234930130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_alpha_c.coverage" NAME="corr_conf_slope_alpha_c Coverage Results" MODIFIED="1602518460870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_value_inc_alpha_c.coverage" NAME="corr_value_inc_alpha_c Coverage Results" MODIFIED="1602522010660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_c_gamma_wo.coverage" NAME="corr_alpha_c_gamma_wo Coverage Results" MODIFIED="1602530495489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$fitting_plot.coverage" NAME="fitting_plot Coverage Results" MODIFIED="1603657294157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_gamma.coverage" NAME="likelihood_gamma Coverage Results" MODIFIED="1603659618436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/likelihood" />
+    <SUITE FILE_PATH="coverage/ConfLearning$reg_rating_by_conf_and_gamma__1_.coverage" NAME="reg_rating_by_conf_and_gamma (1) Coverage Results" MODIFIED="1603658637885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_alpha_c.coverage" NAME="corr_conf_slope_alpha_c Coverage Results" MODIFIED="1603658089608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_alpha_c_gamma_wo.coverage" NAME="corr_alpha_c_gamma_wo Coverage Results" MODIFIED="1603657520211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_value_inc_alpha_c.coverage" NAME="corr_value_inc_alpha_c Coverage Results" MODIFIED="1603658984864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
     <SUITE FILE_PATH="coverage/ConfLearning$maximum_likelihood.coverage" NAME="maximum_likelihood Coverage Results" MODIFIED="1595848964995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fitting" />
     <SUITE FILE_PATH="coverage/ConfLearning$test.coverage" NAME="test Coverage Results" MODIFIED="1599518013524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
     <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_stim_left_right.coverage" NAME="corr_rating_stim_left_right Coverage Results" MODIFIED="1602512598369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
     <SUITE FILE_PATH="coverage/ConfLearning$conf_corr.coverage" NAME="conf_corr Coverage Results" MODIFIED="1596641725034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$plotting.coverage" NAME="plotting Coverage Results" MODIFIED="1595253048661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_gamma_alpha_c.coverage" NAME="corr_gamma_alpha_c Coverage Results" MODIFIED="1602529934543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_rating.coverage" NAME="corr_conf_slope_rating Coverage Results" MODIFIED="1602518359904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_gamma_alpha_c.coverage" NAME="corr_gamma_alpha_c Coverage Results" MODIFIED="1603657419675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_conf_slope_rating.coverage" NAME="corr_conf_slope_rating Coverage Results" MODIFIED="1603658101669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
     <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data.coverage" NAME="test_experimental_data Coverage Results" MODIFIED="1594990054273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
-    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_alpha_c.coverage" NAME="likelihood_alpha_c Coverage Results" MODIFIED="1598564208581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
-    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data_simple.coverage" NAME="test_experimental_data_simple Coverage Results" MODIFIED="1602526170682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
-    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_block_stim_values.coverage" NAME="corr_rating_block_stim_values Coverage Results" MODIFIED="1602519680686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
+    <SUITE FILE_PATH="coverage/ConfLearning$likelihood_alpha_c.coverage" NAME="likelihood_alpha_c Coverage Results" MODIFIED="1603659051018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/likelihood" />
+    <SUITE FILE_PATH="coverage/ConfLearning$reg_rating_by_conf_and_gamma__2_.coverage" NAME="reg_rating_by_conf_and_gamma (2) Coverage Results" MODIFIED="1603658917649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />
+    <SUITE FILE_PATH="coverage/ConfLearning$test_experimental_data_simple.coverage" NAME="test_experimental_data_simple Coverage Results" MODIFIED="1603654317827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/play" />
+    <SUITE FILE_PATH="coverage/ConfLearning$corr_rating_block_stim_values.coverage" NAME="corr_rating_block_stim_values Coverage Results" MODIFIED="1603658134610" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/ratings" />
   </component>
 </project>

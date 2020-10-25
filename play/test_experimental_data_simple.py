@@ -9,8 +9,8 @@ from pathlib import Path
 fitting = ParameterFit()
 
 cwd = Path.cwd()
-print(cwd)
-path_data = os.path.join(cwd, '../data/')
+# print(cwd)
+path_data = os.path.join(cwd, '../../data/')
 
 # os.makedirs('../results/fittingData')
 # os.makedirs('../results/choiceProbab')
@@ -61,9 +61,9 @@ upper_phi, up = 1, 1
 
 grid_alpha = np.arange(0.1, 0.51, 0.2)
 grid_alpha_n = np.arange(0.01, 0.061, 0.05)
-grid_alpha_c = np.arange(0.05, 0.5, 0.1)
+grid_alpha_c = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
 grid_beta = np.arange(0.1, 0.31, 0.1)
-grid_gamma = np.arange(0.05, 0.5, 0.1)
+grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))      # np.arange(0.05, 0.5, 0.1)
 grid_gamma_f = np.arange(0.05, 0.5, 0.1)
 grid_gamma_wo = np.arange(0.05, 0.5, 0.1)
 grid_phi = np.arange(0.05, 0.5, 0.2)

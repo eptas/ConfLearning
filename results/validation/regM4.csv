@@ -1,26 +1,26 @@
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:             rating_inc   R-squared:                       0.025
-Model:                            OLS   Adj. R-squared:                 -0.022
-Method:                 Least Squares   F-statistic:                    0.5349
-Date:                Thu, 08 Oct 2020   Prob (F-statistic):              0.660
-Time:                        17:59:53   Log-Likelihood:                -92.303
-No. Observations:                  66   AIC:                             192.6
-Df Residuals:                      62   BIC:                             201.4
+Dep. Variable:             rating_inc   R-squared:                       0.119
+Model:                            OLS   Adj. R-squared:                  0.076
+Method:                 Least Squares   F-statistic:                     2.793
+Date:                Sun, 25 Oct 2020   Prob (F-statistic):             0.0477
+Time:                        21:48:39   Log-Likelihood:                -88.964
+No. Observations:                  66   AIC:                             185.9
+Df Residuals:                      62   BIC:                             194.7
 Df Model:                           3                                         
 Covariance Type:            nonrobust                                         
 ====================================================================================
                        coef    std err          t      P>|t|      [0.025      0.975]
 ------------------------------------------------------------------------------------
-Intercept           -0.0200      0.126     -0.159      0.874      -0.271       0.231
-conf_slope           0.0627      0.127      0.493      0.624      -0.192       0.317
-gamma               -0.0607      0.127     -0.478      0.634      -0.314       0.193
-conf_slope:gamma     0.1450      0.133      1.094      0.278      -0.120       0.410
+Intercept           -0.5372      0.420     -1.278      0.206      -1.378       0.303
+conf_slope           0.6097      0.390      1.565      0.123      -0.169       1.388
+gamma               -2.8296      1.893     -1.494      0.140      -6.615       0.955
+conf_slope:gamma     2.1853      1.641      1.332      0.188      -1.095       5.466
 ==============================================================================
-Omnibus:                        0.349   Durbin-Watson:                   1.549
-Prob(Omnibus):                  0.840   Jarque-Bera (JB):                0.523
-Skew:                          -0.105   Prob(JB):                        0.770
-Kurtosis:                       2.617   Cond. No.                         1.25
+Omnibus:                        0.005   Durbin-Watson:                   1.678
+Prob(Omnibus):                  0.998   Jarque-Bera (JB):                0.123
+Skew:                          -0.015   Prob(JB):                        0.940
+Kurtosis:                       2.790   Cond. No.                         32.8
 ==============================================================================
 
 Notes:

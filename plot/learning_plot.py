@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from ConfLearning.play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
 
-model = 11
+model = 13
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../results/')
@@ -34,7 +34,8 @@ for m, models in enumerate(modellist):
             continue
 
         parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], alpha_c[n]], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(4)],
-                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(2)]]
+                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(2)],
+                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(2)]]
 
         new_value_choice, true_value_choice, performance = run_model(parameter[m], models, n, return_cp=False, return_full=True)
 

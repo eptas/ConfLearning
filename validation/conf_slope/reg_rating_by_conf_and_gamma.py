@@ -7,12 +7,12 @@ import statsmodels.formula.api as smf
 from pathlib import Path
 
 # for different methods refer to: https://www.statsmodels.org/stable/regression.html
-# os.makedirs('../results/validation')
+# os.makedirs('../../results/validation')
 
 cwd = Path.cwd()
 
-path_data_d = os.path.join(cwd, '../data/')
-path_data_r = os.path.join(cwd, '../results/fittingData')
+path_data_d = os.path.join(cwd, '../../data/')
+path_data_r = os.path.join(cwd, '../../results/fittingData')
 
 df = pd.read_pickle(os.path.join(path_data_d, 'data.pkl'))
 conf_slope = np.load('confSlope.npy')
@@ -39,7 +39,7 @@ for m, model in enumerate(modellist):
 
     results_text = results.as_text()
 
-    with open(os.path.join(cwd, '../results/validation/regM' + str(model) + '.csv'), 'w') as resultFile:
+    with open(os.path.join(cwd, '../../results/validation/regM' + str(model) + '.csv'), 'w') as resultFile:
 
         resultFile.write(results_text)
         resultFile.close()

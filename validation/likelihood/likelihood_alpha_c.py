@@ -10,8 +10,8 @@ cwd = Path.cwd()
 path_data = os.path.join(cwd, '../../results/fittingData')
 # os.makedirs('../../figures/validation')
 
-model_name = ['Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfBase', 'Rescorla\nConfBaseGen',
-              'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
+model_name = ['RescorlaConf', 'RescorlaConfGen', 'RescorlaConfBase', 'RescorlaConfBaseGen',
+              'RescorlaConfZero', 'RescorlaConfZeroGen', 'RescorlaConfBaseZero', 'RescorlaConfBaseZeroGen']
 
 models = modellist[2:10]
 alpha_c = np.arange(0, 1, 0.02)
@@ -47,10 +47,11 @@ for m, model in enumerate(models):
     row, col = rows[m], columns[m]
     axes[row, col].plot(alpha_c, mLikeli, linewidth=0.5)
 
-    axes[row, col].set_title(model_name[m])
+    # axes[row, col].set_title(model_name[m])
     axes[max(rows), col].set_xlabel('alpha_c')
-    axes[row, 0].set_ylabel('neg_log_likelihood')
-    axes[row, col].set_yticks(np.arange(204, 240, step=4))
+    axes[row, col].set_ylabel('neg_log_likelihood')
+    # axes[row, col].set_yticks(np.arange(204, 240, step=4))
+    axes[row, col].set_yticks(np.arange(192, 216, step=4))
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
     fig.savefig('../../figures/validation/likelihood/likelihood_alpha_c.png', bbox_inches='tight')
     plt.close()

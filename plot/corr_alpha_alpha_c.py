@@ -12,7 +12,7 @@ path_data = os.path.join(cwd, '../results/fittingData')
 models = np.arange(1, 10)
 n_subjects = 66
 
-model_name = ['Rescorla\nZero', 'Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfBase', 'Rescorla\nConfBaseGen',
+model_name = ['Rescorla\nStatic', 'Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfBase', 'Rescorla\nConfBaseGen',
               'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
 
 fig, axes = plt.subplots(3, 3, figsize=(20, 10))
@@ -31,7 +31,7 @@ for i, m in enumerate(models):
     axes[row, col].scatter(fittingData.ALPHA_C, fittingData.ALPHA, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[i])
     axes[max(rows), col].set_xlabel('alpha_c (p1)')
-    axes[row, 0].set_ylabel('alpha (p0)')
+    axes[row, col].set_ylabel('alpha (p0)')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].set_yticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].text(0.4 if rho >= 0 else 0.4, 0.5, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)

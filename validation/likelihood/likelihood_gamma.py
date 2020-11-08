@@ -46,10 +46,11 @@ for m, model in enumerate(models):
     row, col = rows[m], columns[m]
     axes[row, col].plot(gamma, mLikeli, linewidth=0.5)
 
-    axes[row, col].set_title(model_name[m])
+    # axes[row, col].set_title(model_name[m])
     axes[max(rows), col].set_xlabel('gamma')
-    axes[row, 0].set_ylabel('neg_log_likelihood')
-    axes[row, col].set_yticks(np.arange(200, 221, step=5))
+    axes[row, col].set_ylabel('neg_log_likelihood')
+    # axes[row, col].set_yticks(np.arange(200, 221, step=5))
+    axes[row, col].set_yticks(np.arange(192, 216, step=4))
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
     fig.savefig('../../figures/validation/likelihood/likelihood_gamma.png', bbox_inches='tight')
     plt.close()

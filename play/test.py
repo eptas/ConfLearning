@@ -7,7 +7,7 @@ from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, 
 
 # os.makedirs('../figures/simulation')
 
-niterate = 100
+niterate = 1000
 ntrials = 100
 nmodels = 12
 nbandits = 5
@@ -34,7 +34,7 @@ for i in range(niterate):
             model.get_choice_probab()
             choice = model.choice()
 
-            if (1 <= m <= 3) and (t >= 30):
+            if t >= 30:
                 outcome = float("NaN")
             else:
                 outcome = task.get_outcome(choice)

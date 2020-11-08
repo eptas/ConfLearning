@@ -10,7 +10,7 @@ fitting = ParameterFit()
 
 cwd = Path.cwd()
 # print(cwd)
-path_data = os.path.join(cwd, '../../data/')
+path_data = os.path.join(cwd, '../data/')
 
 # os.makedirs('../results/fittingData')
 # os.makedirs('../results/choiceProbab')
@@ -106,7 +106,7 @@ AIC, BIC = np.full((nmodels, nsubjects), np.nan, float), np.full((nmodels, nsubj
 fittingParams, fittingModel, saveChoiceProbab = None, None, None
 
 
-def run_model(params, modelspec, s, return_cp=False, return_full=False):
+def run_model(params, modelspec, s, return_cp=False, return_full=False, return_value_esti=False):
 
     model = modelspec(*params)
 

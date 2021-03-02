@@ -38,7 +38,7 @@ for s in range(nsubjects):
 
     for b in range(nblocks):
         index = np.where(~np.isnan(conf[s, b, 1, :]))
-        confidence[b, :] = conf[s, b, 1, :][index[0][0]:(index[0][0] + ntrials)] if len(index[0]) >= 15 else np.full(ntrials, np.nan)
+        confidence[b, :] = conf[s, b, 1, :][index[0][0]:(index[0][0] + ntrials)] if len(index[0]) >= 5 else np.full(ntrials, np.nan)
 
     confP1 = np.nanmean(confidence, axis=0)
     slope, intercept = slope_intercept(np.arange(ntrials), confP1)
@@ -58,7 +58,7 @@ for s in range(nsubjects):
     axes[row, col].text(5, 5, str(round(slope, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 
-np.save('confSlope_15', confSlope)
+np.save('confSlope_5-15', confSlope)
 
-fig.savefig('../../figures/validation/conf_slope/conf_slope_15.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/conf_slope/conf_slope_5-15.png', bbox_inches='tight')
 plt.close()

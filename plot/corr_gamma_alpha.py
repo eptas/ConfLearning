@@ -24,12 +24,12 @@ for i, m in enumerate(models):
 
     row, col = rows[i], columns[i]
 
-    rho, pval = stats.spearmanr(fittingData.ALPHA, fittingData.GAMMA)
+    rho, pval = stats.spearmanr(fittingData.GAMMA, fittingData.ALPHA)
     # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.GAMMA)[0][1]
-    axes[row, col].scatter(fittingData.ALPHA, fittingData.GAMMA, s=8, c='g', marker='o')
+    axes[row, col].scatter(fittingData.GAMMA, fittingData.ALPHA, s=8, c='g', marker='o')
     # axes[row, col].set_title(model_name[i])
-    axes[row, col].set_xlabel('alpha')
-    axes[row, col].set_ylabel('gamma')
+    axes[row, col].set_xlabel('gamma')
+    axes[row, col].set_ylabel('alpha')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].set_yticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].text(0.4 if rho >= 0 else 0.4, 0.5, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)

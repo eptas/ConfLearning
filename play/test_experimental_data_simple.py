@@ -23,7 +23,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 13   # CHANGE HERE
+set_model = 3   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -52,7 +52,7 @@ lower_phi, lp = 0, 0
 
 upper_alpha, ua = 1, 1
 upper_alpha_n, uan = 1, 1
-upper_alpha_c, uac = 1, 1
+upper_alpha_c, uac = 10, 10
 upper_beta, ub = 2, 2
 upper_gamma, ug = 1, 1
 upper_gamma_f, ugf = 1, 1
@@ -106,7 +106,7 @@ AIC, BIC = np.full((nmodels, nsubjects), np.nan, float), np.full((nmodels, nsubj
 fittingParams, fittingModel, saveChoiceProbab = None, None, None
 
 
-def run_model(params, modelspec, s, return_cp=False, return_full=False, return_value_esti=False):
+def run_model(params, modelspec, s, return_cp=False, return_full=False, return_conf_esti=False):
 
     model = modelspec(*params)
 
@@ -119,6 +119,10 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_v
         new_values_choice = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
         true_values_choice = np.full((nblocks, nbandits), np.nan, float)
         performance = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
+
+    if return_conf_esti:
+        conf_PE = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
+        conf_expect = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
 
     for b in range(nblocks):
 
@@ -138,7 +142,12 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_v
                     choiceprob[b, p, i] = cp
 
                 negLogL -= np.log(np.maximum(cp, 1e-8))
+
+                # confidence = 2 * cp - 1 if cp >= 0.5 else 2 * (1 - cp) - 1
                 new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+
+                if return_conf_esti:
+                    conf_PE[b, p, i], conf_expect[b, p, i] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1
@@ -158,6 +167,9 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_v
 
         if return_full:
             true_values_choice[b, :] = true_value[s, b, :]
+
+    if return_conf_esti:
+        return conf_PE, conf_expect
 
     if return_full == False:
         return (negLogL, choiceprob) if return_cp else negLogL

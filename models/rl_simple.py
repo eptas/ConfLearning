@@ -147,6 +147,13 @@ class RescorlaConfGen(RescorlaConf):
 
         return self.values[self.stim_chosen]
 
+    def get_confidence_exp_pe(self, confidence):
+
+        self.conf_PE = confidence - self.conf_values
+        self.conf_values += self.gamma * self.conf_PE
+
+        return self.conf_PE, self.conf_values
+
 
 class RescorlaConfBase(RescorlaConf):
     """model implements confidence baseline, which tracks confidence updates in phase 0 and 2"""

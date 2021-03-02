@@ -9,7 +9,7 @@ from scipy import stats
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../../results/fittingData')
 
-conf_slope = np.load('confSlope_5.npy')
+conf_slope = np.load('confSlope_5-15.npy')
 
 model_name = ['Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfBase', 'Rescorla\nConfBaseGen',
               'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
@@ -29,10 +29,10 @@ for m, model in enumerate(modellist):
     axes[row, col].scatter(fittingData.ALPHA_C, conf_slope, s=8, c='g', marker='o')
     # axes[row, col].set_title(model_name[m])
     axes[row, col].set_xlabel('alpha_c')
-    axes[row, col].set_ylabel('confidence slope (5 trials)')
+    axes[row, col].set_ylabel('confidence slope (5-15 trials)')
     # axes[row, col].set_xticks(np.arange(0, 1.1, step=0.2))
     axes[row, col].set_yticks(np.arange(-0.75, 0.76, step=0.25))
     axes[row, col].text(0.4, 0 if rho >= 0 else 0, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
-fig.savefig('../../figures/validation/conf_slope/corr_conf_slope_5_alpha_c.png', bbox_inches='tight')
+fig.savefig('../../figures/validation/conf_slope/corr_conf_slope_5-15_alpha_c.png', bbox_inches='tight')
 plt.close()

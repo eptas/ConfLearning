@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stats/value_diff_per_participant_bandit_M3_bars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/conf_behav.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/delta_value_learning_per_participant.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/delta_value_learning_per_participant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play/test_experimental_data_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/play/test_experimental_data_simple.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,29 @@
   <component name="PyConsoleOptionsProvider">
     <option name="myShowDebugConsoleByDefault" value="true" />
   </component>
-  <component name="RunManager" selected="Python.delta_value_learning_per_participant">
+  <component name="RunManager" selected="Python.conf_behav">
+    <configuration name="conf_behav" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ConfLearning" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/stats" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stats/conf_behav.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="conf_expect" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ConfLearning" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,35 +153,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="learning_plot_block_specific" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ConfLearning" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/learning_plot_block_specific.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.conf_behav" />
         <item itemvalue="Python.delta_value_learning_per_participant" />
         <item itemvalue="Python.conf_pe" />
         <item itemvalue="Python.conf_expect" />
         <item itemvalue="Python.conf_expect_pe" />
-        <item itemvalue="Python.learning_plot_block_specific" />
       </list>
     </recent_temporary>
   </component>
@@ -338,7 +338,8 @@
       <workItem from="1614692464919" duration="17452000" />
       <workItem from="1614770743324" duration="425000" />
       <workItem from="1614791256644" duration="34000" />
-      <workItem from="1614949637566" duration="18594000" />
+      <workItem from="1614949637566" duration="19261000" />
+      <workItem from="1614979884791" duration="1799000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1596104080256</created>
@@ -452,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614967332911</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="presentation analyses">
+      <created>1614969684485</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1614969684485</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,74 +485,74 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="430" y="219" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1611759869454" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1614967330411">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1614969683428">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1614967330411" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1614969683428" />
     <state width="1364" height="440" key="DebuggerActiveHint" timestamp="1612799168580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1364" height="440" key="DebuggerActiveHint/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612799168580" />
-    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1614968435771">
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1614981687143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
-    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1614968435771">
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614981687143" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1614981687143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
-    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1614968435771">
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614981687143" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1614981687142">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
-    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1614968435771">
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614981687142" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1614981687143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
-    <state width="1323" height="214" key="GridCell.Tab.1.bottom" timestamp="1614966955499">
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614981687143" />
+    <state width="1323" height="214" key="GridCell.Tab.1.bottom" timestamp="1614970935245">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="161" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612811137480" />
     <state width="1628" height="305" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577125" />
-    <state width="1323" height="214" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614966955499" />
-    <state width="1323" height="214" key="GridCell.Tab.1.center" timestamp="1614966955499">
+    <state width="1323" height="214" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614970935245" />
+    <state width="1323" height="214" key="GridCell.Tab.1.center" timestamp="1614970935245">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="161" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612811137480" />
     <state width="1628" height="305" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="214" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1614966955499" />
-    <state width="1323" height="214" key="GridCell.Tab.1.left" timestamp="1614966955499">
+    <state width="1323" height="214" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1614970935245" />
+    <state width="1323" height="214" key="GridCell.Tab.1.left" timestamp="1614970935245">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="161" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612811137479" />
     <state width="1628" height="305" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="214" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1614966955499" />
-    <state width="1323" height="214" key="GridCell.Tab.1.right" timestamp="1614966955499">
+    <state width="1323" height="214" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1614970935245" />
+    <state width="1323" height="214" key="GridCell.Tab.1.right" timestamp="1614970935245">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="161" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612811137480" />
     <state width="1628" height="305" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577125" />
-    <state width="1323" height="214" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1614966955499" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1614967358851">
+    <state width="1323" height="214" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1614970935245" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1614969693150">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1614967358851" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1614949640350">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1614969693150" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1614979885456">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614596422042" />
     <state x="1832" y="259" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193914237" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1606899086426" />
     <state x="1899" y="267" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1606910246194" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1614949640350" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1614979885456" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1611846317950">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -605,6 +613,7 @@
     <SUITE FILE_PATH="coverage/ConfLearning$delta_value_learning_per_participant.coverage" NAME="delta_value_learning_per_participant Coverage Results" MODIFIED="1614968435757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stats" />
     <SUITE FILE_PATH="coverage/ConfLearning$corr_value_esti_gamma.coverage" NAME="corr_value_esti_gamma Coverage Results" MODIFIED="1604855095914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
     <SUITE FILE_PATH="coverage/ConfLearning$relative_time_stim.coverage" NAME="relative_time_stim Coverage Results" MODIFIED="1607697864801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../TimePercept" />
+    <SUITE FILE_PATH="coverage/ConfLearning$conf_behav.coverage" NAME="conf_behav Coverage Results" MODIFIED="1614981687126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stats" />
     <SUITE FILE_PATH="coverage/ConfLearning$pilot_experiment_2.coverage" NAME="pilot_experiment_2 Coverage Results" MODIFIED="1612810837199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../TimePercept" />
     <SUITE FILE_PATH="coverage/ConfLearning$evidence_t_test.coverage" NAME="evidence_t_test Coverage Results" MODIFIED="1614955325909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stats" />
     <SUITE FILE_PATH="coverage/ConfLearning$reg_rating_by_conf_and_gamma.coverage" NAME="reg_rating_by_conf_and_gamma Coverage Results" MODIFIED="1614537859135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/conf_slope" />

@@ -123,6 +123,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
     if return_conf_esti:
         conf_PE = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
         conf_expect = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
+        behav_confidence = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
 
     for b in range(nblocks):
 
@@ -151,6 +152,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
 
                         if k == model.stim_chosen:
                             conf_PE[b, p, i, k], conf_expect[b, p, i, k] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+                            behav_confidence[b, p, i, k] = confidence_value[s, b, p, t]
 
                         else:
                             if (p > 0) & (i == 0):
@@ -165,9 +167,15 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                                 else:
                                     conf_expect[b, p, i, k] = conf_expect[b, p - 1, :, k][~np.isnan(conf_expect[b, p - 1, :, k])][-1]
 
+                                if np.all(np.isnan(behav_confidence[b, p - 1, :, k])):
+                                    behav_confidence[b, p, i, k] = behav_confidence[b, p - 2, :, k][~np.isnan(behav_confidence[b, p - 2, :, k])][-1]
+                                else:
+                                    behav_confidence[b, p, i, k] = behav_confidence[b, p - 1, :, k][~np.isnan(behav_confidence[b, p - 1, :, k])][-1]
+
                             else:
                                 conf_PE[b, p, i, k] = 0 if t == 0 else conf_PE[b, p, i - 1, k]
                                 conf_expect[b, p, i, k] = 0 if t == 0 else conf_expect[b, p, i - 1, k]
+                                behav_confidence[b, p, i, k] = 0 if t == 0 else behav_confidence[b, p, i - 1, k]
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1
@@ -189,7 +197,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
             true_values_choice[b, :] = true_value[s, b, :]
 
     if return_conf_esti:
-        return conf_PE, conf_expect
+        return conf_PE, conf_expect, behav_confidence
 
     if return_full == False:
         return (negLogL, choiceprob) if return_cp else negLogL

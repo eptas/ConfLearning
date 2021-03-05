@@ -27,7 +27,7 @@ for i, m in enumerate(models):
     rho, pval = stats.spearmanr(fittingData.GAMMA, fittingData.ALPHA)
     # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.GAMMA)[0][1]
     axes[row, col].scatter(fittingData.GAMMA, fittingData.ALPHA, s=8, c='g', marker='o')
-    # axes[row, col].set_title(model_name[i])
+    axes[row, col].set_title(model_name[i])
     axes[row, col].set_xlabel('gamma')
     axes[row, col].set_ylabel('alpha')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))

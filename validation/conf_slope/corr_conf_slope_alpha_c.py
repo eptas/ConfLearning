@@ -11,8 +11,8 @@ path_data = os.path.join(cwd, '../../results/fittingData')
 
 conf_slope = np.load('confSlope_5-15.npy')
 
-model_name = ['Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfBase', 'Rescorla\nConfBaseGen',
-              'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfBaseZero', 'Rescorla\nConfBaseZeroGen']
+model_name = ['Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfNoFeed', 'Rescorla\nConfNoFeedGen',
+              'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfNoFeedZero', 'Rescorla\nConfNoFeedZeroGen']
 
 modellist = np.arange(2, 10)
 nsubjects = 66
@@ -27,7 +27,7 @@ for m, model in enumerate(modellist):
 
     rho, pval = stats.spearmanr(fittingData.ALPHA_C, conf_slope)
     axes[row, col].scatter(fittingData.ALPHA_C, conf_slope, s=8, c='g', marker='o')
-    # axes[row, col].set_title(model_name[m])
+    axes[row, col].set_title(model_name[m])
     axes[row, col].set_xlabel('alpha_c')
     axes[row, col].set_ylabel('confidence slope (5-15 trials)')
     # axes[row, col].set_xticks(np.arange(0, 1.1, step=0.2))

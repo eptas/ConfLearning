@@ -121,8 +121,8 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
         performance = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
 
     if return_conf_esti:
-        conf_PE = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
-        conf_expect = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
+        conf_PE = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
+        conf_expect = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
 
     for b in range(nblocks):
 
@@ -147,7 +147,27 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                 new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
 
                 if return_conf_esti:
-                    conf_PE[b, p, i], conf_expect[b, p, i] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+                    for k in range(nbandits):
+
+                        if k == model.stim_chosen:
+                            conf_PE[b, p, i, k], conf_expect[b, p, i, k] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+
+                        else:
+                            if (p > 0) & (i == 0):
+
+                                if np.all(np.isnan(conf_PE[b, p - 1, :, k])):
+                                    conf_PE[b, p, i, k] = conf_PE[b, p - 2, :, k][~np.isnan(conf_PE[b, p - 2, :, k])][-1]
+                                else:
+                                    conf_PE[b, p, i, k] = conf_PE[b, p - 1, :, k][~np.isnan(conf_PE[b, p - 1, :, k])][-1]
+
+                                if np.all(np.isnan(conf_expect[b, p - 1, :, k])):
+                                    conf_expect[b, p, i, k] = conf_expect[b, p - 2, :, k][~np.isnan(conf_expect[b, p - 2, :, k])][-1]
+                                else:
+                                    conf_expect[b, p, i, k] = conf_expect[b, p - 1, :, k][~np.isnan(conf_expect[b, p - 1, :, k])][-1]
+
+                            else:
+                                conf_PE[b, p, i, k] = 0 if t == 0 else conf_PE[b, p, i - 1, k]
+                                conf_expect[b, p, i, k] = 0 if t == 0 else conf_expect[b, p, i - 1, k]
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1

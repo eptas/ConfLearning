@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b864cc43-7152-4c45-8273-748c262cc1e5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stats/conf_expect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/conf_pe.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stats/delta_value_learning_per_participant.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stats/value_diff_per_participant_bandit_M3_bars.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_alpha_c_alpha.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/param_corr/corr_gamma_alpha_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_5-15_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/conf_slope/corr_conf_slope_5-15_alpha_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/ratings/corr_abs_rating_diff_alpha_c.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/ratings/corr_abs_rating_diff_alpha_c.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/validation/ratings/corr_abs_rating_diff_gamma.png" beforeDir="false" afterPath="$PROJECT_DIR$/figures/validation/ratings/corr_abs_rating_diff_gamma.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play/test_experimental_data_simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/play/test_experimental_data_simple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/corr_gamma_alpha.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_gamma_alpha.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot/corr_gamma_alpha_c.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats/conf_expect_pe.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/validation/conf_slope/corr_conf_slope_alpha_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/validation/conf_slope/corr_conf_slope_alpha_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats/delta_value_learning_per_participant.py" beforeDir="false" afterPath="$PROJECT_DIR$/stats/delta_value_learning_per_participant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,7 +338,7 @@
       <workItem from="1614692464919" duration="17452000" />
       <workItem from="1614770743324" duration="425000" />
       <workItem from="1614791256644" duration="34000" />
-      <workItem from="1614949637566" duration="16558000" />
+      <workItem from="1614949637566" duration="18594000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1596104080256</created>
@@ -457,7 +445,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614721345627</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="presentation analyses">
+      <created>1614967332911</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1614967332911</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,38 +477,38 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="430" y="219" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1611759869454" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1614721344434">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1614967330411">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1614721344434" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1614967330411" />
     <state width="1364" height="440" key="DebuggerActiveHint" timestamp="1612799168580">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1364" height="440" key="DebuggerActiveHint/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612799168580" />
-    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1614967151597">
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom" timestamp="1614968435771">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614967151597" />
-    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1614967151597">
+    <state width="1323" height="163" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
+    <state width="1323" height="163" key="GridCell.Tab.0.center" timestamp="1614968435771">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614967151597" />
-    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1614967151597">
+    <state width="1323" height="163" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
+    <state width="1323" height="163" key="GridCell.Tab.0.left" timestamp="1614968435771">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614967151597" />
-    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1614967151597">
+    <state width="1323" height="163" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right" timestamp="1614968435771">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="107" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1614604508851" />
     <state width="1628" height="305" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577124" />
-    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614967151597" />
+    <state width="1323" height="163" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1614968435771" />
     <state width="1323" height="214" key="GridCell.Tab.1.bottom" timestamp="1614966955499">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -538,10 +533,10 @@
     <state width="1323" height="161" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@0.0.1366.728" timestamp="1612811137480" />
     <state width="1628" height="305" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1680.1010@1366.0.1680.1010" timestamp="1612193577125" />
     <state width="1323" height="214" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1614966955499" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1614721382990">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1614967358851">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1614721382990" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1614967358851" />
     <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1614949640350">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -607,7 +602,7 @@
     <SUITE FILE_PATH="coverage/ConfLearning$learning_plot_block_specific.coverage" NAME="learning_plot_block_specific Coverage Results" MODIFIED="1614956074325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$histo_params_winning_m.coverage" NAME="histo_params_winning_m Coverage Results" MODIFIED="1614703210501" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot" />
     <SUITE FILE_PATH="coverage/ConfLearning$likelihood_alpha_c.coverage" NAME="likelihood_alpha_c Coverage Results" MODIFIED="1604682953627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation/likelihood" />
-    <SUITE FILE_PATH="coverage/ConfLearning$delta_value_learning_per_participant.coverage" NAME="delta_value_learning_per_participant Coverage Results" MODIFIED="1614967151586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stats" />
+    <SUITE FILE_PATH="coverage/ConfLearning$delta_value_learning_per_participant.coverage" NAME="delta_value_learning_per_participant Coverage Results" MODIFIED="1614968435757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/stats" />
     <SUITE FILE_PATH="coverage/ConfLearning$corr_value_esti_gamma.coverage" NAME="corr_value_esti_gamma Coverage Results" MODIFIED="1604855095914" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/validation" />
     <SUITE FILE_PATH="coverage/ConfLearning$relative_time_stim.coverage" NAME="relative_time_stim Coverage Results" MODIFIED="1607697864801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../TimePercept" />
     <SUITE FILE_PATH="coverage/ConfLearning$pilot_experiment_2.coverage" NAME="pilot_experiment_2 Coverage Results" MODIFIED="1612810837199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../TimePercept" />

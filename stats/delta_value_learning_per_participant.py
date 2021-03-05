@@ -90,3 +90,24 @@ plt.title('learned value slope per bandit - ' + str(modellist[model])[38:-2])
 plt.grid('silver', linestyle='-', linewidth=0.4)
 plt.savefig('value_diff_per_participant_bandit_M' + str(model) + '.png', bbox_inches='tight')
 plt.close()
+
+plt.figure(1)
+
+means = np.zeros(nbandits)
+stds = np.zeros(nbandits)
+
+x_position = np.arange(nbandits)
+
+for k in range(nbandits):
+
+    means[k] = np.nanmean(diff_matrix[:, k])
+    stds[k] = np.nanstd(diff_matrix[:, k])
+
+    plt.bar(x_position[k], means[k], color=colors[k], yerr=stds[k], align='center', alpha=0.5, ecolor='black', capsize=10)
+    plt.text(x_position[k], 0.01, str(round(means[k], 2)), color='black', fontsize=10)
+
+plt.xlabel('bandits', fontweight='bold')
+plt.ylabel('final value - initial value in p1', fontweight='bold')
+plt.grid('silver', linestyle='-', linewidth=0.4)
+plt.savefig('value_diff_per_participant_bandit_M' + str(model) + '_bars.png', bbox_inches='tight')
+plt.close()

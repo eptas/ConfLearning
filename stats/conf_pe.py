@@ -49,7 +49,7 @@ for m, models in enumerate(modellist):
                      *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(2)],
                      *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(2)]]
 
-        conf_prediction_error, conf_expected_value = run_model(parameter[m], models, n, return_cp=False, return_full=False, return_conf_esti=True)
+        conf_prediction_error, conf_expected_value, behav_confidence = run_model(parameter[m], models, n, return_cp=False, return_full=False, return_conf_esti=True)
 
         for k in range(nbandits):
             for b in range(nblocks):
@@ -81,7 +81,7 @@ for k in range(nbandits):
         mean_values = eval("conf_pe_value" + str(k)).filter(regex="p" + str(p)).mean(axis=1)
         locals()["mean_value" + str(k)] = np.append(eval("mean_value" + str(k)), mean_values[~np.isnan(mean_values)])
 
-    phase_0 = abs(eval("conf_pe_value" + str(k)).filter(regex="p" + str(0))).mean(axis=1)
+    phase_0 = eval("conf_pe_value" + str(k)).filter(regex="p" + str(0)).mean(axis=1)
     locals()["phase_zero" + str(k)] = np.append(eval("phase_zero" + str(k)), phase_0[~np.isnan(phase_0)])
 
     phase_1 = eval("conf_pe_value" + str(k)).filter(regex="p" + str(1))
@@ -105,9 +105,9 @@ for k in range(nbandits):
     x, y = range(2 - len(eval("phase_zero" + str(k))), 1), eval("phase_zero" + str(k))[1:len(eval("phase_zero" + str(k)))]
     plt.plot(x, y, color=colors[k], linewidth=0.5)
 
-    a = abs(eval("phase_one" + str(k) + "_5")).mean(axis=1)
-    b = abs(eval("phase_one" + str(k) + "_10")).mean(axis=1)
-    c = abs(eval("phase_one" + str(k) + "_15")).mean(axis=1)
+    a = eval("phase_one" + str(k) + "_5").mean(axis=1)
+    b = eval("phase_one" + str(k) + "_10").mean(axis=1)
+    c = eval("phase_one" + str(k) + "_15").mean(axis=1)
     plt.plot(range(0, 4), a[0:4], color=colors[k], linewidth=0.5)
     plt.plot(range(0, 9), b[0:9], color=colors[k], linewidth=0.5)
     plt.plot(range(0, 14), c[0:14], color=colors[k], linewidth=0.5)
@@ -121,7 +121,7 @@ plt.text(10, 1.5, 'phase_one', color='k', fontsize=8)
 plt.xticks(np.arange(-20, 20, step=5), fontsize=6)
 # plt.yticks(np.arange(0, 36, step=5), fontsize=6)
 plt.grid('silver', linestyle='-', linewidth=0.4)
-plt.savefig('abs_conf_PE_M' + str(model) + '_per_bandit.png', bbox_inches='tight')
+plt.savefig('conf_PE_M' + str(model) + '_per_bandit.png', bbox_inches='tight')
 plt.close()
 
 # peDF_mean = np.nanmean(peDF, axis=1)

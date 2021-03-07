@@ -145,7 +145,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                 negLogL -= np.log(np.maximum(cp, 1e-8))
 
                 # confidence = 2 * cp - 1 if cp >= 0.5 else 2 * (1 - cp) - 1
-                # new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+                new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
 
                 if return_conf_esti:
                     for k in range(nbandits):
@@ -177,7 +177,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                                 conf_expect[b, p, i, k] = 0 if t == 0 else conf_expect[b, p, i - 1, k]
                                 behav_confidence[b, p, i, k] = 0 if t == 0 else behav_confidence[b, p, i - 1, k]
 
-                new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+                # new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1

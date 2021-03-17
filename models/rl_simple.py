@@ -150,9 +150,10 @@ class RescorlaConfGen(RescorlaConf):
     def get_confidence_exp_pe(self, confidence):
 
         conf_PE = confidence - self.conf_values    # self.conf_PE = confidence - self.conf_values
-        conf_values = self.conf_values + self.gamma * conf_PE
+        conf_values_post = self.conf_values + self.gamma * conf_PE
+        conf_values_pre = self.conf_values
 
-        return conf_PE, conf_values
+        return conf_PE, conf_values_pre, conf_values_post
 
 
 class RescorlaConfBase(RescorlaConf):

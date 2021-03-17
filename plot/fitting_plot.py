@@ -16,7 +16,7 @@ AIC, BIC, alpha, beta, alpha_c, gamma, alpha_n = None, None, None, None, None, N
 
 for n in range(n_models):
 
-    fittingData = pd.read_pickle(os.path.join(path_data, 'fittingData/fittingDataM' + str(n) + '_ConfSim.pkl'))
+    fittingData = pd.read_pickle(os.path.join(path_data, 'fittingData/fittingDataM' + str(n) + '.pkl'))
 
     AIC = np.append(AIC, np.mean(fittingData.AIC))
     BIC = np.append(BIC, np.mean(fittingData.BIC))
@@ -57,7 +57,7 @@ for m, model in enumerate(model_fit):
     plt.ylabel('AIC' if (m == 0) else 'BIC', fontweight='bold')
     plt.yticks(np.arange(0, 450, step=50), fontsize=6)
     plt.grid('silver', linestyle='-', linewidth=0.4)
-    plt.savefig('../figures/fitting/AIC_ConfSim.png' if (m == 0) else '../figures/fitting/BIC_ConfSim.png', bbox_inches='tight')
+    plt.savefig('../figures/fitting/AIC.png' if (m == 0) else '../figures/fitting/BIC.png', bbox_inches='tight')
     plt.close()
 
 for p, para in enumerate(param_fit):
@@ -71,10 +71,10 @@ for p, para in enumerate(param_fit):
 
     plt.xlabel('model', fontweight='bold')
     plt.xticks(np.arange(n_models), model_name, fontsize=6)
-    plt.ylim(bottom=0, top=0.025)
+    # plt.ylim(bottom=0, top=0.025)
 
     plt.grid('silver', linestyle='-', linewidth=0.4)
     plt.title(param_name[p])
     plt.ylabel(param_name[p] + ' (median)', fontweight='bold')
-    plt.savefig('../figures/fitting/' + param_name[p] + '_Conf_Sim.png', bbox_inches='tight')
+    plt.savefig('../figures/fitting/' + param_name[p] + '.png', bbox_inches='tight')
     plt.close()

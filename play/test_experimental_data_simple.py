@@ -106,14 +106,20 @@ AIC, BIC = np.full((nmodels, nsubjects), np.nan, float), np.full((nmodels, nsubj
 fittingParams, fittingModel, saveChoiceProbab = None, None, None
 
 
-def run_model(params, modelspec, s, return_cp=False, return_full=False, return_conf_esti=False):
+def run_model(params, modelspec, s, return_cp=False, return_full=False, return_conf_esti=False, return_nll=False, return_bias=False):
 
     model = modelspec(*params)
 
     negLogL = 0
 
+    if return_nll:
+        negLoLi = np.full((nblocks, nphases, ntrials_phase_max), np.nan, float)
+
     if return_cp:
         choiceprob = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
+
+    if return_bias:
+        design_bias = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
 
     if return_full:
         new_values_choice = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
@@ -122,7 +128,8 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
 
     if return_conf_esti:
         conf_PE = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
-        conf_expect = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
+        conf_expect_pre = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
+        conf_expect_post = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
         behav_confidence = np.full((nblocks, nphases, ntrials_phase_max, nbandits), np.nan, float)
 
     for b in range(nblocks):
@@ -144,14 +151,33 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
 
                 negLogL -= np.log(np.maximum(cp, 1e-8))
 
+                if return_nll:
+                    negLoLi[b, p, i] = negLogL
+
                 # confidence = 2 * cp - 1 if cp >= 0.5 else 2 * (1 - cp) - 1
-                new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+                # new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+
+                if return_bias:
+
+                    for k in range(nbandits):
+
+                        if k in model.stims:
+                            confpe, design_bias[b, p, i, k], confexp = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+                        else:
+                            if (p > 0) & (i == 0):
+
+                                if np.all(np.isnan(design_bias[b, p - 1, :, k])):
+                                    design_bias[b, p, i, k] = design_bias[b, p - 2, :, k][~np.isnan(design_bias[b, p - 2, :, k])][-1]
+                                else:
+                                    design_bias[b, p, i, k] = design_bias[b, p - 1, :, k][~np.isnan(design_bias[b, p - 1, :, k])][-1]
+                            else:
+                                design_bias[b, p, i, k] = 0 if t == 0 else design_bias[b, p, i - 1, k]
 
                 if return_conf_esti:
                     for k in range(nbandits):
 
                         if k == model.stim_chosen:
-                            conf_PE[b, p, i, k], conf_expect[b, p, i, k] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+                            conf_PE[b, p, i, k], conf_expect_pre[b, p, i, k], conf_expect_post[b, p, i, k] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
                             behav_confidence[b, p, i, k] = confidence_value[s, b, p, t]
 
                         else:
@@ -162,10 +188,10 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                                 else:
                                     conf_PE[b, p, i, k] = conf_PE[b, p - 1, :, k][~np.isnan(conf_PE[b, p - 1, :, k])][-1]
 
-                                if np.all(np.isnan(conf_expect[b, p - 1, :, k])):
-                                    conf_expect[b, p, i, k] = conf_expect[b, p - 2, :, k][~np.isnan(conf_expect[b, p - 2, :, k])][-1]
+                                if np.all(np.isnan(conf_expect_pre[b, p - 1, :, k])):
+                                    conf_expect_pre[b, p, i, k] = conf_expect_pre[b, p - 2, :, k][~np.isnan(conf_expect_pre[b, p - 2, :, k])][-1]
                                 else:
-                                    conf_expect[b, p, i, k] = conf_expect[b, p - 1, :, k][~np.isnan(conf_expect[b, p - 1, :, k])][-1]
+                                    conf_expect_pre[b, p, i, k] = conf_expect_pre[b, p - 1, :, k][~np.isnan(conf_expect_pre[b, p - 1, :, k])][-1]
 
                                 if np.all(np.isnan(behav_confidence[b, p - 1, :, k])):
                                     behav_confidence[b, p, i, k] = behav_confidence[b, p - 2, :, k][~np.isnan(behav_confidence[b, p - 2, :, k])][-1]
@@ -174,10 +200,10 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
 
                             else:
                                 conf_PE[b, p, i, k] = 0 if t == 0 else conf_PE[b, p, i - 1, k]
-                                conf_expect[b, p, i, k] = 0 if t == 0 else conf_expect[b, p, i - 1, k]
+                                conf_expect_pre[b, p, i, k] = 0 if t == 0 else conf_expect_pre[b, p, i - 1, k]
                                 behav_confidence[b, p, i, k] = 0 if t == 0 else behav_confidence[b, p, i - 1, k]
 
-                # new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+                new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1
@@ -199,7 +225,13 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
             true_values_choice[b, :] = true_value[s, b, :]
 
     if return_conf_esti:
-        return conf_PE, conf_expect, behav_confidence
+        return conf_PE, conf_expect_pre, behav_confidence
+
+    if return_nll:
+        return negLoLi
+
+    if return_bias:
+        return design_bias
 
     if return_full == False:
         return (negLogL, choiceprob) if return_cp else negLogL

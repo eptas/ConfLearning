@@ -44,7 +44,7 @@ class Rescorla:
 
         return self.stim_chosen
 
-    def update(self, outcome, confidence):
+    def update(self, outcome, confidence=None):
 
         return self.learn_value(outcome) if ~np.isnan(outcome) else self.values[self.stim_chosen]
 
@@ -99,13 +99,13 @@ class RescorlaZero(Rescorla):
 class RescorlaConf(Rescorla):
     """model updates expected values according to confidence prediction error in all phases"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, nbandits=5):
-        """function introduces distinct learning parameters, alpha_c and gamma, for confidence-based updates"""
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, nbandits=5):
+        """function introduces distinct learning parameters, gamma and alpha_c, for confidence-based updates"""
 
         super().__init__(alpha=alpha, beta=beta, nbandits=nbandits)
 
-        self.alpha_c = alpha_c
         self.gamma = gamma
+        self.alpha_c = alpha_c
 
         self.conf_values = np.full(self.nbandits, 0, float)
         self.conf_PE = None
@@ -123,8 +123,8 @@ class RescorlaConf(Rescorla):
         """confidence update operates in line with Rescorla Wagner learning rule"""
 
         self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-        self.conf_values[self.stim_chosen] += self.gamma * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]
 
@@ -132,9 +132,9 @@ class RescorlaConf(Rescorla):
 class RescorlaConfGen(RescorlaConf):
     """model uses generic (overall) confidence PE to update belief estimates in all phases"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
         self.conf_values = 0
 
@@ -142,15 +142,15 @@ class RescorlaConfGen(RescorlaConf):
         """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
 
         self.conf_PE = confidence - self.conf_values
-        self.conf_values += self.gamma * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values += self.alpha_c * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]
 
     def get_confidence_exp_pe(self, confidence):
 
         conf_PE = confidence - self.conf_values    # self.conf_PE = confidence - self.conf_values
-        conf_values_post = self.conf_values + self.gamma * conf_PE
+        conf_values_post = self.conf_values + self.alpha_c * conf_PE
         conf_values_pre = self.conf_values
 
         return conf_PE, conf_values_pre, conf_values_post
@@ -159,9 +159,9 @@ class RescorlaConfGen(RescorlaConf):
 class RescorlaConfBase(RescorlaConf):
     """model implements confidence baseline, which tracks confidence updates in phase 0 and 2"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
     def update(self, outcome, confidence):
 
@@ -175,15 +175,15 @@ class RescorlaConfBase(RescorlaConf):
     def track_confidence_value(self, confidence):
 
         self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-        self.conf_values[self.stim_chosen] += self.gamma * self.conf_PE
+        self.conf_values[self.stim_chosen] += self.alpha_c * self.conf_PE
 
 
 class RescorlaConfBaseGen(RescorlaConfGen):
     """model implments confidence baseline for generic (overall) confidence value"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
     def update(self, outcome, confidence):
 
@@ -197,15 +197,15 @@ class RescorlaConfBaseGen(RescorlaConfGen):
     def track_confidence_value(self, confidence):
 
         self.conf_PE = confidence - self.conf_values
-        self.conf_values += self.gamma * self.conf_PE
+        self.conf_values += self.alpha_c * self.conf_PE
 
 
 class RescorlaConfZero(RescorlaConf):
     """function updates learned values according to confidence PE and assumes an expected outcome of 0 in phase 1"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, alpha_n=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, alpha_n=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
         self.alpha_n = alpha_n
 
@@ -232,9 +232,9 @@ class RescorlaConfZero(RescorlaConf):
 class RescorlaConfZeroGen(RescorlaConfGen):
     """function updates learned values according to generic (overall) confidence PE with an expected outcome of 0 in phase 1"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, alpha_n=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, alpha_n=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
         self.alpha_n = alpha_n
 
@@ -260,9 +260,9 @@ class RescorlaConfZeroGen(RescorlaConfGen):
 
 class RescorlaConfBaseZero(RescorlaConfBase):
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, alpha_n=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, alpha_n=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
         self.alpha_n = alpha_n
 
@@ -289,9 +289,9 @@ class RescorlaConfBaseZero(RescorlaConfBase):
 class RescorlaConfBaseZeroGen(RescorlaConfBaseGen):
     """Outcome of Zero"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma=0.1, alpha_n=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c=0.1, alpha_n=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, gamma=gamma, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c, nbandits=nbandits)
 
         self.alpha_n = alpha_n
 
@@ -317,12 +317,12 @@ class RescorlaConfBaseZeroGen(RescorlaConfBaseGen):
 
 class BayesModel(Rescorla):
 
-    def __init__(self, alpha=0.1, beta=1, phi=0.1, gamma=3, nsamples=None):
+    def __init__(self, alpha=0.1, beta=1, phi=0.1, alpha_c=3, nsamples=None):
 
         super().__init__(alpha=alpha, beta=beta)
 
         self.phi = phi
-        self.gamma = gamma
+        self.alpha_c = alpha_c
 
         self.nsamples = nsamples
         self.values_sigma = np.full(self.nbandits, 1, float)
@@ -349,16 +349,16 @@ class BayesModel(Rescorla):
         pooled_sd = np.sqrt(np.sum(self.values_sigma))
         smd = (self.values[int(self.stim_chosen == 1)] - self.values[int(self.stim_chosen == 0)]) / pooled_sd
 
-        self.confidence = (1 / (1 + np.exp(-self.gamma * smd)) - 0.5) * 2
+        self.confidence = (1 / (1 + np.exp(-self.alpha_c * smd)) - 0.5) * 2
 
         return self.confidence
 
 
 class BayesIdealObserver(BayesModel):
 
-    def __init__(self, alpha=0.1, beta=1, phi=0.1, gamma=3):
+    def __init__(self, alpha=0.1, beta=1, phi=0.1, alpha_c=3):
 
-        super().__init__(alpha=alpha, beta=beta, phi=phi, gamma=gamma)
+        super().__init__(alpha=alpha, beta=beta, phi=phi, alpha_c=alpha_c)
 
     def update(self, outcome, confidence):
 
@@ -372,12 +372,12 @@ class BayesIdealObserver(BayesModel):
 
 class RescorlaConfGamma(RescorlaConf):
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma_f=0.1, gamma_wo=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c_f=0.1, alpha_c_wo=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, nbandits=nbandits)
 
-        self.gamma_f = gamma_f
-        self.gamma_wo = gamma_wo
+        self.alpha_c_f = alpha_c_f
+        self.alpha_c_wo = alpha_c_wo
 
     def update(self, outcome, confidence):
 
@@ -391,29 +391,29 @@ class RescorlaConfGamma(RescorlaConf):
     def learn_confidence_value_with_feed(self, confidence):
 
         self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-        self.conf_values[self.stim_chosen] += self.gamma_f * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values[self.stim_chosen] += self.alpha_c_f * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]
 
     def learn_confidence_value_without_feed(self, confidence):
 
         self.conf_PE = confidence - self.conf_values[self.stim_chosen]
-        self.conf_values[self.stim_chosen] += self.gamma_wo * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values[self.stim_chosen] += self.alpha_c_wo * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]
 
 
 class RescorlaConfGenGamma(RescorlaConfGen):
-    """Gamma 1 & gamma 2 are implemented to capture update differences in phases with & without feedback"""
+    """Gamma 1 & alpha_c 2 are implemented to capture update differences in phases with & without feedback"""
 
-    def __init__(self, alpha=0.1, beta=1, alpha_c=0.1, gamma_f=0.1, gamma_wo=0.1, nbandits=5):
+    def __init__(self, alpha=0.1, beta=1, gamma=0.1, alpha_c_f=0.1, alpha_c_wo=0.1, nbandits=5):
 
-        super().__init__(alpha=alpha, beta=beta, alpha_c=alpha_c, nbandits=nbandits)
+        super().__init__(alpha=alpha, beta=beta, gamma=gamma, nbandits=nbandits)
 
-        self.gamma_f = gamma_f
-        self.gamma_wo = gamma_wo
+        self.alpha_c_f = alpha_c_f
+        self.alpha_c_wo = alpha_c_wo
 
     def update(self, outcome, confidence):
 
@@ -428,8 +428,8 @@ class RescorlaConfGenGamma(RescorlaConfGen):
         """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
 
         self.conf_PE = confidence - self.conf_values
-        self.conf_values += self.gamma_f * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values += self.alpha_c_f * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]
 
@@ -437,7 +437,7 @@ class RescorlaConfGenGamma(RescorlaConfGen):
         """generic (overall) confidence estimate is used rather than distinct confidence values for each bandit"""
 
         self.conf_PE = confidence - self.conf_values
-        self.conf_values += self.gamma_wo * self.conf_PE
-        self.values[self.stim_chosen] += self.alpha_c * self.conf_PE
+        self.conf_values += self.alpha_c_wo * self.conf_PE
+        self.values[self.stim_chosen] += self.gamma * self.conf_PE
 
         return self.values[self.stim_chosen]

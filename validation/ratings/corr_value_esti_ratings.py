@@ -18,7 +18,7 @@ path_results = os.path.join(cwd, '../../results/fittingData')
 df = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 fittingData = pd.read_pickle(os.path.join(path_results, 'fittingDataM' + str(model) + '.pkl'))
 
-alpha, beta, alpha_c, gamma = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA
+alpha, beta, gamma, alpha_c = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA
 stim_combi = [[0, 1], [0, 2], [0, 3], [0, 4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
 
 delta_rating = np.full(nsubjects, np.nan)
@@ -29,7 +29,7 @@ value_post, value_pre = np.full((len(stim_combi), nsubjects), np.nan), np.full((
 for stim, combi in enumerate(stim_combi):
     for n in range(nsubjects):
 
-        parameter = [alpha[n], beta[n], alpha_c[n], gamma[n]]
+        parameter = [alpha[n], beta[n], gamma[n], alpha_c[n]]
 
         new_values_choice, true_values_choice, performance = run_model(parameter, modellist[model], n, return_cp=False, return_full=True)
 

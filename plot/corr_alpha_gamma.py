@@ -30,7 +30,7 @@ for i, m in enumerate(models):
     # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.ALPHA)[0][1]
     axes[row, col].scatter(fittingData.ALPHA_C, fittingData.ALPHA, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[i])
-    axes[max(rows), col].set_xlabel('alpha_c (p1)')
+    axes[max(rows), col].set_xlabel('gamma (p1)')
     axes[row, col].set_ylabel('alpha (p0)')
     axes[row, col].set_xticks(np.arange(0, 10.2, step=1))
     axes[row, col].set_yticks(np.arange(0, 1.2, step=0.2))
@@ -38,5 +38,5 @@ for i, m in enumerate(models):
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 
 # os.makedirs('../figures/param_corr')
-fig.savefig('../figures/param_corr/corr_alpha_c_alpha.png', bbox_inches='tight')
+fig.savefig('../figures/param_corr/corr_gamma_alpha.png', bbox_inches='tight')
 plt.close()

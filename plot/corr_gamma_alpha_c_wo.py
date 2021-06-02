@@ -27,12 +27,12 @@ for i, m in enumerate(models):
     # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.GAMMA)[0][1]
     axes[col].scatter(fittingData.ALPHA_C, fittingData.ALPHA_N, s=8, c='g', marker='o')
     axes[col].set_title(model_name[i])
-    axes[col].set_xlabel('alpha_c')
-    axes[0].set_ylabel('gamma_wo')
+    axes[col].set_xlabel('gamma')
+    axes[0].set_ylabel('alpha_c_wo')
     axes[col].set_xticks(np.arange(0, 1.2, step=0.2))
     axes[col].set_yticks(np.arange(0, 1.2, step=0.2))
     axes[col].text(0.4 if rho >= 0 else 0.4, 0.5, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[col].grid('silver', linestyle='-', linewidth=0.4)
 
-fig.savefig('../figures/param_corr/corr_alpha_c_gamma_wo.png', bbox_inches='tight')
+fig.savefig('../figures/param_corr/corr_gamma_alpha_c_wo.png', bbox_inches='tight')
 plt.close()

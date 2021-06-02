@@ -12,7 +12,7 @@ path_data = os.path.join(cwd, '../results/')
 n_models = 12
 n_subjects = 66
 
-AIC, BIC, alpha, beta, alpha_c, gamma, alpha_n = None, None, None, None, None, None, None
+AIC, BIC, alpha, beta, gamma, alpha_c, alpha_n = None, None, None, None, None, None, None
 
 for n in range(n_models):
 
@@ -27,19 +27,19 @@ for n in range(n_models):
     locals()["beta_M" + str(n)] = fittingData.BETA
     beta = np.append(beta, np.median(fittingData.BETA))
 
-    locals()["alpha_c_M" + str(n)] = fittingData.ALPHA_C
-    alpha_c= np.append(alpha_c, np.median(fittingData.ALPHA_C))
+    locals()["gamma_M" + str(n)] = fittingData.ALPHA_C
+    gamma= np.append(gamma, np.median(fittingData.ALPHA_C))
 
-    locals()["gamma_M" + str(n)] = fittingData.GAMMA
-    gamma = np.append(gamma, np.median(fittingData.GAMMA))
+    locals()["alpha_c_M" + str(n)] = fittingData.GAMMA
+    alpha_c = np.append(alpha_c, np.median(fittingData.GAMMA))
 
     locals()["alpha_n_M" + str(n)] = fittingData.ALPHA_N
     alpha_n = np.append(alpha_n, np.median(fittingData.ALPHA_N))
 
 
 model_fit = [AIC, BIC]
-param_fit = [alpha, beta, alpha_c, gamma, alpha_n]
-param_name = ['alpha', 'beta', 'alpha_c', 'gamma', 'alpha_n']
+param_fit = [alpha, beta, gamma, alpha_c, alpha_n]
+param_name = ['alpha', 'beta', 'gamma', 'alpha_c', 'alpha_n']
 model_name = ['Rescorla\nStatic', 'Rescorla\nZero', 'Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfNofeed', 'Rescorla\nConfNofeedGen',
               'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfNofeedZero', 'Rescorla\nConfNofeedZeroGen', 'BayesModel', 'Bayes\nIdealObserver']
 

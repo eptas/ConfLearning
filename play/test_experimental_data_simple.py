@@ -34,38 +34,38 @@ nbandits = 5
 
 alpha = 0.1
 alpha_n = 0.1
-alpha_c = 0.1
-beta = 1
 gamma = 0.1
-gamma_f = 0.1
-gamma_wo = 0.1
+beta = 1
+alpha_c = 0.1
+alpha_c_f = 0.1
+alpha_c_wo = 0.1
 phi = 0.1
 
 lower_alpha, la = 0, 0
 lower_alpha_n, lan = 0, 0
-lower_alpha_c, lac = 0, 0
+lower_gamma, lac = 0, 0
 lower_beta, lb = 0, 0
-lower_gamma, lg = 0, 0
-lower_gamma_f, lgf = 0, 0
-lower_gamma_wo, lgwo = 0, 0
+lower_alpha_c, lg = 0, 0
+lower_alpha_c_f, lgf = 0, 0
+lower_alpha_c_wo, lgwo = 0, 0
 lower_phi, lp = 0, 0
 
 upper_alpha, ua = 1, 1
 upper_alpha_n, uan = 1, 1
-upper_alpha_c, uac = 10, 10
+upper_gamma, uac = 10, 10
 upper_beta, ub = 2, 2
-upper_gamma, ug = 1, 1
-upper_gamma_f, ugf = 1, 1
-upper_gamma_wo, ugwo = 1, 1
+upper_alpha_c, ug = 1, 1
+upper_alpha_c_f, ugf = 1, 1
+upper_alpha_c_wo, ugwo = 1, 1
 upper_phi, up = 1, 1
 
 grid_alpha = np.arange(0.1, 0.51, 0.2)
 grid_alpha_n = np.arange(0.01, 0.061, 0.05)
-grid_alpha_c = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
+grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
 grid_beta = np.arange(0.1, 0.31, 0.1)
-grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))      # np.arange(0.05, 0.5, 0.1)
-grid_gamma_f = np.arange(0.05, 0.5, 0.1)
-grid_gamma_wo = np.arange(0.05, 0.5, 0.1)
+grid_alpha_c = np.hstack((0, np.arange(0.05, 0.5, 0.05)))      # np.arange(0.05, 0.5, 0.1)
+grid_alpha_c_f = np.arange(0.05, 0.5, 0.1)
+grid_alpha_c_wo = np.arange(0.05, 0.5, 0.1)
 grid_phi = np.arange(0.05, 0.5, 0.2)
 
 bounds = [np.c_[np.array([la, lb]), np.array([ua, ub])],
@@ -85,16 +85,16 @@ expect = [(np.array([ua, ub]) - np.array([la, lb])) / 2,
 grid_range = [
     [grid_alpha, grid_beta],
     [grid_alpha, grid_beta, grid_alpha_n],
-    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma] for _ in range(4)],
-    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma, grid_alpha_n] for _ in range(4)],
-    *[[grid_alpha, grid_beta, grid_phi, grid_gamma] for _ in range(2)],
-    *[[grid_alpha, grid_beta, grid_alpha_c, grid_gamma_f, grid_gamma_wo] for _ in range(2)],
+    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c] for _ in range(4)],
+    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c, grid_alpha_n] for _ in range(4)],
+    *[[grid_alpha, grid_beta, grid_phi, grid_alpha_c] for _ in range(2)],
+    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c_f, grid_alpha_c_wo] for _ in range(2)],
 ]
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
 modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma]
-paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, alpha_c, gamma] for _ in range(4)], *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)], *[[alpha, beta, phi, gamma] for _ in range(2)], *[[alpha, beta, alpha_c, gamma_f, gamma_wo] for _ in range(2)]]
+paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, gamma, alpha_c] for _ in range(4)], *[[alpha, beta, gamma, alpha_c, alpha_n] for _ in range(4)], *[[alpha, beta, phi, alpha_c] for _ in range(2)], *[[alpha, beta, gamma, alpha_c_f, alpha_c_wo] for _ in range(2)]]
 nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 5, 5]
 nmodels = len(modellist)
 

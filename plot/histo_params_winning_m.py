@@ -17,11 +17,11 @@ fittingData = pd.read_pickle(os.path.join(path_data, 'fittingData/fittingDataM' 
 
 alpha = fittingData.ALPHA
 beta = fittingData.BETA
-alpha_c = fittingData.ALPHA_C
-gamma = fittingData.GAMMA
+gamma = fittingData.ALPHA_C
+alpha_c = fittingData.GAMMA
 
-param_fit = [alpha, beta, alpha_c, gamma]
-param_name = ['alpha', 'beta', 'alpha_c', 'gamma']
+param_fit = [alpha, beta, gamma, alpha_c]
+param_name = ['alpha', 'beta', 'gamma', 'alpha_c']
 model_name = 'Rescorla\nConfGen'
 
 fig, axes = plt.subplots(2, 2, figsize=(20, 10))

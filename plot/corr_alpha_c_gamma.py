@@ -24,16 +24,16 @@ for i, m in enumerate(models):
 
     row, col = rows[i], columns[i]
 
-    rho, pval = stats.spearmanr(fittingData.GAMMA, fittingData.ALPHA)
+    rho, pval = stats.spearmanr(fittingData.ALPHA_C, fittingData.GAMMA)
     # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.GAMMA)[0][1]
-    axes[row, col].scatter(fittingData.GAMMA, fittingData.ALPHA, s=8, c='g', marker='o')
-    # axes[row, col].set_title(model_name[i])
+    axes[row, col].scatter(fittingData.ALPHA_C, fittingData.GAMMA, s=8, c='g', marker='o')
+    axes[row, col].set_title(model_name[i])
     axes[row, col].set_xlabel('gamma')
-    axes[row, col].set_ylabel('alpha')
-    axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))
+    axes[row, col].set_ylabel('alpha_c')
+    axes[row, col].set_xticks(np.arange(0, 10.2, step=1))
     axes[row, col].set_yticks(np.arange(0, 1.2, step=0.2))
     axes[row, col].text(0.4 if rho >= 0 else 0.4, 0.5, 'rho = ' + str(round(rho, 2)) + ', p = ' + str(round(pval, 2)), color='k', fontsize=10)
     axes[row, col].grid('silver', linestyle='-', linewidth=0.4)
 
-fig.savefig('../figures/param_corr/corr_gamma_alpha.png', bbox_inches='tight')
+fig.savefig('../figures/param_corr/corr_alpha_c_gamma.png', bbox_inches='tight')
 plt.close()

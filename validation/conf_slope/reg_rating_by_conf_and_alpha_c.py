@@ -28,13 +28,13 @@ for s in range(nsubjects):
 for m, model in enumerate(modellist):
 
     fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingDataM' + str(model) + '.pkl'))
-    gamma = fittingData.GAMMA
+    alpha_c = fittingData.GAMMA
 
-    values = pd.DataFrame(data={"rating_inc": rating_inc, "conf_slope": conf_slope, "gamma": gamma}, columns=["rating_inc", "conf_slope", "gamma"])
+    values = pd.DataFrame(data={"rating_inc": rating_inc, "conf_slope": conf_slope, "alpha_c": alpha_c}, columns=["rating_inc", "conf_slope", "alpha_c"])
 
     values = (values - values.mean()) / values.std()
 
-    res = smf.ols(formula='rating_inc ~ conf_slope + gamma + conf_slope:gamma', data=values).fit()
+    res = smf.ols(formula='rating_inc ~ conf_slope + alpha_c + conf_slope:alpha_c', data=values).fit()
     results = res.summary()
 
     results_text = results.as_text()

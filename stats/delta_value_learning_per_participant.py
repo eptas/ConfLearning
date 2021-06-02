@@ -13,7 +13,7 @@ path_data_r = os.path.join(cwd, '../results/')
 
 fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingData/fittingDataM' + str(model) + '.pkl'))
 
-alpha, beta, alpha_c, gamma, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
+alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
 
 colors = ['r', 'b', 'g', 'y', 'm']
 
@@ -26,9 +26,9 @@ for m, models in enumerate(modellist):
         if models != modellist[model]:
             continue
 
-        parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], alpha_c[n]], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(4)],
-                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(2)],
-                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(2)]]
+        parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], gamma[n]], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(4)],
+                     *[[alpha[n], beta[n], gamma[n], alpha_c[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(2)],
+                     *[[alpha[n], beta[n], gamma[n], alpha_c[n], alpha_n[n]] for _ in range(2)]]
 
         new_value_choice, true_value_choice, performance = run_model(parameter[m], models, n, return_cp=False, return_full=True)
 

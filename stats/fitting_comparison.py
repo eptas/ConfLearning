@@ -23,11 +23,11 @@ for m, models in enumerate(modellist):
     for n in range(n_subjects):
 
         fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingData/fittingDataM' + str(m) + '.pkl'))
-        alpha, beta, alpha_c, gamma, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
+        alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
 
-        parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], alpha_c[n]], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(4)],
-                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], alpha_c[n], gamma[n]] for _ in range(2)],
-                     *[[alpha[n], beta[n], alpha_c[n], gamma[n], alpha_n[n]] for _ in range(2)]]
+        parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], gamma[n]], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(4)],
+                     *[[alpha[n], beta[n], gamma[n], alpha_c[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(2)],
+                     *[[alpha[n], beta[n], gamma[n], alpha_c[n], alpha_n[n]] for _ in range(2)]]
 
         nparams[m] = len(parameter[m])
 
@@ -55,7 +55,7 @@ for m, model in enumerate(modellist):
             conf_likeli[n] = np.nanmean(negLogLike[m, n, :, 1, :])
 
 model_fit = [aic, bic]
-param_name = ['alpha', 'beta', 'alpha_c', 'gamma', 'alpha_n']
+param_name = ['alpha', 'beta', 'gamma', 'alpha_c', 'alpha_n']
 model_name = ['Rescorla\nStatic', 'Rescorla\nZero', 'Rescorla\nConf', 'Rescorla\nConfGen', 'Rescorla\nConfNofeed', 'Rescorla\nConfNofeedGen',
               'Rescorla\nConfZero', 'Rescorla\nConfZeroGen', 'Rescorla\nConfNofeedZero', 'Rescorla\nConfNofeedZeroGen', 'BayesModel', 'Bayes\nIdealObserver']
 

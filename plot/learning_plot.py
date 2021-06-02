@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from ConfLearning.play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
 
-model = 13
+model = 0
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../results/')

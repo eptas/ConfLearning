@@ -22,7 +22,7 @@ negLL = np.full((len(models), nsubjects, len(gamma)), np.nan)
 for m, model in enumerate(models):
 
     fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(m + 2) + '.pkl'))
-    alpha, beta, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.GAMMA, fittingData.ALPHA_N
+    alpha, beta, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.ALPHA_N
 
     for n in range(nsubjects):
         for c, conf in enumerate(gamma):
@@ -47,7 +47,7 @@ for m, model in enumerate(models):
     row, col = rows[m], columns[m]
     axes[row, col].plot(gamma, mLikeli, linewidth=0.5)
 
-    # axes[row, col].set_title(model_name[m])
+    # axes[row, col].set_title(model_labels[m])
     axes[max(rows), col].set_xlabel('gamma')
     axes[row, col].set_ylabel('neg_log_likelihood')
     # axes[row, col].set_yticks(np.arange(204, 240, step=4))

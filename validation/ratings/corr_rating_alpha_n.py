@@ -33,7 +33,7 @@ for m, model in enumerate(modellist):
         delta[s] = df[(df.subject == s) & df.type_rating2].rating.mean() - df[(df.subject == s) & df.type_rating1].rating.mean()
 
     if m == 0:
-        fittingData.ALPHA_N = fittingData.ALPHA_C
+        fittingData.ALPHA_N = fittingData.GAMMA
 
     rho, pval = stats.spearmanr(fittingData.ALPHA_N, delta)
     axes[row, col].scatter(fittingData.ALPHA_N, delta, s=8, c='g', marker='o')

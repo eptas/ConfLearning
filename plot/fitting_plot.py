@@ -27,11 +27,11 @@ for n in range(n_models):
     locals()["beta_M" + str(n)] = fittingData.BETA
     beta = np.append(beta, np.median(fittingData.BETA))
 
-    locals()["gamma_M" + str(n)] = fittingData.ALPHA_C
-    gamma= np.append(gamma, np.median(fittingData.ALPHA_C))
+    locals()["gamma_M" + str(n)] = fittingData.GAMMA
+    gamma= np.append(gamma, np.median(fittingData.GAMMA))
 
-    locals()["alpha_c_M" + str(n)] = fittingData.GAMMA
-    alpha_c = np.append(alpha_c, np.median(fittingData.GAMMA))
+    locals()["alpha_c_M" + str(n)] = fittingData.ALPHA_C
+    alpha_c = np.append(alpha_c, np.median(fittingData.ALPHA_C))
 
     locals()["alpha_n_M" + str(n)] = fittingData.ALPHA_N
     alpha_n = np.append(alpha_n, np.median(fittingData.ALPHA_N))

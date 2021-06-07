@@ -33,8 +33,8 @@ for m, model in enumerate(modellist):
 
         value_inc[s] = df[(df.subject == s)].absvaluediff.mean()
 
-    rho, pval = stats.spearmanr(fittingData.ALPHA_C, value_inc)
-    axes[row, col].scatter(fittingData.ALPHA_C, value_inc, s=8, c='g', marker='o')
+    rho, pval = stats.spearmanr(fittingData.GAMMA, value_inc)
+    axes[row, col].scatter(fittingData.GAMMA, value_inc, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[m])
     axes[max(rows), col].set_xlabel('gamma')
     axes[row, 0].set_ylabel('absolute value differences')

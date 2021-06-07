@@ -25,9 +25,9 @@ for m, model in enumerate(modellist):
     fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(model) + '.pkl'))
     row, col = rows[m], columns[m]
 
-    rho, pval = stats.spearmanr(fittingData.ALPHA_C, conf_slope)
-    axes[row, col].scatter(fittingData.ALPHA_C, conf_slope, s=8, c='g', marker='o')
-    # axes[row, col].set_title(model_name[m])
+    rho, pval = stats.spearmanr(fittingData.GAMMA, conf_slope)
+    axes[row, col].scatter(fittingData.GAMMA, conf_slope, s=8, c='g', marker='o')
+    # axes[row, col].set_title(model_labels[m])
     axes[row, col].set_xlabel('gamma')
     axes[row, col].set_ylabel('confidence slope (5-15 trials)')
     # axes[row, col].set_xticks(np.arange(0, 1.1, step=0.2))

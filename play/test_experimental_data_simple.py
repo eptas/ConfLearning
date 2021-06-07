@@ -94,7 +94,14 @@ grid_range = [
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
 modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma]
-paramlist = [[alpha, beta], [alpha, beta, alpha_n], *[[alpha, beta, gamma, alpha_c] for _ in range(4)], *[[alpha, beta, gamma, alpha_c, alpha_n] for _ in range(4)], *[[alpha, beta, phi, alpha_c] for _ in range(2)], *[[alpha, beta, gamma, alpha_c_f, alpha_c_wo] for _ in range(2)]]
+paramlist = [
+    [alpha, beta],
+    [alpha, beta, alpha_n],
+    *[[alpha, beta, alpha_c, gamma] for _ in range(4)],
+    *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)],
+    *[[alpha, beta, alpha_c, phi] for _ in range(2)],
+    *[[alpha, beta, alpha_c_f, alpha_c_wo, gamma] for _ in range(2)]
+]
 nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 5, 5]
 nmodels = len(modellist)
 

@@ -23,7 +23,7 @@ for m, models in enumerate(modellist):
     for n in range(n_subjects):
 
         fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingData/fittingDataM' + str(m) + '.pkl'))
-        alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
+        alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.GAMMA, fittingData.ALPHA_C, fittingData.ALPHA_N
 
         parameter = [[alpha[n], beta[n]], [alpha[n], beta[n], gamma[n]], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(4)],
                      *[[alpha[n], beta[n], gamma[n], alpha_c[n], alpha_n[n]] for _ in range(4)], *[[alpha[n], beta[n], gamma[n], alpha_c[n]] for _ in range(2)],

@@ -16,7 +16,7 @@ path_results = os.path.join(cwd, '../results/fittingData')
 
 fittingData = pd.read_pickle(os.path.join(path_results, 'fittingDataM' + str(model) + '.pkl'))
 
-alpha, beta, gamma, alpha_c = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA
+alpha, beta, gamma, alpha_c = fittingData.ALPHA, fittingData.BETA, fittingData.GAMMA, fittingData.ALPHA_C
 stim_combi = [[0, 1], [0, 2], [0, 3], [0, 4], [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
 
 value_post, value_pre = np.full((len(stim_combi), nsubjects), np.nan), np.full((len(stim_combi), nsubjects), np.nan)
@@ -35,8 +35,8 @@ for stim, combi in enumerate(stim_combi):
 delta_values = np.mean(value_post, axis=0) - np.mean(value_pre, axis=0)
 
 
-rho, pval = stats.spearmanr(delta_values, fittingData.GAMMA)
-plt.scatter(delta_values, fittingData.GAMMA, s=8, c='g', marker='o')
+rho, pval = stats.spearmanr(delta_values, fittingData.ALPHA_C)
+plt.scatter(delta_values, fittingData.ALPHA_C, s=8, c='g', marker='o')
 plt.title('Spearman correlation: abs. value estimate difference x alpha_c')
 plt.xlabel('abs. value estimate difference (p2, t1 - p1, t1)')
 plt.ylabel('alpha_c')

@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from ConfLearning.play.test_experimental_data_simple import run_model, modellist, nsubjects, nblocks, nphases, nbandits
 
-model = 3
+model = 4
 
 cwd = Path.cwd()
 path_data_r = os.path.join(cwd, '../results/')
 
 fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingData/fittingDataM' + str(model) + '.pkl'))
 
-alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C, fittingData.GAMMA, fittingData.ALPHA_N
+alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fittingData.GAMMA, fittingData.ALPHA_C, fittingData.ALPHA_N
 
 colors = ['r', 'b', 'g', 'y', 'm']
 

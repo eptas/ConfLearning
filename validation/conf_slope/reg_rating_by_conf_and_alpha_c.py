@@ -28,7 +28,7 @@ for s in range(nsubjects):
 for m, model in enumerate(modellist):
 
     fittingData = pd.read_pickle(os.path.join(path_data_r, 'fittingDataM' + str(model) + '.pkl'))
-    alpha_c = fittingData.GAMMA
+    alpha_c = fittingData.ALPHA_C
 
     values = pd.DataFrame(data={"rating_inc": rating_inc, "conf_slope": conf_slope, "alpha_c": alpha_c}, columns=["rating_inc", "conf_slope", "alpha_c"])
 

@@ -23,7 +23,7 @@ def extract_neg_ll():
     for m, model in enumerate(models):
 
         fittingData = pd.read_pickle(os.path.join(path_data, 'fittingDataM' + str(m + 6) + '.pkl'))
-        alpha, beta, alpha_c = fittingData.ALPHA, fittingData.BETA, fittingData.GAMMA
+        alpha, beta, alpha_c = fittingData.ALPHA, fittingData.BETA, fittingData.ALPHA_C
 
         for n in range(nsubjects):
             for c, conf in enumerate(gamma):

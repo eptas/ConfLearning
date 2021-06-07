@@ -76,8 +76,8 @@ class ParameterFit:
         params_lbfgs, negll_lbfgs = fit_lbfgs.x, fit_lbfgs.fun
         fit_powell = stats.optimize.minimize(self.run_model, args=args, x0=expect, bounds=bounds, method='Powell', options=dict(disp=False))
         params_powell, negll_powell = fit_powell.x, fit_powell.fun
-        print(f'L-BFGS-B: {negll_lbfgs:.2f}, Powell: {negll_powell:.2f}')
-        print(f'L-BFGS-B: {params_lbfgs}, Powell: {params_powell}')
+        print(f'\tL-BFGS-B: {negll_lbfgs:.2f}, Powell: {negll_powell:.2f}')
+        print(f'\tL-BFGS-B: {params_lbfgs}, Powell: {params_powell}')
 
         params = (params_lbfgs, params_powell)
         negll = (negll_lbfgs, negll_powell)

@@ -24,10 +24,10 @@ for i, m in enumerate(models):
 
     row, col = rows[i], columns[i]
 
-    rho, pval = stats.spearmanr(fittingData.GAMMA, fittingData.ALPHA)
-    # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.GAMMA)[0][1]
-    axes[row, col].scatter(fittingData.GAMMA, fittingData.ALPHA, s=8, c='g', marker='o')
-    # axes[row, col].set_title(model_name[i])
+    rho, pval = stats.spearmanr(fittingData.ALPHA_C, fittingData.ALPHA)
+    # corr = np.corrcoef(fittingData.GAMMA, fittingData.ALPHA_C)[0][1]
+    axes[row, col].scatter(fittingData.ALPHA_C, fittingData.ALPHA, s=8, c='g', marker='o')
+    # axes[row, col].set_title(model_labels[i])
     axes[row, col].set_xlabel('alpha_c')
     axes[row, col].set_ylabel('alpha')
     axes[row, col].set_xticks(np.arange(0, 1.2, step=0.2))

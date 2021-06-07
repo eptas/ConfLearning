@@ -26,9 +26,9 @@ for i, m in enumerate(models):
 
     row, col = rows[i], columns[i]
 
-    rho, pval = stats.spearmanr(fittingData.ALPHA_C, fittingData.ALPHA)
-    # corr = np.corrcoef(fittingData.ALPHA_C, fittingData.ALPHA)[0][1]
-    axes[row, col].scatter(fittingData.ALPHA_C, fittingData.ALPHA, s=8, c='g', marker='o')
+    rho, pval = stats.spearmanr(fittingData.GAMMA, fittingData.ALPHA)
+    # corr = np.corrcoef(fittingData.GAMMA, fittingData.ALPHA)[0][1]
+    axes[row, col].scatter(fittingData.GAMMA, fittingData.ALPHA, s=8, c='g', marker='o')
     axes[row, col].set_title(model_name[i])
     axes[max(rows), col].set_xlabel('gamma (p1)')
     axes[row, col].set_ylabel('alpha (p0)')

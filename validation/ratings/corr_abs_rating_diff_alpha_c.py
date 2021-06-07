@@ -37,8 +37,8 @@ for stim, combi in enumerate(stim_combi):
 delta_rating = np.mean(rating_post, axis=0) - np.mean(rating_pre, axis=0)
 
 
-rho, pval = stats.spearmanr(fittingData.GAMMA, delta_rating)
-plt.scatter(fittingData.GAMMA, delta_rating, s=8, c='g', marker='o')
+rho, pval = stats.spearmanr(fittingData.ALPHA_C, delta_rating)
+plt.scatter(fittingData.ALPHA_C, delta_rating, s=8, c='g', marker='o')
 plt.title('Spearman correlation: abs. rating difference x alpha_c')
 plt.xlabel('alpha_c')
 plt.ylabel('abs. rating difference (p2-p1)')

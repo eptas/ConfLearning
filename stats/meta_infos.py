@@ -23,6 +23,10 @@ include = np.where(np.array(100*data.groupby('subject').correct.mean().values, i
 exclude = np.setdiff1d(range(nsubjects), include)
 print(f"Subjects with performance < 0.55 (N={len(exclude)}, remain={nsubjects - len(exclude)}): [{', '.join([str(v) for v in exclude])}]")
 
+suffix = '_simchoice'
+winning_model = 'MonoUnspec'
+fittingData = pd.read_pickle(os.path.join(Path.cwd(), '../results/', f"fittingData/fittingData_{winning_model}{suffix}.pkl"))
+
 # compute average block length (takes some time)
 if False:
     t_length = np.array([[data[(data.subject == s) & (data.block == b)].t_length.sum() for b in range(nblocks)] for s in range(nsubjects)])
@@ -76,25 +80,26 @@ stats = wilcoxon(absratingdiff1[np.setdiff1d(range(nsubjects), exclude)], absrat
 print(f'Absolute pairwise rating difference post vs. pre: W={stats.statistic:.1f} (p={stats.pvalue:.5f})')  # sign. if subject with perf<0.55 excluded
 
 
-ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'b_stimulus_pool', 'value_chosen']
-linear_regression(
-    data[~data.confidence.isna() & (data.phase == 1) & data.type_choice & ~data.subject.isin(exclude)],
-    patsy_string='confidence ~ ' + ' + '.join(ps) + ' + trial_phase*b_valuebase',
-    standardize_vars=True,
-    ignore_warnings=True,
-    reml=False,
-    print_data=False
-)
+if False:
+    ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'b_stimulus_pool', 'value_chosen']
+    linear_regression(
+        data[~data.confidence.isna() & (data.phase == 1) & data.type_choice & ~data.subject.isin(exclude)],
+        patsy_string='confidence ~ ' + ' + '.join(ps) + ' + trial_phase*b_valuebase',
+        standardize_vars=True,
+        ignore_warnings=True,
+        reml=False,
+        print_data=False
+    )
 
-ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'value_chosen']
-linear_regression(
-    data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
-    patsy_string='confidence ~ ' + ' + '.join(ps),
-    standardize_vars=True,
-    ignore_warnings=True,
-    reml=False,
-    print_data=False
-)
+    ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'value_chosen']
+    linear_regression(
+        data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
+        patsy_string='confidence ~ ' + ' + '.join(ps),
+        standardize_vars=True,
+        ignore_warnings=True,
+        reml=False,
+        print_data=False
+    )
 
 # compute confidence slopes and rating diffs across phase 1
 if False:
@@ -119,7 +124,74 @@ else:
 r, p = pearsonr(confslope2, absratingdiff2-absratingdiff1)
 print(f'Correlation between confidence slope and change in absolute rating difference: r={r:.3f} (p={p:.5f})')
 
-if True:
+vars = [confslope2, ratingdiff, absratingdiff2-absratingdiff1, consistent / count]
+var_labels = ['confslope3', 'ratingdiff', 'absratingdiff', 'consistency']
+for i, var in enumerate(vars):
+    for param, param_label in zip([fittingData.ALPHA_C.values, fittingData.GAMMA.values], ['alpha_c', 'gamma']):
+        rp, pp = pearsonr(var[include], param[include])
+        rs, ps = spearmanr(var[include], param[include])
+        rpr, ppr, op = pg.correlation.skipped(var[include], param[include])
+        rsr, psr, os = pg.correlation.shepherd(var[include], param[include])
+
+        print(f'Correlation between {param_label} and {var_labels[i]}: [Pearson: r={rp:.3f} (p={pp:.5f}); Spearman: r={rs:.3f} (p={ps:.5f}), Pearson-robust: r={rpr:.3f} (p={ppr:.5f}, N={np.sum(op)}); Spearman-robust: r={rsr:.3f} (p={psr:.5f}, N={np.sum(os)})]')
+
+df = pd.DataFrame(dict(
+    subject=range(nsubjects - len(exclude)),
+    alpha=fittingData.ALPHA.values[include], beta=fittingData.BETA.values[include],
+    alpha_c=fittingData.ALPHA_C.values[include], gamma=fittingData.GAMMA.values[include],
+    confslope=confslope2[include], ratingdiff=ratingdiff[include], absratingdiff=(absratingdiff2-absratingdiff1)[include], consistent=(consistent / count)[include],
+    perf=np.array(data[data.subject.isin(include)].groupby('subject').correct.mean().values, float)
+))
+linear_regression(
+    df, patsy_string='consistent ~ ' + 'gamma*alpha',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+linear_regression(
+    df, patsy_string='absratingdiff ~ ' + 'gamma*alpha',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+linear_regression(
+    df, patsy_string='confslope ~ ' + 'alpha_c*beta',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+linear_regression(
+    df, patsy_string='ratingdiff ~ ' + 'alpha_c',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+
+# vars = [confslope2, ratingdiff, absratingdiff2-absratingdiff1, consistent / count]
+# var_labels = ['confslope', 'ratingdiff', 'absratingdiff', 'consistency']
+# for i, var in enumerate(vars):
+#     for param, param_label in zip([fittingData.ALPHA_C.values, fittingData.GAMMA.values], ['alpha_c', 'gamma']):
+#         rp, pp = pearsonr(var[include], param[include])
+#         rs, ps = spearmanr(var[include], param[include])
+#         rpr, ppr, op = pg.correlation.skipped(var[include], param[include])
+#         rsr, psr, os = pg.correlation.shepherd(var[include], param[include])
+#         df = pd.DataFrame(dict(alpha_c=fittingData.ALPHA_C.values[include], gamma=fittingData.GAMMA.values[include], var=var[include]))
+#         stats_p = pg.partial_corr(df, 'var', param_label, covar=['gamma'if param_label == 'alpha_c' else 'alpha_c'], method='pearson')
+#         rp, pp = stats_p.r.values[0], stats_p['p-val'].values[0]
+#         stats_s = pg.partial_corr(df, 'var', param_label, covar=['gamma'if param_label == 'alpha_c' else 'alpha_c'], method='spearman')
+#         rs, ps = stats_s.r.values[0], stats_s['p-val'].values[0]
+#         stats_pr = pg.partial_corr(df, 'var', param_label, covar=['gamma'if param_label == 'alpha_c' else 'alpha_c'], method='skipped')
+#         rpr, ppr, op = stats_pr.r.values[0], stats_pr['p-val'].values[0], stats_pr.outliers.values[0]
+#         stats_sr = pg.partial_corr(df, 'var', param_label, covar=['gamma'if param_label == 'alpha_c' else 'alpha_c'], method='shepherd')
+#         rpr, ppr, os = stats_sr.r.values[0], stats_sr['p-val'].values[0], stats_sr.outliers.values[0]
+#         print(f'Correlation between {param_label} and {var_labels[i]}: [Pearson: r={rp:.3f} (p={pp:.5f}); Spearman: r={rs:.3f} (p={ps:.5f}), Pearson-robust: r={rpr:.3f} (p={ppr:.5f}, N={np.sum(op)}); Spearman-robust: r={rsr:.3f} (p={psr:.5f}, N={np.sum(os)})]')
+
+
+if False:
     ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'valuesum', 'b_stimulus_pool', 'block']
     linear_regression(
         data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
@@ -131,62 +203,65 @@ if True:
         print_data=False
     )
 
-# data.loc[data.b_ntrials_pre.isin([9, 12]), 'pre_short'] = 1
-# data.loc[data.b_ntrials_pre.isin([15, 18]), 'pre_short'] = 0
-ps = ['value_chosen', 'block', 'b_valuebase', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre']
-model = linear_regression(
-    data[~data.ratingdiff21.isna()],
-    # patsy_string='ratingdiff ~ ' + ' + '.join(ps),
-    patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase*b_ntrials_noc',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps),
-    standardize_vars=True,
-    ignore_warnings=True,
-    model_blocks=True,
-    reml=False,
-    print_data=False
-)
+if False:
+    # data.loc[data.b_ntrials_pre.isin([9, 12]), 'pre_short'] = 1
+    # data.loc[data.b_ntrials_pre.isin([15, 18]), 'pre_short'] = 0
+    ps = ['value_chosen', 'block', 'b_valuebase', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre']
+    model = linear_regression(
+        data[~data.ratingdiff21.isna()],
+        # patsy_string='ratingdiff ~ ' + ' + '.join(ps),
+        patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase*b_ntrials_noc',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps),
+        standardize_vars=True,
+        ignore_warnings=True,
+        model_blocks=True,
+        reml=False,
+        print_data=False
+    )
+
+if False:
+    ps = ['value_chosen']
+    model = linear_regression(
+        data[~data.ratingdiff21.isna() & (data.b_ntrials_noc == 15)],
+        patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
+        # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps),
+        standardize_vars=True,
+        ignore_warnings=True,
+        model_blocks=False,
+        reml=False,
+        print_data=False,
+        silent=True
+    )
 
 
-ps = ['value_chosen']
-model = linear_regression(
-    data[~data.ratingdiff21.isna() & (data.b_ntrials_noc == 15)],
-    patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
-    # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps),
-    standardize_vars=True,
-    ignore_warnings=True,
-    model_blocks=False,
-    reml=False,
-    print_data=False,
-    silent=True
-)
+if False:
+    ps = ['value_chosen', 'block', 'b_valuebase', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_noc', 'confslope']
+    linear_regression(
+        data[~data.ratingdiff21.isna() & data.b_ntrials_pre.isin([9, 12])],
+        # data[~data.ratingdiff21.isna() & data.b_ntrials_pre.isin([15, 18])],
+        patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
+        # patsy_string='ratingdiff ~ ' + ' + '.join(ps) + ' + confslope:value_chosen',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
+        # patsy_string='rating2 ~ ' + ' + '.join(ps),
+        standardize_vars=True,
+        ignore_warnings=True,
+        model_blocks=True,
+        reml=False,
+        print_data=False
+    )
 
-
-ps = ['value_chosen', 'block', 'b_valuebase', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_noc', 'confslope']
-linear_regression(
-    data[~data.ratingdiff21.isna() & data.b_ntrials_pre.isin([9, 12])],
-    # data[~data.ratingdiff21.isna() & data.b_ntrials_pre.isin([15, 18])],
-    patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
-    # patsy_string='ratingdiff ~ ' + ' + '.join(ps) + ' + confslope:value_chosen',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps) + ' + rating1:value_chosen',
-    # patsy_string='rating2 ~ ' + ' + '.join(ps),
-    standardize_vars=True,
-    ignore_warnings=True,
-    model_blocks=True,
-    reml=False,
-    print_data=False
-)
-
-# bd = data[]
-ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'valuesum', 'b_stimulus_pool', 'block']
-linear_regression(
-    data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
-    patsy_string='confidence ~ ' + ' + '.join(ps) + ' + b_valuebase:trial_phase',
-    standardize_vars=True,
-    ignore_warnings=True,
-    model_blocks=False,
-    reml=False,
-    print_data=False
-)
+if False:
+    # bd = data[]
+    ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'valuesum', 'b_stimulus_pool', 'block']
+    linear_regression(
+        data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
+        patsy_string='confidence ~ ' + ' + '.join(ps) + ' + b_valuebase:trial_phase',
+        standardize_vars=True,
+        ignore_warnings=True,
+        model_blocks=False,
+        reml=False,
+        print_data=False
+    )

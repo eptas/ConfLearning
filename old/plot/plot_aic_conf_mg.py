@@ -61,6 +61,6 @@ plt.ylim(-0.6, n_models-0.4)
 set_fontsize(xlabel=12, tick=10)
 # savefig(f"../figures/fitting/AIC_ConfSim_MG{('', '_ConfSim')[confsim]}.png")
 plt.title('Confidence effect + behav. choice/confidence')
-savefig(f"../figures/fitting/AIC_MG{('', '_cp2')[confsim]}.png")
+savefig(f"../figures/fitting/AIC_conf_mg.png")
 # plt.close()
 

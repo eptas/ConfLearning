@@ -2,7 +2,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero
+from ConfLearning.models.rl_simple_simchoice import RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen
 from ConfLearning.fitting.maximum_likelihood import ParameterFit
 from pathlib import Path
 
@@ -23,7 +24,7 @@ stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_val
 for v, variable in enumerate(var_list):
     locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
 
-set_model = 3   # CHANGE HERE
+# set_model = 4   # CHANGE HERE
 
 nsubjects = max(matrix.subject.values) + 1
 nblocks = max(matrix.block.values) + 1
@@ -33,76 +34,60 @@ ntrials_phase_max = 18
 nbandits = 5
 
 alpha = 0.1
-alpha_n = 0.1
-gamma = 0.1
 beta = 1
+alpha_n = 0.1
 alpha_c = 0.1
-alpha_c_f = 0.1
-alpha_c_wo = 0.1
-phi = 0.1
+gamma = 0.1
 
 lower_alpha, la = 0, 0
-lower_alpha_n, lan = 0, 0
-lower_gamma, lac = 0, 0
 lower_beta, lb = 0, 0
-lower_alpha_c, lg = 0, 0
-lower_alpha_c_f, lgf = 0, 0
-lower_alpha_c_wo, lgwo = 0, 0
-lower_phi, lp = 0, 0
+lower_alpha_n, lan = 0, 0
+lower_alpha_c, lac = 0, 0
+lower_gamma, lg = 0, 0
 
 upper_alpha, ua = 1, 1
-upper_alpha_n, uan = 1, 1
-upper_gamma, uac = 10, 10
 upper_beta, ub = 2, 2
-upper_alpha_c, ug = 1, 1
-upper_alpha_c_f, ugf = 1, 1
-upper_alpha_c_wo, ugwo = 1, 1
-upper_phi, up = 1, 1
+upper_alpha_n, uan = 1, 1
+upper_alpha_c, uac = 1, 1
+upper_gamma, ug = 100, 100
 
 grid_alpha = np.arange(0.1, 0.51, 0.2)
-grid_alpha_n = np.arange(0.01, 0.061, 0.05)
-grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
 grid_beta = np.arange(0.1, 0.31, 0.1)
+grid_alpha_n = np.arange(0.01, 0.061, 0.05)
 grid_alpha_c = np.hstack((0, np.arange(0.05, 0.5, 0.05)))      # np.arange(0.05, 0.5, 0.1)
-grid_alpha_c_f = np.arange(0.05, 0.5, 0.1)
-grid_alpha_c_wo = np.arange(0.05, 0.5, 0.1)
-grid_phi = np.arange(0.05, 0.5, 0.2)
+grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
+
 
 bounds = [np.c_[np.array([la, lb]), np.array([ua, ub])],
           np.c_[np.array([la, lb, lan]), np.array([ua, ub, uan])],
           *[np.c_[np.array([la, lb, lac, lg]), np.array([ua, ub, uac, ug])] for _ in range(4)],
           *[np.c_[np.array([la, lb, lac, lg, lan]), np.array([ua, ub, uac, ug, uan])] for _ in range(4)],
-          *[np.c_[np.array([la, lb, lp, lg]), np.array([ua, ub, up, ug])] for _ in range(2)],
-          *[np.c_[np.array([la, lb, lac, lgf, lgwo]), np.array([ua, ub, uac, ugf, ugwo])] for _ in range(2)]]
+]
 
 expect = [(np.array([ua, ub]) - np.array([la, lb])) / 2,
           (np.array([ua, ub, uan]) - np.array([la, lb, lan])) / 2,
           *[(np.array([ua, ub, uac, ug]) - np.array([la, lb, lac, lg])) / 2 for _ in range(4)],
           *[(np.array([ua, ub, uac, ug, uan]) - np.array([la, lb, lac, lg, lan])) / 2 for _ in range(4)],
-          *[(np.array([ua, ub, up, ug]) - np.array([la, lb, lp, lg])) / 2 for _ in range(2)],
-          *[(np.array([ua, ub, uac, ugf, ugwo]) - np.array([la, lb, lac, lgf, lgwo])) / 2 for _ in range(2)]]
+]
 
 grid_range = [
     [grid_alpha, grid_beta],
     [grid_alpha, grid_beta, grid_alpha_n],
     *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c] for _ in range(4)],
-    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c, grid_alpha_n] for _ in range(4)],
-    *[[grid_alpha, grid_beta, grid_phi, grid_alpha_c] for _ in range(2)],
-    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c_f, grid_alpha_c_wo] for _ in range(2)],
+    *[[grid_alpha, grid_beta, grid_gamma, grid_alpha_c, grid_alpha_n] for _ in range(4)]
 ]
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
-modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, BayesModel, BayesIdealObserver, RescorlaConfGamma, RescorlaConfGenGamma]
+modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen]
+model_names = ['Static', 'Deval', 'DualSpec', 'DualUnspec', 'MonoSpec', 'MonoUnspec', 'DualSpecDeval', 'DualUnspecDeval', 'MonoSpecDeval', 'MonoUnspecDeval']
 paramlist = [
     [alpha, beta],
     [alpha, beta, alpha_n],
     *[[alpha, beta, alpha_c, gamma] for _ in range(4)],
-    *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)],
-    *[[alpha, beta, alpha_c, phi] for _ in range(2)],
-    *[[alpha, beta, alpha_c_f, alpha_c_wo, gamma] for _ in range(2)]
+    *[[alpha, beta, alpha_c, gamma, alpha_n] for _ in range(4)]
 ]
-nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5, 4, 4, 5, 5]
+nparams = [2, 3, 4, 4, 4, 4, 5, 5, 5, 5]
 nmodels = len(modellist)
 
 probab_choice = np.full((nmodels, nsubjects, nblocks, nphases, ntrials_phase_max), np.nan)
@@ -152,6 +137,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                 model.stim_chosen = int(chosen_stim[s, b, p, t])
 
                 cp = model.get_choice_probab()
+                model.predicted_choice()
 
                 if return_cp:
                     choiceprob[b, p, i] = cp
@@ -164,12 +150,16 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                 # confidence = 2 * cp - 1 if cp >= 0.5 else 2 * (1 - cp) - 1
                 # new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
 
+
+                confidence = confidence_value[s, b, p, t] / 10
+                # confidence = model.get_confidence2()
+                # confidence = model.get_confidence_inv()
                 if return_bias:
 
                     for k in range(nbandits):
 
                         if k in model.stims:
-                            confpe, design_bias[b, p, i, k], confexp = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
+                            confpe, design_bias[b, p, i, k], confexp = model.get_confidence_exp_pe(confidence)
                         else:
                             if (p > 0) & (i == 0):
 
@@ -184,8 +174,8 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                     for k in range(nbandits):
 
                         if k == model.stim_chosen:
-                            conf_PE[b, p, i, k], conf_expect_pre[b, p, i, k], conf_expect_post[b, p, i, k] = model.get_confidence_exp_pe(confidence_value[s, b, p, t])
-                            behav_confidence[b, p, i, k] = confidence_value[s, b, p, t]
+                            conf_PE[b, p, i, k], conf_expect_pre[b, p, i, k], conf_expect_post[b, p, i, k] = model.get_confidence_exp_pe(confidence)
+                            behav_confidence[b, p, i, k] = confidence
 
                         else:
                             if (p > 0) & (i == 0):
@@ -210,7 +200,7 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
                                 conf_expect_pre[b, p, i, k] = 0 if t == 0 else conf_expect_pre[b, p, i - 1, k]
                                 behav_confidence[b, p, i, k] = 0 if t == 0 else behav_confidence[b, p, i - 1, k]
 
-                new_value_choice = model.update(outcome_value[s, b, p, t], confidence_value[s, b, p, t])
+                new_value_choice = model.update(outcome_value[s, b, p, t], confidence)
 
                 if return_full:
                     performance[b, p, i] = 0 if (correct_value[s, b, p, t] == False) else 1
@@ -249,14 +239,15 @@ def run_model(params, modelspec, s, return_cp=False, return_full=False, return_c
 if __name__ == '__main__':
 
     for m, models in enumerate(modellist):
+        print(f'Model {m+1} / {len(modellist)}')
         for n in range(nsubjects):
-            if models != modellist[set_model]:
-                continue
+            # if models != modellist[set_model]:
+            #     continue
 
             params = paramlist[m]
             fitting.set_model(n, nsubjects, modellist[m], run_model, nparams[m])
             fitting.local_minima(expect[m], bounds[m], grid_range[m])
-            print(n)
+            print(f'\tSubject {n+1} / {nsubjects}')
 
             for param in range(nparams[m]):
                 # paramfit[m, n, param] = fitting.data[n, param]
@@ -278,5 +269,6 @@ if __name__ == '__main__':
             saveChoiceProbab = pd.concat([saveChoiceProbab, eval("choice_probab_m" + str(m))], axis=1)
             locals()["param_corr_m" + str(m)] = eval("parameter_m" + str(m)).corr()
 
-    pd.concat([eval("parameter_m" + str(set_model)), eval("fit_m" + str(set_model))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(set_model) + ".pkl", protocol=4)
-    saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(set_model) + ".pkl", protocol=4)
+        # pd.concat([eval("parameter_m" + str(m)), eval("fit_m" + str(m))], axis=1).to_pickle("../results/fittingData/fittingDataM" + str(m) + "_cp.pkl", protocol=4)
+        pd.concat([eval("parameter_m" + str(m)), eval("fit_m" + str(m))], axis=1).to_pickle(f"../results/fittingData/fittingData_{model_names[m]}_simchoice.pkl", protocol=4)
+        # saveChoiceProbab.to_pickle("../results/choiceProbab/choiceProbabM" + str(m) + "_cp.pkl", protocol=4)

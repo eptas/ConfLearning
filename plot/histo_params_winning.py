@@ -28,36 +28,39 @@ beta = fittingData.BETA[np.setdiff1d(range(n_subjects), [25, 30])]
 gamma = np.log(fittingData.GAMMA[np.setdiff1d(range(n_subjects), [25, 30])][fittingData.GAMMA[np.setdiff1d(range(n_subjects), [25, 30])] != 0])
 alpha_c = fittingData.ALPHA_C[np.setdiff1d(range(n_subjects), [25, 30])]
 
-param_fit = [alpha, beta, gamma, alpha_c]
-param_name = [r'$\alpha$', r'$\beta$', r'$\log(\gamma)}$', r'$\alpha_c$']
-xlim = [(0, 1), (0, np.round(beta.max())), (-0.5, np.ceil(gamma.max())), (0, 1)]
-ylim = [(0, 10), (0, 20), (0, 12), (0, 32)]
+param_fit = dict(alpha=alpha, beta=beta, gamma=gamma, alpha_c=alpha_c)
+param_name = dict(alpha=r'$\alpha$', beta=r'$\beta$', gamma=r'$\log(\gamma)}$', alpha_c=r'$\alpha_c$')
+xlim = dict(alpha=(0, 1), beta=(0, np.round(beta.max())), gamma=(-0.5, np.ceil(gamma.max())), alpha_c=(0, 1))
+ylim = dict(alpha=(0, 10), beta=(0, 20), gamma=(0, 12), alpha_c=(0, 32))
 model_name = 'Rescorla\nConfGen'
 
-fig, ax = plt.subplots(2, 2, figsize=(9, 3))
 
-for p, para in enumerate(param_fit):
-    ax = plt.subplot(1, 4, p + 1)
-    patches = plt.hist(para, bins=32, color=(0.4, 0.4, 0.4))
-    plt.title(f'Histogram {param_name[p]}')
+
+def plot_histo(param):
+    plt.hist(param_fit[param], bins=32, color=(0.4, 0.4, 0.4))
+    plt.title(f'Histogram {param_name[param]}')
     plt.yticks(np.arange(0, 42, step=5))
-    plt.xlim(xlim[p])
-    plt.ylim(ylim[p])
-    # plt.ylim(0, 18)
-    if p in (0, 3):
+    plt.xlim(xlim[param])
+    plt.ylim(ylim[param])
+    if param in ('alpha', 'alpha_c'):
         plt.xticks(np.arange(0, 1.1, 0.2))
-    # if p == 3:
-    #     plt.ylim(0, 18)
-    # if p > 0:
-    #     plt.yticks([])
 
-ax.get_children()[0].set_color(colors[0])
-axi = inset_axes(ax, width='100%', height='100%', bbox_to_anchor=(.35, .4, .55, .5), bbox_transform=ax.transAxes)
-plt.hist(alpha_c[alpha_c < 0.02], bins=18, color=colors[0])
-plt.ylim(0, 15)
-plt.xlim(0, 0.02)
-plt.xticks(np.arange(0, 0.021, 0.02))
-# mark_inset(ax, axi, loc1=2, loc2=4, fc="none", ec="0.5")
+    if param == 'alpha_c':
+        plt.gca().get_children()[0].set_color(colors[0])
+        inset_axes(plt.gca(), width='100%', height='100%', bbox_to_anchor=(.35, .4, .55, .5), bbox_transform=plt.gca().transAxes)
+        plt.hist(alpha_c[alpha_c < 0.02], bins=18, color=colors[0])
+        plt.ylim(0, 15)
+        plt.xlim(0, 0.02)
+        plt.xticks(np.arange(0, 0.021, 0.02))
 
-plt.tight_layout()
-savefig('../figures/model/histo.png')
+if __name__ == '__main__':
+
+    params = ('alpha', 'beta', 'gamma', 'alpha_c')
+
+    fig, ax = plt.subplots(2, 2, figsize=(9, 3))
+    for p, param in enumerate(params):
+        ax = plt.subplot(1, 4, p + 1)
+        plot_histo(param)
+
+    plt.tight_layout()
+    savefig('../figures/model/histo.png')

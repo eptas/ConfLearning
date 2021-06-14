@@ -143,28 +143,46 @@ df = pd.DataFrame(dict(
     perf=np.array(data[data.subject.isin(include)].groupby('subject').correct.mean().values, float)
 ))
 linear_regression(
-    df, patsy_string='consistent ~ ' + 'gamma*alpha',
+    df, patsy_string='consistent ~ ' + 'gamma + beta',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
+
+am = df.alpha.median()
+gm = df.gamma.median()
+plt.figure()
+os = 0.01
+# var = 'consistent'
+var = 'absratingdiff'
+plt.errorbar([1-os, 2-os], [df[(df.alpha < am) & (df.gamma < gm)][var].mean(), df[(df.alpha < am) & (df.gamma >= gm)][var].mean()],
+             yerr=[df[(df.alpha < am) & (df.gamma < gm)][var].sem(), df[(df.alpha < am) & (df.gamma >= gm)][var].sem()],
+             label=r'Low $\alpha$')
+plt.errorbar([1+os, 2+os], [df[(df.alpha >= am) & (df.gamma < gm)][var].mean(), df[(df.alpha >= am) & (df.gamma >= gm)][var].mean()],
+         yerr=[df[(df.alpha >= am) & (df.gamma < gm)][var].sem(), df[(df.alpha >= am) & (df.gamma >= gm)][var].sem()],
+         label=r'High $\alpha$')
+plt.xticks([1, 2], [r'Low $\gamma$', r'High $\gamma$'])
+plt.legend()
+
 linear_regression(
-    df, patsy_string='absratingdiff ~ ' + 'gamma*alpha',
+    df, patsy_string='absratingdiff ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
+
 linear_regression(
-    df, patsy_string='confslope ~ ' + 'alpha_c*beta',
+    df, patsy_string='confslope ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
+
 linear_regression(
-    df, patsy_string='ratingdiff ~ ' + 'alpha_c',
+    df, patsy_string='ratingdiff ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,
     print_data=False

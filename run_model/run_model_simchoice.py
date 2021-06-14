@@ -4,7 +4,7 @@ import pandas as pd
 
 from ConfLearning.models.rl_simple import Rescorla, RescorlaZero
 from ConfLearning.models.rl_simple_simchoice import RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen
-from ConfLearning.fitting.maximum_likelihood import ParameterFit
+from ConfLearning.models.maximum_likelihood import ParameterFit
 from pathlib import Path
 
 fitting = ParameterFit()

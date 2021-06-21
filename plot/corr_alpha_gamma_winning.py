@@ -50,8 +50,8 @@ plt.scatter(alpha, gamma, s=40, marker='o', color=colors[0], edgecolors='none', 
 # plt.scatter(fittingData_alpha.ALPHA[outliers], fittingData.GAMMA[outliers], s=40, marker='o', color=colors[0], alpha=1/3, edgecolors='none')
 # for i in np.where(outliers)[0]:
 #     plt.plot(fittingData_alpha.ALPHA[i], fittingData.GAMMA[i], 'o', markersize=8, mfc='None', mec=(0.55, 0.55, 0.55), alpha=0.5)
-plt.xlabel(r'Value learning rate $\alpha$')
-plt.ylabel(r'Confidence learning rate $\gamma$')
+plt.xlabel(r'Reward learning rate $\alpha_r$')
+plt.ylabel(r'Confidence transfer $\gamma$')
 rp_str = fr'$r={rho:.2f}\;\;(p<0.001)$' if pval < 0.001 else fr'$r={rho:.2f}\;\;(p={pval:.3f})$'
 plt.text(0.04, 0.85, rp_str, color='k', fontsize=10, transform=ax.transAxes, ha='left')
 # rp_str = fr'$r={r:.2f}\;\;(p<0.001)$' if p < 0.001 else fr'$r={r:.2f}\;\;(p={p:.3f})$'
@@ -61,4 +61,4 @@ plt.ylim(0, 55.5)
 set_fontsize(label=12, tick=11)
 plt.tight_layout()
 savefig(f"../figures/model/corr_alpha_gamma_winning.png")
-# plt.close()
+plt.show()

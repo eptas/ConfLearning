@@ -46,7 +46,7 @@ for sp in range(2):
         plt.plot(np.arange(-nt+1.5, 1.5), m, lw=2, color=colors[i], alpha=0.6)
         plt.fill_between(np.arange(-nt+1.5, 1.5), m-se, m+se, lw=0, color=colors[i], alpha=0.4)
 
-    plt.axvspan(1, nt_phase1_max, facecolor='0.9', alpha=0.5)
+    plt.axvspan(1, nt_phase1_max, facecolor='0.9', alpha=0.5, zorder=-11)
     # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
     for i, nt in enumerate(ntrials_phase0):
         d1 = data[(data.b_ntrials_pre == nt) & (data.phase == 1)].groupby(['subject', 'trial_phase'])[var].mean()
@@ -65,6 +65,7 @@ for sp in range(2):
         plt.plot(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m, lw=2, color=colors[i], alpha=0.6)
         plt.fill_between(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m-se, m+se, lw=0, color=colors[i], alpha=0.4)
     if sp == 0:  # performance
+        plt.plot([-20, 35], [0.5, 0.5], 'k-', lw=0.5, zorder=-10)
         y_text = 0.43
         plt.yticks(np.arange(0.5, 1, 0.1))
         plt.ylim(0.42, 0.865)
@@ -73,6 +74,7 @@ for sp in range(2):
         plt.ylim(0, 7)
         y_text = 0.15
         plt.ylabel('Confidence')
+    plt.xlim(-20, 35)
     plt.xticks(np.arange(-20, 40, 5))
     plt.text(-10, y_text, 'Phase 1', ha='center', fontsize=11)
     plt.text(8, y_text, 'Phase 2', ha='center', fontsize=11)
@@ -82,3 +84,4 @@ for sp in range(2):
 set_fontsize(label=11, tick=9)
 
 savefig('../figures/behav/perf_conf_over_trials.png')
+plt.show()

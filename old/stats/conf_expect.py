@@ -17,8 +17,8 @@ alpha, beta, gamma, alpha_c, alpha_n = fittingData.ALPHA, fittingData.BETA, fitt
 
 colors = ['r', 'b', 'g', 'y', 'm']
 
-# pe_curve = np.full((nsubjects, 90), np.nan)
-# exp_curve = np.full((nsubjects, 90), np.nan)
+# pe_curve = np.extended((nsubjects, 90), np.nan)
+# exp_curve = np.extended((nsubjects, 90), np.nan)
 
 conf_exp_value0, conf_exp_value1, conf_exp_value2, conf_exp_value3, conf_exp_value4 = None, None, None, None, None
 mean_value0, mean_value1, mean_value2, mean_value3, mean_value4 = None, None, None, None, None
@@ -141,7 +141,7 @@ plt.close()
 # plt.plot(range(len(peDF_mean)), peDF_mean, color='r')
 # plt.title("confidence PE in phase without feedback")
 # plt.yticks(np.arange(-2, 7.5, step=1), fontsize=6)
-# plt.grid('silver', linestyle='-', linewidth=0.4)
+# plt.gridsearch('silver', linestyle='-', linewidth=0.4)
 # plt.savefig('Conf_PE_Curve_M' + str(model) + '.png', bbox_inches='tight')
 # plt.close()
 
@@ -156,6 +156,6 @@ plt.close()
 # plt.plot(range(len(expectDF_mean)), expectDF_mean, color='r')
 # plt.title("expected confidence in phase without feedback")
 # plt.yticks(np.arange(-2, 7.5, step=1), fontsize=6)
-# plt.grid('silver', linestyle='-', linewidth=0.4)
+# plt.gridsearch('silver', linestyle='-', linewidth=0.4)
 # plt.savefig('expected_confidence_curve_M' + str(model) + '.png', bbox_inches='tight')
 # plt.close()

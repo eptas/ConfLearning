@@ -47,7 +47,7 @@ plt.ylabel(r'Confidence learning rate $\gamma$')
 # plt.yticks(np.arange(0, 1.2, step=0.2))
 rp_str = fr'$r={rho:.2f}\;\;(p<0.001)$' if pval < 0.001 else fr'$r={rho:.2f}\;\;(p={pval:.3f})$'
 plt.text(0.95, 0.9, rp_str, color='k', fontsize=10, transform=ax.transAxes, ha='right')
-# plt.grid('silver', linestyle='-', linewidth=0.4)
+# plt.gridsearch('silver', linestyle='-', linewidth=0.4)
 # plt.ylim(0, 3)
 # os.makedirs('../figures/param_corr')
 # savefig(f"../figures/param_corr/corr_alpha_gamma_winning_mg{('', '_ConfSim')[confsim]}.png")

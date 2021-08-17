@@ -4,7 +4,7 @@ from matplotlib import rcParams
 import os
 from pathlib import Path
 
-def as_latex(model, title=None, print_meta=True, single_table=False):
+def as_latex(model, title=None, DV=None, print_meta=True, single_table=False):
     '''Generate LaTeX Summary Table
     '''
     tables = model.tables
@@ -33,16 +33,17 @@ def as_latex(model, title=None, print_meta=True, single_table=False):
     out = '\n'.join(out)
     if single_table:
         out = out.replace('\\end{tabular}\n\\begin{tabular}{lrrrrrr}\n', '')
+    if DV is not None:
+        out = out.replace('& Coef.', '\\textit{DV: ' + DV + '} & Coef.')
     return out
 
 
-def latex_to_png(model, outpath='out.png', title=None):
+def latex_to_png(model, outpath='out.png', title=None, DV=None):
     rcParams['text.usetex'] = True
 
     beginningtex = r"""\documentclass[preview]{standalone}\thispagestyle{empty}\usepackage{booktabs}\usepackage[font=bf,aboveskip=0pt]{caption}\begin{document}"""
     endtex = r"\end{document}"
-    title = '' if title is None else title
-    content = as_latex(model.summary(), print_meta=False, single_table=True, title=title)
+    content = as_latex(model.summary(), print_meta=False, single_table=True, title=title, DV=DV)
     latex = beginningtex + content + endtex
 
     f = open('latex/document.tex', 'w')

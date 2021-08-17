@@ -43,4 +43,5 @@ model = linear_regression(
     print_data=False
 )
 
-latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'), title='Confidence in Phase 2')
+latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
+             title=None, DV='confidence')

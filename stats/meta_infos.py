@@ -139,9 +139,51 @@ df = pd.DataFrame(dict(
     subject=range(nsubjects - len(exclude)),
     alpha=fittingData.ALPHA.values[include], beta=fittingData.BETA.values[include],
     alpha_c=fittingData.ALPHA_C.values[include], gamma=fittingData.GAMMA.values[include],
-    confslope=confslope2[include], ratingdiff=ratingdiff[include], absratingdiff=(absratingdiff2-absratingdiff1)[include], consistent=(consistent / count)[include],
-    perf=np.array(data[data.subject.isin(include)].groupby('subject').correct.mean().values, float)
+    confslope=confslope2[include], ratingdiff=ratingdiff[include], absratingdiff=(absratingdiff2-absratingdiff1)[include],
+    consistent=(consistent / count)[include], consistency_change=(consistent3/count3-consistent2/count2)[include],
+    perf=np.array(data[data.subject.isin(include) & data.type_choice & ~data.equal_value_pair].groupby('subject').correct.mean().values, float),
+    conf=np.array(data[data.subject.isin(include) & data.type_choice & ~data.equal_value_pair].groupby('subject').confidence.mean().values, float),
+    perf3_m_perf1=data[(data.phase == 2) & data.subject.isin(include) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values-data[(data.phase == 0) & data.subject.isin(include) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    conf3_m_conf1=data[(data.phase == 2) & data.subject.isin(include) & data.type_choice & ~data.equal_value_pair].groupby('subject').confidence.mean().values-data[(data.phase == 0) & data.subject.isin(include) & data.type_choice & ~data.equal_value_pair].groupby('subject').confidence.mean().values,
+    # perf3_m_perf1_5=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 5)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -5)].groupby('subject').correct.mean().values,
+    perf3_m_perf1_3=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 3) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -3) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    perf3_m_perf1_4=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 4) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -4) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    perf3_m_perf1_5=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 5) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -5) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    # perf3_m_perf1_9=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 9)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -9)].groupby('subject').correct.mean().values
+    perf3_m_perf1_6=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 6) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -6) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    perf3_m_perf1_7=data[(data.phase == 2) & data.subject.isin(include) & (data.trial_phase < 7) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values - data[(data.phase == 0) & data.subject.isin(include) & (data.trial_phase_rev >= -7) & data.type_choice & ~data.equal_value_pair & (data.b_ntrials_noc > 0)].groupby('subject').correct.mean().values,
+    # perf3_m_perf1_5=np.load('/home/matteo/Downloads/perf_post_2.npy')-np.load('/home/matteo/Downloads/perf_pre_2.npy')
 ))
+
+linear_regression(
+    df, patsy_string='perf3_m_perf1_6 ~ ' + 'gamma',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+linear_regression(
+    df, patsy_string='conf3_m_conf1 ~ ' + 'gamma',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+
+linear_regression(
+    df, patsy_string='conf3_m_conf1 ~ ' + 'gamma + perf + perf3_m_perf1',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
+linear_regression(
+    df, patsy_string='perf3_m_perf1 ~ ' + 'gamma',
+    standardize_vars=True,
+    model_blocks=False,
+    print_data=False
+)
+
 linear_regression(
     df, patsy_string='consistent ~ ' + 'gamma + beta',
     standardize_vars=True,

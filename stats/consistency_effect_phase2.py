@@ -38,4 +38,4 @@ model = regression(
 )
 
 latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
-             title=None, DV='correct')
+             title=None, DV='consistent')

@@ -10,7 +10,7 @@ import seaborn as sns
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
-from ConfLearning.stats.regression import linear_regression
+from ConfLearning.stats.regression import regression
 
 path_data = os.path.join(Path.cwd(), '../data/')
 
@@ -31,7 +31,7 @@ m, se = np.full(4, np.nan), np.full(4, np.nan)
 rating_diff_m, rating_diff_se = np.full(4, np.nan), np.full(4, np.nan)
 confslope_m, confslope_se = np.full(4, np.nan), np.full(4, np.nan)
 ps = ['block', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre', 'b_ntrials_noc', 'value_chosen', 'b_valuebase']
-model = linear_regression(
+model = regression(
     data[~data.ratingdiff21.isna()],
     patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
     # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + value_chosen*b_valuebase',
@@ -51,7 +51,7 @@ confslope_se[0] = data.groupby('subject').confslope.mean().sem()
 
 for i, nt in enumerate(ntrials_phase1[1:]):
     ps = ['block', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre', 'value_chosen', 'b_valuebase']
-    model = linear_regression(
+    model = regression(
         data[~data.ratingdiff21.isna() & (data.b_ntrials_noc == nt)],
         patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
         # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + value_chosen*b_valuebase',

@@ -1,5 +1,7 @@
 import os
 import sys
+import warnings
+
 import pandas as pd
 from pathlib import Path
 import numpy as np
@@ -35,14 +37,16 @@ plt.figure(figsize=(9, 4))
 
 for sp in range(2):
 
-    plt.subplot(1, 2, sp + 1)
+    ax = plt.subplot(1, 2, sp + 1)
 
     var = ['correct', 'confidence'][sp]
 
     for i, nt in enumerate(ntrials_phase0):
         d0 = data[(data.b_ntrials_pre == nt) & (data.phase == 0)].groupby(['subject', 'trial_phase_rev'])[var].mean()
-        m = d0.mean(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
-        se = d0.sem(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=FutureWarning)
+            m = d0.mean(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
+            se = d0.sem(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(-nt+1.5, 1.5), m, lw=2, color=colors[i], alpha=0.6)
         plt.fill_between(np.arange(-nt+1.5, 1.5), m-se, m+se, lw=0, color=colors[i], alpha=0.4)
 
@@ -50,18 +54,24 @@ for sp in range(2):
     # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
     for i, nt in enumerate(ntrials_phase0):
         d1 = data[(data.b_ntrials_pre == nt) & (data.phase == 1)].groupby(['subject', 'trial_phase'])[var].mean()
-        m = d1.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
-        se = d1.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=FutureWarning)
+            m = d1.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
+            se = d1.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(0.5, nt_phase1_max+0.5), m, lw=2, color=colors[i], alpha=0.6)
         plt.fill_between(np.arange(0.5, nt_phase1_max+0.5), m-se, m+se, lw=0, color=colors[i], alpha=0.4)
     d1 = data[(data.phase == 1)].groupby(['subject', 'trial_phase'])[var].mean()
-    m = d1.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore', category=FutureWarning)
+        m = d1.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
     plt.plot(np.arange(0.5, nt_phase1_max+0.5), m, lw=3, color='k', alpha=0.6)
 
     for i, nt in enumerate(ntrials_phase0):
         d2 = data[(data.b_ntrials_pre == nt) & (data.phase == 2)].groupby(['subject', 'trial_phase'])[var].mean()
-        m = d2.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
-        se = d2.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=FutureWarning)
+            m = d2.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
+            se = d2.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m, lw=2, color=colors[i], alpha=0.6)
         plt.fill_between(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m-se, m+se, lw=0, color=colors[i], alpha=0.4)
     if sp == 0:  # performance
@@ -80,6 +90,7 @@ for sp in range(2):
     plt.text(8, y_text, 'Phase 2', ha='center', fontsize=11)
     plt.text(25, y_text, 'Phase 3', ha='center', fontsize=11)
     plt.xlabel('Trial')
+    plt.text((-0.2, -0.14)[sp], 0.97, 'AB'[sp], transform=ax.transAxes, color=(0, 0, 0), fontsize=20)
 
 set_fontsize(label=11, tick=9)
 

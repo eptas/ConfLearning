@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 from scipy.stats import pearsonr, wilcoxon, linregress
 from itertools import combinations
-from regression import linear_regression
+from regression import regression
 import pickle
 
 path_data = os.path.join(Path.cwd(), '../data/')
@@ -33,7 +33,7 @@ if False:
     print(f'Mean block length +- SEM: {np.mean(t_length):.1f} +- {sem(t_length.mean(axis=1)):.1f} (median = {np.median(t_length):.1f})')
 
 # compute choice consistency in phase 1 per subject
-if False:
+if True:
     count, consistent = np.zeros(nsubjects), np.zeros(nsubjects)
     count2, consistent2 = np.zeros(nsubjects), np.zeros(nsubjects)
     count3, consistent3 = np.zeros(nsubjects), np.zeros(nsubjects)
@@ -43,16 +43,20 @@ if False:
             d = data[(data.subject == s) & (data.block == b) & (data.phase == 1)]
             for p in d.pair.unique():
                 if len(d[d.pair == p]) > 1:
+                    # print(len(d[d.pair == p]))
                     trials = d[d.pair == p].trial_phase.values
                     for i, t in enumerate(trials[1:]):
                         count[s] += 1
-                        consistent[s] += d[(d.pair == p) & (d.trial_phase == t)].choice.values[0] == d[(d.pair == p) & (d.trial_phase == trials[i])].choice.values[0]
+                        consistency = d[(d.pair == p) & (d.trial_phase == t)].choice.values[0] == d[(d.pair == p) & (d.trial_phase == trials[i])].choice.values[0]
+                        consistent[s] += consistency
+                        data.loc[(data.subject == s) & (data.block == b) & (data.phase == 1) & (data.trial_phase == t), 'repeat_nr'] = i
+                        data.loc[(data.subject == s) & (data.block == b) & (data.phase == 1) & (data.trial_phase == t), 'consistent'] = int(consistency)
                         if i == 0:
                             count2[s] += 1
-                            consistent2[s] += d[(d.pair == p) & (d.trial_phase == t)].choice.values[0] == d[(d.pair == p) & (d.trial_phase == trials[i])].choice.values[0]
+                            consistent2[s] += consistency
                         elif i == 1:
                             count3[s] += 1
-                            consistent3[s] += d[(d.pair == p) & (d.trial_phase == t)].choice.values[0] == d[(d.pair == p) & (d.trial_phase == trials[i])].choice.values[0]
+                            consistent3[s] += consistency
 
     pickle.dump((count, consistent, count2, consistent2, count3, consistent3), open('../results/behav/consistency.pkl', 'wb'))
 else:
@@ -79,6 +83,16 @@ else:
 stats = wilcoxon(absratingdiff1[np.setdiff1d(range(nsubjects), exclude)], absratingdiff2[np.setdiff1d(range(nsubjects), exclude)])
 print(f'Absolute pairwise rating difference post vs. pre: W={stats.statistic:.1f} (p={stats.pvalue:.5f})')  # sign. if subject with perf<0.55 excluded
 
+if False:
+    ps = ['trial_phase', 'repeat_nr', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'b_stimulus_pool', 'value_chosen']
+    regression(
+        data[~data.consistent.isna() & (data.phase == 1) & data.type_choice & ~data.subject.isin(exclude)],
+        patsy_string='consistent ~ ' + ' + '.join(ps),
+        standardize_vars=True,
+        ignore_warnings=True,
+        reml=False,
+        print_data=False
+    )
 
 if False:
     ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'b_stimulus_pool', 'value_chosen']
@@ -155,14 +169,14 @@ df = pd.DataFrame(dict(
     # perf3_m_perf1_5=np.load('/home/matteo/Downloads/perf_post_2.npy')-np.load('/home/matteo/Downloads/perf_pre_2.npy')
 ))
 
-linear_regression(
+regression(
     df, patsy_string='perf3_m_perf1_6 ~ ' + 'gamma',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
-linear_regression(
+regression(
     df, patsy_string='conf3_m_conf1 ~ ' + 'gamma',
     standardize_vars=True,
     model_blocks=False,
@@ -170,21 +184,21 @@ linear_regression(
 )
 
 
-linear_regression(
+regression(
     df, patsy_string='conf3_m_conf1 ~ ' + 'gamma + perf + perf3_m_perf1',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
-linear_regression(
+regression(
     df, patsy_string='perf3_m_perf1 ~ ' + 'gamma',
     standardize_vars=True,
     model_blocks=False,
     print_data=False
 )
 
-linear_regression(
+regression(
     df, patsy_string='consistent ~ ' + 'gamma + beta',
     standardize_vars=True,
     model_blocks=False,
@@ -207,7 +221,7 @@ plt.errorbar([1+os, 2+os], [df[(df.alpha >= am) & (df.gamma < gm)][var].mean(), 
 plt.xticks([1, 2], [r'Low $\gamma$', r'High $\gamma$'])
 plt.legend()
 
-linear_regression(
+regression(
     df, patsy_string='absratingdiff ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,
@@ -215,7 +229,7 @@ linear_regression(
 )
 
 
-linear_regression(
+regression(
     df, patsy_string='confslope ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,
@@ -223,7 +237,7 @@ linear_regression(
 )
 
 
-linear_regression(
+regression(
     df, patsy_string='ratingdiff ~ ' + 'gamma+beta',
     standardize_vars=True,
     model_blocks=False,

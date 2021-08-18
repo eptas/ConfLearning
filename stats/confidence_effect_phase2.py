@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 from ConfLearning.util.model_to_latex import latex_to_png
-from regression import linear_regression
+from regression import regression
 
 path_data = os.path.join(Path.cwd(), '../data/')
 
@@ -34,10 +34,10 @@ map = dict(
 )
 d = data.copy().rename(columns=map)
 ps = ['block_difficulty', 'block_value_level', 'block_stimulus_type', 'trial_difficulty', 'trial_value_chosen', 'trial_number']
-model = linear_regression(
+model = regression(
     d[~d.confidence.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude)],
     patsy_string='confidence ~ ' + ' + '.join(ps),
-    standardize_vars=False,
+    standardize_vars=True,
     ignore_warnings=True,
     reml=False,
     print_data=False

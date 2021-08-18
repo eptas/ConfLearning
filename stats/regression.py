@@ -1,32 +1,27 @@
-import pandas as pd
-import statsmodels
-import statsmodels.api as sm
-import warnings
-from scipy.stats import pearsonr, linregress, spearmanr, theilslopes, zscore
-from statsmodels.base.model import Model
-from statsmodels.formula.formulatools import handle_formula_data
-import numpy as np
 import re
-from IPython.display import display
-from mg.plot.notebook import t as nbprint
+import warnings
 from functools import partial
-import pingouin as pg
-from collections import namedtuple
-from sklearn.linear_model import RANSACRegressor
+
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+from scipy.stats import pearsonr
+
+from mg.plot.notebook import t as nbprint
 
 # warnings.filterwarnings('error')
 
 pd.options.mode.chained_assignment = None
 
-def linear_regression(data, patsy_string, standardize_vars=True, print_summary=True,
-                      model_blocks=None, ignore_warnings=True,
-                      print_patsy=True, print_corr_table=True, print_data=False, print_extra=True,
-                      vars_corr=None,
-                      reml=True,
-                      notebook_print=False,
-                      silent=False, print_short=False, ols=False,
-                      standardize_vars_excl=(),
-                      groupname='subject', return_model=True, return_data=False):
+def regression(data, patsy_string, type='linear_mixed', standardize_vars=True, print_summary=True,
+               model_blocks=None, ignore_warnings=True,
+               print_patsy=True, print_corr_table=True, print_data=False, print_extra=True,
+               vars_corr=None,
+               reml=True,
+               notebook_print=False,
+               silent=False, print_short=False,
+               standardize_vars_excl=(),
+               groupname='subject', return_model=True, return_data=False):
 
     if model_blocks is None:
         model_blocks = 'block' in data
@@ -74,18 +69,24 @@ def linear_regression(data, patsy_string, standardize_vars=True, print_summary=T
         if ignore_warnings:
             warnings.simplefilter('ignore')
         if model_blocks:
-            model = sm.MixedLM.from_formula(patsy_string, groups=groupname, re_formula='1', vc_formula={'block': '0+C(block)'}, data=data).fit(reml=reml)
-        elif ols:
+            if type == 'logistic_mixed_bayes':
+                model = sm.BinomialBayesMixedGLM.from_formula(patsy_string, vc_formulas=dict(subject='subject', block='0 + C(block)'), data=data).fit_map()
+            else:
+                model = sm.MixedLM.from_formula(patsy_string, groups=groupname, re_formula='1', vc_formula={'block': '0+C(block)'}, data=data).fit(reml=reml)
+        elif type == 'ols':
             model = sm.OLS.from_formula(patsy_string, data=data).fit(reml=reml)
         else:
-            model = sm.MixedLM.from_formula(patsy_string, groups=groupname, data=data).fit(reml=reml)
+            if type == 'logistic_mixed_bayes':
+                model = sm.BinomialBayesMixedGLM.from_formula(patsy_string, vc_formulas=dict(subject='subject'), data=data).fit_map()
+            else:
+                model = sm.MixedLM.from_formula(patsy_string, groups=groupname, data=data).fit(reml=reml)
         if not silent:
             if print_patsy:
                 print_(patsy_string + '\n')
             if print_summary:
                 if print_short:
                     a = str(model.summary())
-                    if ols:
+                    if type == 'ols':
                         pos = np.array([v.start() for v in re.finditer('=', a)])
                         pos_parts = np.where(np.diff(pos) > 1)[0]
                         print_('='*80 + '\n' + a[pos[pos_parts[1]]+2:pos[pos_parts[2]]+1] + '==')

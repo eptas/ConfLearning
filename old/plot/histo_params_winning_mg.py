@@ -12,7 +12,7 @@ sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
-from ConfLearning.stats.regression import linear_regression
+from ConfLearning.stats.regression import regression
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../results/')

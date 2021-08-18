@@ -34,7 +34,10 @@ def as_latex(model, title=None, DV=None, print_meta=True, single_table=False):
     if single_table:
         out = out.replace('\\end{tabular}\n\\begin{tabular}{lrrrrrr}\n', '')
     if DV is not None:
-        out = out.replace('& Coef.', '\\textit{DV: ' + DV + '} & Coef.')
+        if '& Coef.' in out:
+            out = out.replace('& Coef.', '\\textit{DV: ' + DV + '} & Coef.')
+        else:
+            out = out.replace('&  Coef.', '\\textit{DV: ' + DV + '} & Coef.')
     return out
 
 

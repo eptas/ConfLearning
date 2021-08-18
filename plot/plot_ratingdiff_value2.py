@@ -10,7 +10,7 @@ import seaborn as sns
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
-from ConfLearning.stats.regression import linear_regression
+from ConfLearning.stats.regression import regression
 from ConfLearning.stats.util import nansem
 
 path_data = os.path.join(Path.cwd(), '../data/')

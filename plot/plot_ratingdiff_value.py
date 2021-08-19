@@ -11,11 +11,14 @@ import seaborn as sns
 sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
 from ConfLearning.stats.regression import regression
+from ConfLearning.stats.util import nansem
 
 path_data = os.path.join(Path.cwd(), '../data/')
 
 data = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 data = data[~data.subject.isin([25, 30])]
+subjects = sorted(data.subject.unique())
+nsubjects = len (subjects)
 
 ntrials_phase0 = (9, 12, 15, 18)
 ntrials_phase1 = (0, 5, 10, 15)
@@ -26,62 +29,66 @@ nt_phase0phase1 = 27
 
 colors = sns.color_palette()
 
+valvar = 'value_id'
+values = sorted(data[~data[valvar].isna()][valvar].unique())
+nvalues = len(values)
 
-m, se = np.full(4, np.nan), np.full(4, np.nan)
-rating_diff_m, rating_diff_se = np.full(4, np.nan), np.full(4, np.nan)
-confslope_m, confslope_se = np.full(4, np.nan), np.full(4, np.nan)
-ps = ['block', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre', 'b_ntrials_noc', 'value_chosen', 'b_valuebase']
-model = regression(
-    data[~data.ratingdiff21.isna()],
-    patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
-    # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + value_chosen*b_valuebase',
-    standardize_vars=True,
-    ignore_warnings=True,
-    model_blocks=False,
-    reml=False,
-    print_data=False,
-    silent=True
-)
-m[0] = model.params['value_chosen']
-se[0] = model.bse['value_chosen']
-rating_diff_m[0] = data.ratingdiff21.mean()
-rating_diff_se[0] = data.groupby('subject').ratingdiff21.mean().sem()
-confslope_m[0] = data.confslope.mean()
-confslope_se[0] = data.groupby('subject').confslope.mean().sem()
-
-for i, nt in enumerate(ntrials_phase1[1:]):
-    ps = ['block', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre', 'value_chosen', 'b_valuebase']
-    model = regression(
-        data[~data.ratingdiff21.isna() & (data.b_ntrials_noc == nt)],
-        patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
-        # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + value_chosen*b_valuebase',
-        standardize_vars=True,
-        ignore_warnings=True,
-        model_blocks=False,
-        reml=False,
-        print_data=False,
-        silent=True
-    )
-    m[i+1] = model.params['value_chosen']
-    se[i+1] = model.bse['value_chosen']
-    rating_diff_m[i+1] = data[data.b_ntrials_noc == nt].ratingdiff21.mean()
-    rating_diff_se[i+1] = data[data.b_ntrials_noc == nt].groupby('subject').ratingdiff21.mean().sem()
-    confslope_m[i+1] = data[data.b_ntrials_noc == nt].confslope.mean()
-    confslope_se[i+1] = data[data.b_ntrials_noc == nt].groupby('subject').confslope.mean().sem()
-
-# m, se = rating_diff_m, rating_diff_se
-# m, se = confslope_m, confslope_se
-
+# ratings1 = np.array([data[data.type_rating2 & ~data.b_has_rating1 & (data[valvar] == v)].groupby('subject').rating.mean().values for v in values])
+# ratings1_se = np.array([data[data.type_rating2 & ~data.b_has_rating1 & (data[valvar] == v)].groupby('subject').rating.sem().values for v in values])
+# ratingsdiff = np.extended((nsubjects, len(values)), np.nan)
+# for s, sub in enumerate(subjects):
+#     ratingsdiff[s] = [data[data.type_rating2 & data.b_has_rating1 & data.b_has_rating2 & (data[valvar] == v) & (data.subject == sub)].rating.mean() - data[data.type_rating1 & data.b_has_rating2 & (data[valvar] == v) & (data.subject == sub)].rating.mean() for v in values]
+#
 plt.figure(figsize=(4, 3))
-plt.plot([-0.5, 3.5], [0, 0], 'k-', lw=0.5)
-plt.bar(0, m[0], yerr=se[0], facecolor=colors[0])
-plt.bar(range(1, 4), m[1:], yerr=se[1:], facecolor=(0.4, 0.4, 0.4))
+#
+# for i, v in enumerate(values):
+#     plt.bar(i, np.nanmean(ratingsdiff[:, i]), yerr=nansem(ratingsdiff[:, i]), facecolor=colors[i])
 
-plt.ylabel('Regression coefficient')
-plt.xticks(range(4), ['All'] + [*ntrials_phase1[1:]])
-plt.xlabel('Number of trials in phase 2')
-plt.title('Effect of value on rating change', fontsize=11)
-plt.xlim([-0.5, 3.5])
+# data['absratingdiff21'] = data['ratingdiff21'].abs()
+ratingdiff21 = data.groupby(['subject', 'value_id']).ratingdiff21.mean().groupby(level='value_id').mean()
+ratingdiff21_se = data.groupby(['subject', 'value_id']).ratingdiff21.mean().groupby(level='value_id').sem()
+for i, v in enumerate(values):
+    plt.bar(i, ratingdiff21[i], yerr=ratingdiff21_se[i], facecolor=colors[i])
+
+plt.plot([-0.75, nvalues-0.25], [0, 0], 'k-', lw=0.5)
+# plt.arrow(0, -0.02, nvalues-0.95, 0, clip_on=False, width=0.0005, head_length=0.2, head_width=0.0015, lw=0, color='k', length_includes_head=True)
+# plt.text(2, -0.0232, 'Value', fontsize=11, fontweight='bold', ha='center')
+# plt.xticks([])
+# plt.xticks(range(nvalues), [f'{v:.1f}' for v in data.groupby(['stimulus_left']).stimulus_left_value.mean()])
+plt.xticks(range(nvalues), range(1, nvalues + 1))
+plt.yticks(np.arange(-0.02, 0.021, 0.01))
+plt.xlabel('CS value order')
+plt.ylabel('Rating change (post - pre)')
+plt.xlim(-0.75, nvalues-0.25)
+plt.ylim(-0.02, 0.02)
+set_fontsize(label=14, tick=11)
 plt.tight_layout()
-set_fontsize(label=11, tick=9)
 savefig('../figures/behav/ratingdiff_value.png')
+plt.show()
+
+
+# ratingsdiff = np.extended((nsubjects, len(values)), np.nan)
+# absvaluediff = np.extended((nsubjects, len(values)), np.nan)
+# for s, sub in enumerate(subjects):
+#     print(f'Subject {s + 1} / {nsubjects}')
+#     ratingsdiff[s] = [data[data.type_rating2 & data.b_has_rating1 & data.b_has_rating2 & (data[valvar] == v) & (data.subject == sub)].rating.mean() - data[data.type_rating1 & data.b_has_rating2 & (data[valvar] == v) & (data.subject == s)].rating.mean() for v in values]
+#     absvaluediff[s] = [data[data.b_has_rating1 & data.b_has_rating2 & ((data.stimulus_left == v) | (data.stimulus_right == v)) & (data.subject == sub) & (data.phase == 0)].absvaluediff.mean() for v in values]
+
+# for s, sub in enumerate(subjects):
+#     for b in range(11):
+#         d = data[(data.subject == sub) & (data.block == b)]
+#         if len(d[data.type_rating2 & data.b_has_rating1]):
+#             for v in d[~d.ratingdiff21.isna()].stimulus_left:
+#                 data.loc[(data.subject == sub) & (data.block == b), 'absvaluediff_phase1'] = d[(d.phase == 1) & (d.stimulus_left == v)].absvaluediff.mean()
+
+
+# for s, sub in enumerate(subjects):
+#     print(f'Subject {s + 1} / {nsubjects}')
+#     for b in range(11):
+#         d = data[(data.subject == sub) & (data.block == b)]
+#         if len(d[d.type_rating2 & d.b_has_rating1]):
+#             for v in d[~d.ratingdiff21.isna()].stimulus_left:
+#                 # data.loc[(data.subject == sub) & (data.block == b) & ~data.ratingdiff21.isna() & (data.stimulus_left == v), 'absvaluediff_phase1'] = d[(d.phase == 1) & ((d.stimulus_left == v) | (d.stimulus_right == v))].absvaluediff.mean()
+#                 data.loc[(data.subject == sub) & (data.block == b) & ~data.ratingdiff21.isna() & (data.stimulus_left == v), 'absvaluediff_phase1'] = (d[(d.phase == 1) & ((d.stimulus_left == v) | (d.stimulus_right == v))].stimulus_left_value_id - d[(d.phase == 1) & ((d.stimulus_left == v) | (d.stimulus_right == v))].stimulus_right_value_id).abs().mean()
+# data['absratingdiff21'] = data['ratingdiff21'].abs()
+# print(data[~data.absvaluediff_phase1.isna()].astype(dict(absvaluediff_phase1='float'))[['absratingdiff21', 'absvaluediff_phase1']].corr(method=lambda x, y: spearmanr(x, y)[0]))

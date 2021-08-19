@@ -32,8 +32,18 @@ if False:
     t_length = np.array([[data[(data.subject == s) & (data.block == b)].t_length.sum() for b in range(nblocks)] for s in range(nsubjects)])
     print(f'Mean block length +- SEM: {np.mean(t_length):.1f} +- {sem(t_length.mean(axis=1)):.1f} (median = {np.median(t_length):.1f})')
 
-# compute choice consistency in phase 1 per subject
+
 if True:
+    for s in range(nsubjects):
+        print(f'Subject {s + 1} / {nsubjects}')
+        for b in range(nblocks):
+            d = data[(data.subject == s) & (data.block == b) & data.type_rating]
+            values = list(np.unique([d[f'b_value{i}'].values[0] for i in range(5)]))
+            for v in range(5):
+                data.loc[(data.subject == s) & (data.block == b) & data.type_rating & (data.stimulus_left == v), 'value_id'] = values.index(d[d.stimulus_left == v].value_chosen.values[0])
+
+# compute choice consistency in phase 1 per subject
+if False:
     count, consistent = np.zeros(nsubjects), np.zeros(nsubjects)
     count2, consistent2 = np.zeros(nsubjects), np.zeros(nsubjects)
     count3, consistent3 = np.zeros(nsubjects), np.zeros(nsubjects)
@@ -63,6 +73,7 @@ else:
     count, consistent, count2, consistent2, count3, consistent3 = pickle.load(open('../results/behav/consistency.pkl', 'rb'))
 r, p = pearsonr(data[data.phase == 0].groupby('subject').correct.mean().values, consistent/count)
 print(f'Correlation between performance and consistency: r={r:.3f} (p={p:.5f})')
+
 
 # compute absolute pairwise differences between ratings
 if False:
@@ -267,7 +278,7 @@ regression(
 
 if False:
     ps = ['trial_phase', 'b_designated_absvaluediff', 'b_valuebase', 'absvaluediff', 'valuesum', 'b_stimulus_pool', 'block']
-    linear_regression(
+    regression(
         data[~data.confidence.isna() & (data.phase == 1) & data.type_choice],
         patsy_string='confidence ~ ' + ' + '.join(ps) + ' + b_valuebase:trial_phase',
         standardize_vars=True,
@@ -281,7 +292,7 @@ if False:
     # data.loc[data.b_ntrials_pre.isin([9, 12]), 'pre_short'] = 1
     # data.loc[data.b_ntrials_pre.isin([15, 18]), 'pre_short'] = 0
     ps = ['value_chosen', 'block', 'b_valuebase', 'b_designated_absvaluediff', 'b_stimulus_pool', 'b_ntrials_pre']
-    model = linear_regression(
+    model = regression(
         data[~data.ratingdiff21.isna()],
         # patsy_string='ratingdiff ~ ' + ' + '.join(ps),
         patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase*b_ntrials_noc',
@@ -296,7 +307,7 @@ if False:
 
 if False:
     ps = ['value_chosen']
-    model = linear_regression(
+    model = regression(
         data[~data.ratingdiff21.isna() & (data.b_ntrials_noc == 15)],
         patsy_string='ratingdiff21 ~ ' + ' + '.join(ps),
         # patsy_string='ratingdiff21 ~ ' + ' + '.join(ps) + ' + b_ntrials_pre*value_chosen*b_valuebase',

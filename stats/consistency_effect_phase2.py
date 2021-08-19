@@ -21,13 +21,15 @@ map = dict(
     b_designated_absvaluediff='block_difficulty',
     b_valuebase='block_value_level',
     b_stimulus_pool='block_stimulus_type',
+    b_ntrials_pre='block_ntrials_phase1',
+    b_ntrials_noc='block_ntrials_phase2',
     absvaluediff='trial_difficulty',
     value_chosen='trial_value_chosen',
     trial_phase='trial_number',
     repeat_nr='trial_pair_repeat_nr',
 )
 d = data.copy().rename(columns=map)
-ps = ['trial_number', 'trial_pair_repeat_nr', 'block_difficulty', 'block_value_level', 'trial_difficulty', 'block_stimulus_type', 'trial_value_chosen']
+ps = ['block_difficulty', 'block_value_level', 'block_stimulus_type',  'block_ntrials_phase1', 'block_ntrials_phase2', 'trial_difficulty', 'trial_value_chosen','trial_number', 'trial_pair_repeat_nr']
 model = regression(
     d[~d.consistent.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair],
     patsy_string='consistent ~ ' + ' + '.join(ps),

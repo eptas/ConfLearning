@@ -32,10 +32,11 @@ plt.hist(consistent3 / count3, bins=np.arange(0, 1.01, 0.02), facecolor=colors[1
 
 set_fontsize(label=11, tick=10)
 plt.xlabel('Consistency')
-plt.ylabel('Histogram')
+plt.ylabel('Number of participants')
 plt.xlim(0.5, 1)
 plt.legend(loc='upper left')
 
 plt.tight_layout()
 #
 savefig('../figures/behav/consistency_histogram.png')
+plt.show()

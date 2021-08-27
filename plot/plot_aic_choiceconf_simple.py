@@ -54,7 +54,7 @@ plt.gca().xaxis.grid('silver', linestyle='-', linewidth=0.4, zorder=-5)
 plt.barh(range(n_models), AICm[order], xerr=AICe, color=color_aic, zorder=2)
 
 for t in range(n_models):
-    plt.text(400.35, t-0.15, f'{labels[order[t]]}', color='k', fontsize=16, zorder=3)
+    plt.text(400.35, t-0.15, f'{labels[order[t]]}', color='k', fontsize=16, zorder=3, style='italic')
     plt.text(AICm[order[t]]+1, t-0.13, f'{AICm[order[t]]:.1f} ({nparams[order[t]]})', color='k', fontsize=12, zorder=3)
 
 plt.xlabel('AIC')

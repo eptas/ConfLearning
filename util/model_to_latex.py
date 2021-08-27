@@ -41,12 +41,17 @@ def as_latex(model, title=None, DV=None, print_meta=True, single_table=False):
     return out
 
 
-def latex_to_png(model, outpath='out.png', title=None, DV=None):
+def latex_to_png(model, outpath='out.png', title=None, DV=None, skip_var_hack=None):
     rcParams['text.usetex'] = True
 
     beginningtex = r"""\documentclass[preview]{standalone}\thispagestyle{empty}\usepackage{booktabs}\usepackage[font=bf,aboveskip=0pt]{caption}\begin{document}"""
     endtex = r"\end{document}"
-    content = as_latex(model.summary(), print_meta=False, single_table=True, title=title, DV=DV)
+    if isinstance(model, str):
+        content = model
+    else:
+        content = as_latex(model.summary(), print_meta=False, single_table=True, title=title, DV=DV)
+    if skip_var_hack is not None:
+        content = content.replace(skip_var_hack, '')
     latex = beginningtex + content + endtex
 
     f = open('latex/document.tex', 'w')

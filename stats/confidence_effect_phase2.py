@@ -37,7 +37,7 @@ map = dict(
 d = data.copy().rename(columns=map)
 ps = ['block_difficulty', 'block_value_level', 'block_stimulus_type', 'block_ntrials_phase1', 'block_ntrials_phase2', 'trial_difficulty', 'trial_value_chosen', 'trial_number']
 model = regression(
-    d[~d.confidence.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude)],
+    d[~d.confidence.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair],
     patsy_string='confidence ~ ' + ' + '.join(ps),
     standardize_vars=True,
     ignore_warnings=True,
@@ -45,5 +45,9 @@ model = regression(
     print_data=False
 )
 
+skip_var_hack = 'subject Var            &  0.382 &    0.120 &        &             &        &         \\\\\nblock Var              &  0.160 &    0.023 &        &             &        &         \\\\\n'
 latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
-             title=None, DV='confidence')
+             title=None, DV='confidence', skip_var_hack=skip_var_hack)
+
+# df = d[['confidence', 'subject', 'block'] + list(map.values())][~d.confidence.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair]
+# df.to_csv('data_phase2_confidence.csv')

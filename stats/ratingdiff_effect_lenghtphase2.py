@@ -47,5 +47,6 @@ model = regression(
     reml=False,
     print_data=False
 )
+skip_var_hack = 'subject Var                  &  0.023 &    0.034 &        &             &        &         \\\\\nblock Var                    &  0.074 &    0.043 &        &             &        &         \\\\\n'
 latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
-             title=None, DV='rating\_change')
+             title=None, DV='rating\_change', skip_var_hack=skip_var_hack)

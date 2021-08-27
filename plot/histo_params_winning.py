@@ -46,9 +46,9 @@ def plot_histo(param):
         plt.xticks(np.arange(0, 1.1, 0.2))
 
     if param == 'alpha_c':
-        plt.gca().get_children()[0].set_color(colors[0])
+        plt.gca().get_children()[0].set_color(np.array([170, 0, 0])/255)
         inset_axes(plt.gca(), width='100%', height='100%', bbox_to_anchor=(.35, .4, .55, .5), bbox_transform=plt.gca().transAxes)
-        plt.hist(alpha_c[alpha_c < 0.02], bins=18, color=colors[0])
+        plt.hist(alpha_c[alpha_c < 0.02], bins=18, color=np.array([170, 0, 0])/255)
         plt.ylim(0, 15)
         plt.xlim(0, 0.02)
         plt.xticks(np.arange(0, 0.021, 0.02))

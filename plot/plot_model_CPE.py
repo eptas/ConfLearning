@@ -46,9 +46,14 @@ def get_data(winning_model, model_suffix, reload=False):
             params = [m.ALPHA[s], m.BETA[s], m.ALPHA_C[s], m.GAMMA[s]]
             CPE = np.moveaxis(run_model(params, RescorlaConfBaseGen, s, return_cp=False, return_full=False, return_conf_esti=True)[0], 2, 3)
             for b in range(nblocks):
+                ind = list(np.diff([data[f'b_value{i}'].values[0] for i in range(5)]) != 0).index(False)
+                order = np.hstack((range(0, ind), [ind, ind], range(ind+1, 4)))
                 for p in range(3):
                     for c in range(5):
-                        d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'CPE{c}'] = CPE[b, p, c, ~np.isnan(CPE[b, p, c])]
+                        if c and (order[c] == order[c - 1]):
+                            d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'CPE{order[c]}'] = (CPE[b, p, c, ~np.isnan(CPE[b, p, c])] + CPE[b, p, c-1, ~np.isnan(CPE[b, p, c-1])]) / 2
+                        else:
+                            d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'CPE{order[c]}'] = CPE[b, p, c, ~np.isnan(CPE[b, p, c])]
         d.to_pickle('CPE.pkl')
     else:
         d = pd.read_pickle('CPE.pkl')
@@ -65,15 +70,15 @@ def plot_CPE(legend_phase1=True, legend_value=True, ylabel_as_title=False, marke
     handles_linestyle = [None] * 4
     for i in range(4):
         handles_linestyle[i] = plt.plot([100, 102], [1, 1], lw=2, color=(0.3, 0.3, 0.3), alpha=0.6, ls=linestyles[i])[0]
-    handles_color = [None] * 5
-    for i in range(5):
+    handles_color = [None] * 4
+    for i in range(4):
         handles_color[i] = plt.plot([100], [1], 's', markersize=markersize_value, mfc=colors[i], alpha=0.6, label='')[0]
 
-    for c in range(5):
+    for c in range(4):
         for i, nt in enumerate(ntrials_phase0):
             d0 = d[(d.b_ntrials_pre == nt) & (d.phase == 0)].groupby(['subject', 'trial_phase_rev'])[f'CPE{c}'].mean()
-            m = d0.mean(level='trial_phase_rev').values.astype(float)
-            se = d0.sem(level='trial_phase_rev').values.astype(float)
+            m = d0.groupby(level='trial_phase_rev').mean().values.astype(float)
+            se = d0.groupby(level='trial_phase_rev').sem().values.astype(float)
             plt.plot(np.arange(-nt+2, 2), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
             # plt.fill_between(np.arange(-nt+1, 1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
 
@@ -81,8 +86,8 @@ def plot_CPE(legend_phase1=True, legend_value=True, ylabel_as_title=False, marke
         # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
         for i, nt in enumerate(ntrials_phase0):
             d1 = d[(d.b_ntrials_pre == nt) & (d.phase == 1)].groupby(['subject', 'trial_phase'])[f'CPE{c}'].mean()
-            m = d1.mean(level='trial_phase').values.astype(float)
-            se = d1.sem(level='trial_phase').values.astype(float)
+            m = d1.groupby(level='trial_phase').mean().values.astype(float)
+            se = d1.groupby(level='trial_phase').sem().values.astype(float)
             plt.plot(np.arange(1, select_ntrials_phase1+1), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
             # plt.fill_between(np.arange(1, nt_phase1_max+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
         # d1 = d[(d.phase == 1)].groupby(['subject', 'trial_phase'])[f'value{c}'].mean()
@@ -91,8 +96,8 @@ def plot_CPE(legend_phase1=True, legend_value=True, ylabel_as_title=False, marke
 
         for i, nt in enumerate(ntrials_phase0):
             d2 = d[(d.b_ntrials_pre == nt) & (d.phase == 2)].groupby(['subject', 'trial_phase'])[f'CPE{c}'].mean()
-            m = d2.mean(level='trial_phase').values.astype(float)
-            se = d2.sem(level='trial_phase').values.astype(float)
+            m = d2.groupby(level='trial_phase').mean().values.astype(float)
+            se = d2.groupby(level='trial_phase').sem().values.astype(float)
             plt.plot(np.arange(select_ntrials_phase1, select_ntrials_phase1+nt_phase0phase1-nt), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
             # plt.fill_between(np.arange(nt_phase1_max+1, nt_phase1_max+nt_phase0phase1-nt+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
 
@@ -110,7 +115,7 @@ def plot_CPE(legend_phase1=True, legend_value=True, ylabel_as_title=False, marke
     plt.xlabel('Trial')
 
     handles_phase1, labels_phase1 = handles_linestyle[::-1], ntrials_phase0[::-1]
-    handles_value, labels_value = handles_color[::-1], ['' for _ in range(5)]
+    handles_value, labels_value = handles_color[::-1], ['' for _ in range(4)]
 
     if legend_phase1:
         leg = plt.legend(handles_phase1, labels_phase1, loc='upper left', title='No. trials in Phase 1', fontsize=9, title_fontsize=9.5, labelspacing=0.5, handlelength=4, frameon=False)
@@ -119,8 +124,8 @@ def plot_CPE(legend_phase1=True, legend_value=True, ylabel_as_title=False, marke
     if legend_value:
         leg2 = plt.legend(handles_value, labels_value, loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=9, labelspacing=0.5, handletextpad=2.5, framealpha=1, title='Stimulus', title_fontsize=9.5)
         plt.gca().add_artist(leg2)
-        plt.arrow(1.13, 0.64, 0, 0.263, color=(0.3, 0.3, 0.3), head_length=0.02, head_width=0.015, length_includes_head=True, clip_on=False, transform=plt.gca().transAxes, zorder=10, lw=0.75)
-        plt.text(1.16, 0.65, 'True value', color=(0.3, 0.3, 0.3), ha='center', rotation=90, transform=plt.gca().transAxes, fontsize=9, zorder=10)
+        plt.arrow(1.13, 1.04, 0, 0.223, color=(0.3, 0.3, 0.3), head_length=0.02, head_width=0.015, length_includes_head=True, clip_on=False, transform=plt.gca().transAxes, zorder=10, lw=0.75)
+        plt.text(1.16, 0.65, 'value level', color=(0.3, 0.3, 0.3), ha='center', rotation=90, transform=plt.gca().transAxes, fontsize=8, zorder=10)
 
     return handles_phase1, labels_phase1, handles_value, labels_value
 

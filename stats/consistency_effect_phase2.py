@@ -41,3 +41,6 @@ model = regression(
 
 latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
              title=None, DV='consistent')
+
+# df = d[['consistent', 'subject', 'block'] + list(map.values())][~d.consistent.isna() & (d.phase == 1) & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair]
+# df.to_csv('data_phase2_consistency.csv')

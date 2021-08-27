@@ -1,6 +1,6 @@
 import numpy as np
 import warnings
-from .rl_simple import Rescorla
+from ConfLearning.models.rl_simple import Rescorla
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
@@ -115,6 +115,7 @@ class RescorlaConfBaseGen(RescorlaConfGen):
     def track_confidence_value(self, confidence):
 
         self.conf_PE = confidence - self.conf_values
+        # print(self.conf_PE, self.alpha_c * self.conf_PE, self.conf_values)
         self.conf_values += self.alpha_c * self.conf_PE
 
 

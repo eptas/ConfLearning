@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.12.22)  19 AUG 2021 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.12.22)  27 AUG 2021 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -137,12 +137,17 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
+
+Overfull \hbox (18.61737pt too wide) in paragraph at lines 3--17
+ [] 
+ []
+
 Preview: Tightpage 0 0 0 0
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (latex/document.aux) ) 
 Here is how much of TeX's memory you used:
  2248 strings out of 482801
  39420 string characters out of 5954471
- 278468 words of memory out of 5000000
+ 277468 words of memory out of 5000000
  17638 multiletter control sequences out of 15000+600000
  535434 words of font info for 30 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -152,7 +157,7 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on latex/document.pdf (1 page, 43319 bytes).
+Output written on latex/document.pdf (1 page, 43385 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream

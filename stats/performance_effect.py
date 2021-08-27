@@ -37,7 +37,7 @@ map = dict(
 d = data.copy().rename(columns=map)
 ps = ['block_difficulty', 'block_value_level', 'block_stimulus_type', 'block_ntrials_phase1', 'block_ntrials_phase2', 'trial_difficulty', 'trial_value_chosen', 'trial_number']
 model = regression(
-    d[~d.correct.isna() & ~d.trial_number.isna() & d.type_choice & ~d.subject.isin(exclude)],
+    d[~d.correct.isna() & ~d.trial_number.isna() & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair & (d.phase != 1)],
     patsy_string='correct ~ ' + ' + '.join(ps),
     standardize_vars=True,
     ignore_warnings=True,
@@ -47,3 +47,6 @@ model = regression(
 
 latex_to_png(model, outpath=os.path.join(os.getcwd(), 'regtables', f'{Path(__file__).stem}.png'),
              title=None, DV='correct')
+
+# df = d[['correct', 'subject', 'block'] + list(map.values())][~d.correct.isna() & ~d.trial_number.isna() & d.type_choice & ~d.subject.isin(exclude) & ~d.equal_value_pair]
+# df.to_csv('data_phases13_correct.csv')

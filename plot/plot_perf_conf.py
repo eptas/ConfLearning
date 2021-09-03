@@ -52,7 +52,7 @@ for sp in range(2):
             m = d0.mean(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
             se = d0.sem(level='trial_phase_rev').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(-nt+1.5, 1.5), m, lw=2, color='grey', alpha=0.6, ls=linestyles[i])
-        plt.fill_between(np.arange(-nt+1.5, 1.5), m-se, m+se, lw=0, color='grey', alpha=0.4)
+        plt.fill_between(np.arange(-nt+1.5, 1.5), m-se/2, m+se/2, lw=0, color='grey', alpha=0.4)
 
     plt.axvspan(1, nt_phase1_max, facecolor='0.9', alpha=0.5, zorder=-11)
     # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
@@ -63,7 +63,7 @@ for sp in range(2):
             m = d1.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
             se = d1.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(0.5, nt_phase1_max+0.5), m, lw=2, color='grey', alpha=0.6, ls=linestyles[i])
-        plt.fill_between(np.arange(0.5, nt_phase1_max+0.5), m-se, m+se, lw=0, color='grey', alpha=0.4)
+        plt.fill_between(np.arange(0.5, nt_phase1_max+0.5), m-se/2, m+se/2, lw=0, color='grey', alpha=0.4)
     d1 = data[(data.phase == 1)].groupby(['subject', 'trial_phase'])[var].mean()
     with warnings.catch_warnings():
         warnings.filterwarnings('ignore', category=FutureWarning)
@@ -77,7 +77,7 @@ for sp in range(2):
             m = d2.mean(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
             se = d2.sem(level='trial_phase').rolling(window=window, center=True).mean().values.astype(float)
         plt.plot(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m, lw=2, color='grey', alpha=0.6, ls=linestyles[i], label=ntrials_phase0[i])
-        plt.fill_between(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m-se, m+se, lw=0, color='grey', alpha=0.4)
+        plt.fill_between(np.arange(nt_phase1_max-0.5, nt_phase1_max+nt_phase0phase1-nt-1.5), m-se/2, m+se/2, lw=0, color='grey', alpha=0.4)
     if sp == 0:  # performance
         plt.plot([-20, 35], [0.5, 0.5], 'k-', lw=0.5, zorder=-10)
         y_text = 0.43

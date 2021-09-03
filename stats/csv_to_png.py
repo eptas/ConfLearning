@@ -13,8 +13,6 @@ df = pd.read_csv(file)
 header = '\\begin{table}\n\\begin{center}\n\\begin{tabular}{lrrrrrr}\n\\hline\n'
 footer = '\\hline\n\\end{tabular}\n\\end{center}\n\\end{table}'
 firstline = '\\textit{DV: ' + DV + '} & Coef. & Std.Err. & z & P$> |$z$|$ & [0.025 & 0.975] \\\\\n\\hline\n'
-# IVs = ['Intercept', 'block\\_difficulty', 'block\\_value\\_level']
-# coef, se, z, p, ci = np.ones(3), np.ones(3), np.ones(3), np.ones(3), np.ones(3)
 body = ''
 for i in range(len(df)):
     name, coef, se, z, p, ci1, ci2 = df.iloc[i].values
@@ -27,5 +25,4 @@ re = 'subject Var & 0.001 & 0.001 & & & & \\\\\n' \
 
 content = header + firstline + body + footer
 
-latex_to_png(content, outpath=os.path.join(os.getcwd(), 'regtables', f"{pngname}.png"),
-             title=None, DV='correct')
+latex_to_png(content, outpath=os.path.join(os.getcwd(), 'regtables', f"{pngname}.png"))

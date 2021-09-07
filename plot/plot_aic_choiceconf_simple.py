@@ -50,7 +50,7 @@ AICe = sem(AIC - AIC.mean(axis=0), axis=1)
 order = np.argsort(AICm)[::-1]
 
 plt.figure(figsize=(5, 4))
-plt.gca().xaxis.grid('silver', linestyle='-', linewidth=0.4, zorder=-5)
+plt.gca().xaxis.gridsearch('silver', linestyle='-', linewidth=0.4, zorder=-5)
 plt.barh(range(n_models), AICm[order], xerr=AICe, color=color_aic, zorder=2)
 
 for t in range(n_models):

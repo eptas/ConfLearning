@@ -1,18 +1,18 @@
 import sys
 import os
 import matplotlib.pyplot as plt
-from plot_model_conf import plot_MC
-from plot_model_value import plot_value
-from plot_model_perf import plot_PERF
-from plot_model_EC import plot_EC
-from plot_model_CPE import plot_CPE
-from plot_model_ABSCPE import plot_ABSCPE
-from plot_model_behavconf import plot_BC
+from util.plot_model_conf import plot_MC
+from util.plot_model_value import plot_value
+from util.plot_model_perf import plot_PERF
+from util.plot_model_EC import plot_EC
+from util.plot_model_CPE import plot_CPE
+from util.plot_model_ABSCPE import plot_ABSCPE
+from util.plot_model_behavconf import plot_BC
 import pandas as pd
 import numpy as np
 from scipy.stats import linregress, sem
 import seaborn as sns
-from confidence.ConfLearning.stats.regression import regression
+from ConfLearning.stats.regression import regression
 from pathlib import Path
 import matplotlib.transforms
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes

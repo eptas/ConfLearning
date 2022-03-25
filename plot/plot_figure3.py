@@ -17,7 +17,7 @@ path_data = os.path.join(Path.cwd(), '../data/')
 data = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 data = data[~data.subject.isin([25, 30])]
 subjects = sorted(data.subject.unique())
-nsubjects = len (subjects)
+nsubjects = len(subjects)
 
 ntrials_phase0 = (9, 12, 15, 18)
 ntrials_phase1 = (0, 5, 10, 15)

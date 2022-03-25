@@ -4,16 +4,17 @@ import pandas as pd
 
 from pathlib import Path
 from itertools import product as prod
+from scipy.stats import spearmanr as spear
 
 from ConfLearning.models.rl_simple_simchoice import RescorlaConfBaseGen
 from ConfLearning.models.maximum_likelihood import ParameterFit
 from ConfLearning.recovery.bandit import BanditMoney
 from ConfLearning.recovery.gen_design import GenDesign
 
-generate_data = True
-use_10 = True
-
 fitting = ParameterFit()
+bandit = BanditMoney()
+GenDesign.factor = 10
+design = GenDesign()
 
 cwd = Path.cwd()
 path_data = os.path.join(cwd, '../results/fittingData/')
@@ -21,8 +22,8 @@ winning_model = RescorlaConfBaseGen
 real_win_model = 'MonoUnspec'
 sim_win_id = 4
 
-ndatasets = 100
-nblocks = 110 if use_10 else 11
+design_id = 0
+nblocks = 11
 nphases = 3
 ntrials_phase_max = 57
 nbandits = 5
@@ -34,21 +35,26 @@ beta = np.arange(round(fitData.BETA.min(), 3), 2.00001, step=(2 - round(fitData.
 alpha_c = np.arange(0, 1.00001, 0.25)
 gamma = np.arange(0, 10.00001, 2.5)
 
+alpha_loop = np.arange(0, 1, 0.01)
+beta_loop = np.arange(round(fitData.BETA.min(), 3), 2, step=(2 - round(fitData.BETA.min(), 3)) / 99)
+alpha_c_loop = np.arange(0, 1, 0.01)
+gamma_loop = np.arange(0, 10, 0.1)
 
 real_paras = ['ALPHA', 'BETA', 'ALPHA_C', 'GAMMA']  # keep this order due to rl_simple para order
 
-choice = np.full((ndatasets, len(alpha), len(beta), len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
-out_val = np.full((ndatasets, len(alpha), len(beta), len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
-conf_val = np.full((ndatasets, len(alpha), len(beta), len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
 
+choice = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
+out_val = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
+conf_val = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
+
+np.random.seed(1)
+design.generate()
+noise = np.random.rand(1)
 
 design_data = ['stim_left', 'stim_right', 'history_constraint']
 
 for d, des in enumerate(design_data):
-    if use_10:
-        locals()[design_data[d]] = np.load(os.path.join(cwd, (design_data[d] + "_10.npy")))
-    else:
-        locals()[design_data[d]] = np.load(os.path.join(cwd, (design_data[d] + ".npy")))
+    locals()[design_data[d]] = np.load(os.path.join(cwd, (design_data[d] + "_10.npy")))
 
 
 # initialize for model fitting
@@ -58,108 +64,71 @@ lb, ub = 0, 2
 lan, uan = 0, 1
 lg, ug = 0, 10
 
-grid_alpha = np.arange(0, 1.00001, 0.25)
-grid_beta = np.arange(round(fitData.BETA.min(), 3), 2.00001, step=((2 - round(fitData.BETA.min(), 3)) / 4))   # (2 - round(fitData.BETA.min(), 3)) / 4)
-grid_alpha_c = np.arange(0, 1.00001, 0.25)
-grid_gamma = np.hstack((0, np.arange(0, 10.00001, 2.5)))
+grid_alpha = np.arange(0.1, 0.51, 0.2)
+grid_beta = np.arange(0.1, 0.31, 0.1)
+grid_alpha_c = np.arange(0.01, 0.061, 0.05)
+grid_gamma = np.hstack((0, np.arange(0.05, 0.5, 0.05)))    # np.arange(0.05, 0.5, 0.1)
+
 
 bounds = np.c_[np.array([la, lb, lan, lg]), np.array([ua, ub, uan, ug])]
 expect = (np.array([ua, ub, uan, ug]) - np.array([la, lb, lan, lg])) / 2
 grid_range = [grid_alpha, grid_beta, grid_alpha_c, grid_gamma]
 
+parafit = np.full((len(real_paras), len(alpha_loop), len(real_paras)), np.nan)
+corr_array = np.full((len(real_paras), len(alpha_loop), len(real_paras)), np.nan)
 
-# initialize outcome variables
+corr_matrix = np.full(((len(alpha)**len(real_paras)), len(real_paras), len(real_paras)), np.nan)
 
-probab_choice = np.full((len(real_paras), ndatasets, nblocks, nphases, ntrials_phase_max), np.nan)
-saveParameters, saveFitting, saveChoiceProbab = None, None, None
 
-parafit = np.full((len(alpha), len(beta), len(alpha_c), len(gamma), ndatasets, len(real_paras)), np.nan)
-negll = np.full((len(alpha), len(beta), len(alpha_c), len(gamma), ndatasets), np.nan)
-AIC = np.full((len(alpha), len(beta), len(alpha_c), len(gamma), ndatasets), np.nan, float)
-BIC = np.full((len(alpha), len(beta), len(alpha_c), len(gamma), ndatasets), np.nan)
+def sim_behaviour(simulation_parameter):
 
-if generate_data == True:
+    simulation_params = ['alp_id', 'bet_id', 'alc_id', 'gam_id', 'sweep_para', 'loop_id']
+    alp_id, bet_id, alc_id, gam_id, sweep_para, loop_id = None, None, None, None, None, None
 
-    bandit = BanditMoney()
-    GenDesign.factor = 10 if use_10 else 1
-    design = GenDesign()
+    for sim_par, sim_paras in enumerate(simulation_params):
+        locals()[simulation_params[sim_par]] = eval(simulation_parameter[sim_par])
 
-    for pa, para in enumerate(list(prod(alpha, beta, alpha_c, gamma))):
+    base_list = [alpha[alp_id], beta[bet_id], alpha_c[alc_id], gamma[gam_id]]
+    base_list[sweep_para] = eval(real_paras[sweep_para].lower() + '_loop')[loop_id]
 
-        parameter = para
-        sim_model = winning_model(*parameter)
+    sim_parameter = base_list
 
-        al_id = list(alpha).index(para[0])
-        be_id = list(beta).index(para[1])
-        ac_id = list(alpha_c).index(para[2])
-        ga_id = list(gamma).index(para[3])
+    simModel = winning_model(*sim_parameter)
+    simModel.noise = noise
 
-        for i in np.arange(0, ndatasets):
+    for block in range(nblocks):
 
-            np.random.seed(i)
-            design.generate()
-            sim_model.noise = np.random.rand(1)
+        simModel.values = np.full(nbandits, 0, float)
 
-            print("Simulating dataset " + str(pa + 1) + " out of " + str(len(list(prod(alpha, beta, alpha_c, gamma)))) + ": subject " + str(i + 1) + " out of 100")
+        bandit.reset_outcome_history()
+        bandit.set_outcome_schedule(design.outcome_schedule[block], design.outcome_base[block], design.outcome_diff[block])
 
-            for b in range(nblocks):
+        for phase in range(nphases):
+            for tria, trials in enumerate(np.where(~np.isnan(eval("stim_left")[design_id, block, phase]))[0]):
 
-                sim_model.values = np.full(nbandits, 0, float)
+                simModel.get_current_trial(trials)
+                simModel.stims = np.array([int(eval("stim_left")[design_id, block, phase, trials]), int(eval("stim_right")[design_id, block, phase, trials])])
 
-                bandit.reset_outcome_history()
-                bandit.set_outcome_schedule(design.outcome_schedule[b], design.outcome_base[b], design.outcome_diff[b])
+                cp = simModel.get_choice_probab()
 
-                for p in range(nphases):
-                    for t, tri in enumerate(np.where(~np.isnan(eval("stim_left")[i, b, p]))[0]):
+                choice[block, phase, tria], choice_index = simModel.simulated_choice()
+                simModel.stim_chosen = int(choice[block, phase, tria])
 
-                        sim_model.get_current_trial(tri)
-                        sim_model.stims = np.array([int(eval("stim_left")[i, b, p, tri]), int(eval("stim_right")[i, b, p, tri])])
+                out = bandit.sample(int(choice[block, phase, tria]), ignore_history_constraints=eval("history_constraint")[design_id, block, phase, trials])
+                out_val[block, phase, tria] = out if (phase != 1) else np.nan
 
-                        cp = sim_model.get_choice_probab()
-                        choice[i, al_id, be_id, ac_id, ga_id, b, p, t], choice_index = sim_model.simulated_choice()
+                conf_val[block, phase, tria] = simModel.simulated_confidence(choice_index)
 
-                        sim_model.stim_chosen = int(choice[i, al_id, be_id, ac_id, ga_id, b, p, t])
+                simModel.update(out_val[block, phase, tria], conf_val[block, phase, tria])
 
-                        out = bandit.sample(int(choice[i, al_id, be_id, ac_id, ga_id, b, p, t]), ignore_history_constraints=eval("history_constraint")[i, b, p, tri])
-                        out_val[i, al_id, be_id, ac_id, ga_id, b, p, t] = out if (p != 1) else np.nan
-
-                        conf_val[i, al_id, be_id, ac_id, ga_id, b, p, t] = sim_model.simulated_confidence(choice_index)
-
-                        sim_model.update(out_val[i, al_id, be_id, ac_id, ga_id, b, p, t], conf_val[i, al_id, be_id, ac_id, ga_id, b, p, t])
-
-sim_variables = ['choice', 'out_val', 'conf_val']
-
-simu_data = ['para_choice', 'para_out', 'para_conf']
-para_choice, para_out, para_conf = None, None, None
-
-print('Load data')
-
-for v, var in enumerate(sim_variables):
-
-    print(f'v = {v + 1} / {len(sim_variables)}')
-
-    if use_10:
-        if (generate_data == True):
-            np.save(os.path.join(cwd, f'{simu_data[v]}_10'), eval(var))
-        else:
-            locals()[simu_data[v]] = np.load(os.path.join(cwd, simu_data[v] + '_10.npy'))
-    else:
-        if (generate_data == True):
-            np.save(os.path.join(cwd, f'{simu_data[v]}'), eval(var))
-        else:
-            locals()[simu_data[v]] = np.load(os.path.join(cwd, simu_data[v] + '.npy'))
-
-print('End load data')
+    return choice, out_val, conf_val
 
 
 def recov_params(paras, running_model, s, simulation_model, return_cp=False):
 
-    winModel = running_model(*paras)
+    choices, outcome_value, confidence_value = sim_behaviour(simulation_model)
 
-    alp_id = eval(simulation_model[0])
-    bet_id = eval(simulation_model[1])
-    alc_id = eval(simulation_model[2])
-    gam_id = eval(simulation_model[3])
+    winModel = running_model(*paras)
 
     negLogL = 0
 
@@ -171,92 +140,56 @@ def recov_params(paras, running_model, s, simulation_model, return_cp=False):
         winModel.values = np.full(nbandits, 0, float)
 
         for p in range(nphases):
-            for t, tri in enumerate(np.where(~np.isnan(eval("stim_left")[s, b, p]))[0]):
+            for t, tri in enumerate(np.where(~np.isnan(eval("stim_left")[design_id, b, p]))[0]):
 
                 winModel.get_current_trial(tri)
+                winModel.stims = np.array([int(eval("stim_left")[design_id, b, p, tri]), int(eval("stim_right")[design_id, b, p, tri])])
 
-                winModel.stims = np.array([int(eval("stim_left")[s, b, p, tri]), int(eval("stim_right")[s, b, p, tri])])
-                winModel.stim_chosen = int(para_choice[s, alp_id, bet_id, alc_id, gam_id, b, p, t])
                 cp = winModel.get_choice_probab()
+
+                winModel.stim_chosen = int(choices[b, p, t])
+
+                winModel.update(outcome_value[b, p, t], confidence_value[b, p, t])
 
                 if return_cp:
                     choiceprob[b, p, t] = cp
 
                 negLogL -= np.log(np.maximum(cp, 1e-8))
 
-                winModel.update(para_out[s, alp_id, bet_id, alc_id, gam_id, b, p, t], para_conf[s, alp_id, bet_id, alc_id, gam_id, b, p, t])
-
     return (negLogL, choiceprob) if (return_cp == True) else negLogL
 
 
 if __name__ == '__main__':
 
-    for par, paramet in enumerate(list(prod(alpha, beta, alpha_c, gamma))):
+    for pa, para in enumerate(list(prod(alpha, beta, alpha_c, gamma))):
 
-        print(f'par = {par + 1} / {len(list(prod(alpha, beta, alpha_c, gamma)))}')
+        al_id = list(alpha).index(para[0])
+        be_id = list(beta).index(para[1])
+        ac_id = list(alpha_c).index(para[2])
+        ga_id = list(gamma).index(para[3])
 
-        print('Simulated parameters:', paramet)
+        for sw, sweep in enumerate(real_paras):
+            for lo, loop in enumerate(eval(sweep.lower() + '_loop')):
 
-        a_id = list(alpha).index(paramet[0])
-        b_id = list(beta).index(paramet[1])
-        aco_id = list(alpha_c).index(paramet[2])
-        g_id = list(gamma).index(paramet[3])
+                print("Fitting dataset " + str(pa + 1) + " out of " + str(len(list(prod(alpha, beta, alpha_c, gamma)))) + " : " + sweep + str(lo))
 
+                simu_id = [str(al_id), str(be_id), str(ac_id), str(ga_id), str(sw), str(lo)]
 
-        for i in np.arange(0, ndatasets):
+                base_parameters = [alpha[al_id], beta[be_id], alpha_c[ac_id], gamma[ga_id]]
+                base_parameters[sw] = lo
 
-            np.random.seed(i)
+                fitting.set_model(design_id, 1, winning_model, recov_params, 4, simu_id)
+                fitting.local_minima(expect, bounds, grid_range, grid_multiproc=False)
 
-            print("Fitting dataset " + str(par + 1) + " out of " + str(len(list(prod(alpha, beta, alpha_c, gamma)))) + ": subject " + str(i + 1) + " out of 100")
+                for repa in range(len(real_paras)):
 
-            simu_id = [str(a_id), str(b_id), str(aco_id), str(g_id)]
+                    parafit[sw, lo, repa] = min(bounds[repa][1], max(bounds[repa][0], fitting.data[design_id, repa]))
+                    corr_array[sw, lo, repa] = base_parameters[repa]
 
-            fitting.set_model(i, ndatasets, winning_model, recov_params, 4, simu_id)
-            fitting.local_minima(expect, bounds, grid_range, grid_multiproc=False)
+        for sico, simcor in enumerate(real_paras):
+            for fico, fitcor in enumerate(real_paras):
 
-            for p in range(len(real_paras)):
-                parafit[a_id, b_id, aco_id, g_id, i, p] = min(bounds[p][1], max(bounds[p][0], fitting.data[i, p]))
+                rho, pval = spear(parafit[sico, :, fico], corr_array[sico, :, fico])
+                corr_matrix[pa, sico, fico] = rho
 
-            negll[a_id, b_id, aco_id, g_id, i], probab_choice[a_id, b_id, aco_id, g_id, i] = recov_params(fitting.data[i], winning_model, i, simu_id, return_cp=True)
-            nsamples = np.sum(~np.isnan(probab_choice[a_id, b_id, aco_id, g_id, i]))
-
-            AIC[a_id, b_id, aco_id, g_id, i], BIC[a_id, b_id, aco_id, g_id, i] = fitting.model_fit(negll[a_id, b_id, aco_id, g_id, i], nsamples)
-
-            if i == (ndatasets - 1):
-
-                parameter_fit = pd.DataFrame(data={"ALPHA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': parafit[a_id, b_id, aco_id, g_id, :, 0],
-                                                   "BETA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': parafit[a_id, b_id, aco_id, g_id, :, 1],
-                                                   "ALPH_N_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': parafit[a_id, b_id, aco_id, g_id, :, 2],
-                                                   "GAMMA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': parafit[a_id, b_id, aco_id, g_id, :, 3]
-                                                   },
-                                             columns=["ALPHA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g',
-                                                      "BETA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g',
-                                                      "ALPH_N_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g',
-                                                      "GAMMA_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g'
-                                                      ])
-                saveParameters = pd.concat([saveParameters, parameter_fit], axis=1)
-
-                model_fit = pd.DataFrame(data={"AIC_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': AIC[a_id, b_id, aco_id, g_id, :],
-                                               "BIC_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': BIC[a_id, b_id, aco_id, g_id, :],
-                                               "NEGLL_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': negll[a_id, b_id, aco_id, g_id, :]
-                                               },
-                                         columns=["AIC_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g',
-                                                  "BIC_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g',
-                                                  "NEGLL_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g'
-                                                  ])
-
-                saveFitting = pd.concat([saveFitting, model_fit], axis=1)
-
-                choice_probability = pd.DataFrame(data={"cp_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g': probab_choice[a_id, b_id, aco_id, g_id, :][~np.isnan(probab_choice[a_id, b_id, aco_id, g_id, :])]},
-                                                  columns=["cp_" + str(a_id) + 'a_' + str(b_id) + 'b_' + str(aco_id) + 'c_' + str(g_id) + 'g'])
-
-                saveChoiceProbab = pd.concat([saveChoiceProbab, choice_probability], axis=1)
-
-        if par == (len(real_paras) - 1):
-
-            if use_10:
-                pd.concat([saveParameters, saveFitting], axis=1).to_pickle("fittingData_para_simu_10.pkl", protocol=4)
-                saveChoiceProbab.to_pickle("choiceProbab_para_simu_10.pkl", protocol=4)
-            else:
-                pd.concat([saveParameters, saveFitting], axis=1).to_pickle("fittingData_para_simu.pkl", protocol=4)
-                saveChoiceProbab.to_pickle("choiceProbab_para_simu.pkl", protocol=4)
+    np.save('correlation_matrix.npy', corr_matrix)

@@ -343,6 +343,7 @@ class GenDesign:
         self.design.loc[(self.design.phase == 1), 'omit_equal_phase'] = self.design[(self.design.phase == 1)].omit_equal_id.isin((0, 3))
 
         self.design.loc[self.design.type_rating, 'pair'] = np.nan
+        self.design.loc[self.design.type_rating, 'value_id'] = self.design.loc[self.design.type_rating].stimulus_left_outcome_id + 1
         return self.design
 
 

@@ -1,14 +1,14 @@
 import os
 import sys
 import warnings
-import numpy as np
-import pandas as pd
 
+import pandas as pd
 from pathlib import Path
+import numpy as np
 from scipy.stats import sem, linregress
 import matplotlib.pyplot as plt
 import seaborn as sns
-# from ConfLearning.plot.util.plot_model_behavconf import plot_BC
+from util.plot_model_behavconf import plot_BC
 
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
@@ -16,8 +16,9 @@ from plot_util import set_fontsize, savefig  # noqa
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 from stats.regression import regression # noqa
 
-# path_data = os.path.join(Path.cwd(), '../data/')
-# data = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
+path_data = os.path.join(Path.cwd(), '../data/')
+
+data = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 
 ntrials_phase0 = (9, 12, 15, 18)
 ntrials_phase1 = (0, 5, 10, 15)
@@ -29,9 +30,10 @@ nt_phase0phase1 = 27
 colors = sns.color_palette()
 
 
-# nsubjects = 66
-# include = np.setdiff1d(range(nsubjects), [25, 30])
-# data = data[data.type_choice & ~data.equal_value_pair & data.subject.isin(include)]
+nsubjects = 66
+include = np.setdiff1d(range(nsubjects), [25, 30])
+data = data[data.type_choice & ~data.equal_value_pair & data.subject.isin(include)]
+
 
 window = 4
 

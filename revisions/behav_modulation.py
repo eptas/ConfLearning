@@ -7,22 +7,19 @@ from pathlib import Path
 from ConfLearning.models.rl_simple_simchoice import RescorlaConfBase, RescorlaConfBaseGen
 from ConfLearning.models.rl_simple_choice_simchoice import RescorlaChoiceMono
 
-from ConfLearning.models.maximum_likelihood import ParameterFit
 from ConfLearning.recovery.bandit import BanditMoney
 from ConfLearning.recovery.gen_design import GenDesign
 
 cwd = Path.cwd()
 
-genData = True
-use_10 = True
+use_10 = False
 
-fitting = ParameterFit()
 bandit = BanditMoney()
 GenDesign.factor = 10 if use_10 else 1
 design = GenDesign()
 
 modellist = [RescorlaChoiceMono, RescorlaConfBase, RescorlaConfBaseGen]
-model_names = ['RescorlaChoiceMono', 'RescorlaConfBase', 'RescorlaConfBaseGen']
+model_names = ['ChoiceMono', 'ConfBase', 'ConfBaseGen']
 
 ndatasets = 100
 nblocks = 11
@@ -30,20 +27,7 @@ nphases = 3
 ntrials_phase_max = 57
 nbandits = 5
 
-design_vars = ['stim_left', 'stim_right', 'history_constraint', 'correct_value', 'pair', 'equal_value_pair', 'trial_phase', 'value_id']
-stim_left, stim_right, history_constraint, correct_value, pair, equal_value_pair, trial_phase, value_id = None, None, None, None, None, None, None, None
-
-print('Load design data')
-
-for v, var in enumerate(design_vars):
-
-    print(f'v = {v + 1} / {len(design_vars)}')
-
-    if use_10:
-        locals()[design_vars[v]] = np.load(os.path.join(cwd, design_vars[v] + '_mani_10.npy'))
-    else:
-        locals()[design_vars[v]] = np.load(os.path.join(cwd, design_vars[v] + '_mani.npy'))
-
+design_path = os.path.join(Path.cwd(), './para_experiment/')
 
 alpha = 0.2
 beta = 1/3
@@ -51,23 +35,16 @@ alpha_c = [0, 0.25, 0.5, 0.75, 1]
 gamma = [0, 0.1, 1, 10, 100]
 
 
-if genData == True:
-
-    choice = np.full((ndatasets, len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
-    out_val = np.full((ndatasets, len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
-    conf_val = np.full((ndatasets, len(alpha_c), len(gamma), nblocks, nphases, ntrials_phase_max), np.nan)
-
-
-def simulate_behav(model_id, sim_model):
-
+for mo, model in enumerate(modellist):
     for alc, alph_c in enumerate(alpha_c):
         for gam, gam_a in enumerate(gamma):
 
-            print("Simulating alpha_c " + str(alc + 1) + " out of 4 + gamma " + str(gam + 1) + " out of 4")
+            print("Simulating alpha_c " + str(alc + 1) + " out of 5 + gamma " + str(gam + 1) + " out of 5")
 
-            sim_parameter = [alpha, beta, gam_a] if model_id == 0 else [alpha, beta, alph_c, gam_a]
+            sim_parameter = [alpha, beta, gam_a] if mo == 0 else [alpha, beta, alph_c, gam_a]
+            simModel = model(*sim_parameter)
 
-            simModel = sim_model(*sim_parameter)
+            param_frame = [None] * ndatasets
 
             for i in np.arange(0, ndatasets):
 
@@ -77,40 +54,46 @@ def simulate_behav(model_id, sim_model):
                 design.generate()
                 simModel.noise = np.random.rand(1)
 
-                for block in range(nblocks):
+                subject_frame = [None] * ndatasets
 
-                    simModel.values = np.full(nbandits, 0, float)
+                for d in np.arange(0, ndatasets):
 
-                    bandit.reset_outcome_history()
-                    bandit.set_outcome_schedule(design.outcome_schedule[block], design.outcome_base[block], design.outcome_diff[block])
+                    sub_frame = pd.read_pickle(os.path.join(design_path, 'exp_mani_' + str(d) + '.pkl'))
 
-                    for phase in range(nphases):
-                        for tria, trials in enumerate(np.where(~np.isnan(eval("stim_left")[i, block, phase]))[0]):
+                    for block in range(nblocks):
 
-                            simModel.get_current_trial(trials)
-                            simModel.stims = np.array([int(eval("stim_left")[i, block, phase, trials]), int(eval("stim_right")[i, block, phase, trials])])
+                        simModel.values = np.full(nbandits, 0, float)
 
-                            cp = simModel.get_choice_probab()
+                        bandit.reset_outcome_history()
+                        bandit.set_outcome_schedule(design.outcome_schedule[block], design.outcome_base[block], design.outcome_diff[block])
 
-                            choice[i, alc, gam, block, phase, tria], choice_index = simModel.simulated_choice()
-                            simModel.stim_chosen = int(choice[i, alc, gam, block, phase, tria])
+                        for phase in range(nphases):
+                            for tria, trials in enumerate(sub_frame[(sub_frame.block == block) & (sub_frame[~sub_frame.phase.isna()].phase == phase) & sub_frame.type_choice_obs].trial_phase.astype(int).values):
 
-                            out = bandit.sample(int(choice[i, alc, gam, block, phase, tria]), ignore_history_constraints=eval("history_constraint")[i, block, phase, trials])
-                            out_val[i, alc, gam, block, phase, tria] = out if (phase != 1) else np.nan
+                                curr_data = sub_frame[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials)]
+                                simModel.get_current_trial(trials)
+                                simModel.stims = np.array([int(curr_data.stimulus_left.values[0]), int(curr_data.stimulus_right.values[0])])
 
-                            conf_val[i, alc, gam, block, phase, tria] = simModel.simulated_confidence(choice_index)
+                                cp = simModel.get_choice_probab()
 
-                            simModel.update(out_val[i, alc, gam, block, phase, tria], conf_val[i, alc, gam, block, phase, tria])
+                                choice, choice_index = simModel.simulated_choice()
+                                simModel.stim_chosen = int(choice)
 
-    return choice, out_val, conf_val
+                                out = bandit.sample(int(choice), ignore_history_constraints=curr_data.pre_equalshown_secondlasttrial.values[0])
+                                out_val = out if (phase != 1) else np.nan
 
+                                conf_val = simModel.simulated_confidence(choice_index)
 
-for mo, model in enumerate(modellist):
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'subjects'] = i
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'choice'] = choice
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'confidence'] = conf_val
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'outcome'] = out_val
 
-    if genData == True:
+                                simModel.update(out_val, conf_val)
 
-        choices, outcomes, confidences = simulate_behav(mo, model)
+                    subject_frame[d] = sub_frame
 
-        np.save('simu_choices_' + model_names[mo] + '.npy', choices)
-        np.save('simu_outcomes_' + model_names[mo] + '.npy', outcomes)
-        np.save('simu_confidence_' + model_names[mo] + '.npy', confidences)
+                param_frame[i] = pd.concat(subject_frame).reset_index(drop=True)
+
+            final_frame = pd.concat(param_frame).reset_index(drop=True)
+            final_frame.to_pickle('sim_' + model_names[mo] + '_a' + str(alc) + '_g' + str(gam) + '.pkl', protocol=4)

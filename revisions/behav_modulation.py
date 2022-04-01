@@ -24,7 +24,6 @@ model_names = ['ChoiceMono', 'ConfBase', 'ConfBaseGen']
 ndatasets = 100
 nblocks = 11
 nphases = 3
-ntrials_phase_max = 57
 nbandits = 5
 
 design_path = os.path.join(Path.cwd(), './para_experiment/')
@@ -36,6 +35,8 @@ gamma = [0, 0.1, 1, 10, 100]
 
 
 for mo, model in enumerate(modellist):
+
+    print(model_names[mo])
     for alc, alph_c in enumerate(alpha_c):
         for gam, gam_a in enumerate(gamma):
 
@@ -57,6 +58,8 @@ for mo, model in enumerate(modellist):
                 subject_frame = [None] * ndatasets
 
                 for d in np.arange(0, ndatasets):
+
+                    print("Dataset " + str(d))
 
                     sub_frame = pd.read_pickle(os.path.join(design_path, 'exp_mani_' + str(d) + '.pkl'))
 
@@ -84,8 +87,8 @@ for mo, model in enumerate(modellist):
 
                                 conf_val = simModel.simulated_confidence(choice_index)
 
-                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'subjects'] = i
-                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'choice'] = choice
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'subjects'] = int(i)
+                                sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'choice'] = int(choice)
                                 sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'confidence'] = conf_val
                                 sub_frame.loc[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials), 'outcome'] = out_val
 

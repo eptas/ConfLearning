@@ -40,7 +40,7 @@ alpha = np.arange(0, 1.00001, 0.25)
 beta = np.arange(0.02, 2.00001, step=((2 - 0.02) / 4))                # alternatively 0.03 ?
 alpha_c = np.arange(0, 1.00001, 0.25)
 gamma = np.arange(0, 10.00001, 2.5)
-eta = np.arange(-5, 5.00001, step=2.5)
+eta = np.arange(-1.5, 1.500001, 0.75)
 
 choice = np.full((n_datasets, nblocks, nphases, ntrials_phase_max), np.nan)
 out_val = np.full((n_datasets, nblocks, nphases, ntrials_phase_max), np.nan)

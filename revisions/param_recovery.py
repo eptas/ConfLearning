@@ -47,10 +47,6 @@ choice = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
 out_val = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
 conf_val = np.full((nblocks, nphases, ntrials_phase_max), np.nan)
 
-np.random.seed(1)
-design.generate()
-noise = np.random.rand(1)
-
 design_data = ['stim_left', 'stim_right', 'history_constraint']
 
 for d, des in enumerate(design_data):
@@ -80,7 +76,7 @@ corr_array = np.full((len(real_paras), len(alpha_loop), len(real_paras)), np.nan
 corr_matrix = np.full(((len(alpha)**len(real_paras)), len(real_paras), len(real_paras)), np.nan)
 
 
-def sim_behaviour(simulation_parameter):
+def sim_behaviour(s, simulation_parameter):
 
     simulation_params = ['alp_id', 'bet_id', 'alc_id', 'gam_id', 'sweep_para', 'loop_id']
     alp_id, bet_id, alc_id, gam_id, sweep_para, loop_id = None, None, None, None, None, None
@@ -94,7 +90,9 @@ def sim_behaviour(simulation_parameter):
     sim_parameter = base_list
 
     simModel = winning_model(*sim_parameter)
-    simModel.noise = noise
+
+    np.random.seed(s)
+    design.generate()
 
     for block in range(nblocks):
 
@@ -105,6 +103,8 @@ def sim_behaviour(simulation_parameter):
 
         for phase in range(nphases):
             for tria, trials in enumerate(np.where(~np.isnan(eval("stim_left")[design_id, block, phase]))[0]):
+
+                simModel.noise = np.random.rand(1)
 
                 simModel.get_current_trial(trials)
                 simModel.stims = np.array([int(eval("stim_left")[design_id, block, phase, trials]), int(eval("stim_right")[design_id, block, phase, trials])])
@@ -126,7 +126,7 @@ def sim_behaviour(simulation_parameter):
 
 def recov_params(paras, running_model, s, simulation_model, return_cp=False):
 
-    choices, outcome_value, confidence_value = sim_behaviour(simulation_model)
+    choices, outcome_value, confidence_value = sim_behaviour(s, simulation_model)
 
     winModel = running_model(*paras)
 

@@ -37,6 +37,7 @@ gamma = [0, 0.1, 1, 10, 100]
 for mo, model in enumerate(modellist):
 
     print(model_names[mo])
+
     for alc, alph_c in enumerate(alpha_c):
         for gam, gam_a in enumerate(gamma):
 
@@ -53,7 +54,6 @@ for mo, model in enumerate(modellist):
 
                 np.random.seed(i)
                 design.generate()
-                simModel.noise = np.random.rand(1)
 
                 subject_frame = [None] * ndatasets
 
@@ -72,6 +72,8 @@ for mo, model in enumerate(modellist):
 
                         for phase in range(nphases):
                             for tria, trials in enumerate(sub_frame[(sub_frame.block == block) & (sub_frame[~sub_frame.phase.isna()].phase == phase) & sub_frame.type_choice_obs].trial_phase.astype(int).values):
+
+                                simModel.noise = np.random.rand(1)
 
                                 curr_data = sub_frame[(sub_frame.block == block) & (sub_frame.phase == phase) & (sub_frame.trial_phase == trials)]
                                 simModel.get_current_trial(trials)

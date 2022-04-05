@@ -93,7 +93,6 @@ def sim_data(subj, simulation_model, simulation_parameter):
     simModel = modellist[eval(simulation_model)](*parameter)
 
     np.random.seed(subj)
-    simModel.noise = np.random.rand(1)
 
     for i in np.arange(0, n_datasets):
 
@@ -111,6 +110,8 @@ def sim_data(subj, simulation_model, simulation_parameter):
 
             for p in range(nphases):
                 for t, tri in enumerate(np.where(~np.isnan(stim_left[i, b, p]))[0]):
+
+                    simModel.noise = np.random.rand(1)
 
                     simModel.get_current_trial(tri)
                     simModel.stims = np.array([int(stim_left[i, b, p, tri]), int(stim_right[i, b, p, tri])])

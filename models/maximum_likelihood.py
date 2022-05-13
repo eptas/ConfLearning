@@ -61,17 +61,19 @@ class ParameterFit:
         self.data = np.full((nsubjects, nparams), np.nan, float)
         self.sim_model = sim_model
 
-    def local_minima(self, expect, bounds, grid_range, grid_multiproc=True):
+    def local_minima(self, expect, bounds, grid_range, grid_multiproc=True, verbose=True, args=None):
         """returns optimized parameters as well as the negative log-likelihood using optimize function"""
 
-        args = (self.model, self.subj, self.sim_model)
+        if args is None:
+            args = (self.model, self.subj, self.sim_model)
+        else:
+            args = tuple([self.model, self.subj, self.sim_model] + args)
 
         combis = list(product(*grid_range))
         if grid_multiproc:
             with PathosPool(cpu_count() - 1 or 1) as pool:
                 nll_grid = pool.map(partial(loop, self.run_model, args), combis)
         else:
-
             nll_grid = [None] * len(combis)
             for i, param in enumerate(combis):
                 nll_grid[i] = self.run_model(param, *args)
@@ -83,8 +85,9 @@ class ParameterFit:
         params_lbfgs, negll_lbfgs = fit_lbfgs.x, fit_lbfgs.fun
         fit_powell = stats.optimize.minimize(self.run_model, args=args, x0=expect, bounds=bounds, method='Powell', options=dict(disp=False))
         params_powell, negll_powell = fit_powell.x, fit_powell.fun
-        print(f'\tL-BFGS-B: {negll_lbfgs:.2f}, Powell: {negll_powell:.2f}')
-        print(f'\tL-BFGS-B: {params_lbfgs}, Powell: {params_powell}')
+        if verbose:
+            print(f'\tL-BFGS-B: {negll_lbfgs:.2f}, Powell: {negll_powell:.2f}')
+            print(f'\tL-BFGS-B: {params_lbfgs}, Powell: {params_powell}')
 
         # self.run_model([100, 0, 1, 1], *(list(args)+[True]))
 

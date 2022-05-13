@@ -188,7 +188,7 @@ class RescorlaPerservation(Rescorla):
     def get_choice_probab(self, outcome=None):
         """function outputs choice probability for chosen stimulus"""
 
-        if np.isnan(outcome) and tuple(sorted(self.stims)) in self.last_choice:
+        if (outcome is None or np.isnan(outcome)) and tuple(sorted(self.stims)) in self.last_choice:
             pres = 1 if self.last_choice[tuple(sorted(self.stims))] == self.stims[1] else -1
         else:
             pres = 0

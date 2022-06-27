@@ -21,7 +21,10 @@ as well as an optimization script *[maximum_likelihood.py]*.
 under **figures** and seperately for behaviour-specific (**/behav/**) and 
 modelling-specific (**/model/**) outcomes.
 
-4. **run_model** contains model fitting scripts with parameter bounds. Model-specific 
-parameter estimate and model evidences are saved in .pkl-format under **results/fittingData/**.
+4. **revision2** contains scripts for calculating, aggregating and plotting results of 
+parameter recovery, model recovery and the models' generative performance. 
 
-5. **stats** contains data analysis scripts. Please refer to the publication for further detail.
+5. **run_model** contains model fitting scripts with parameter bounds. Model-specific 
+parameter estimates and model evidences are saved in .pkl-format under **results/fittingData/**.
+
+6. **stats** contains data analysis scripts. Please refer to the publication for further detail.

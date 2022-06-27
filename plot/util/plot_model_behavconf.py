@@ -10,19 +10,18 @@ from ConfLearning.run_model.run_model_simchoice import run_model, RescorlaConfBa
 
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
-from plot_util import set_fontsize, savefig  # noqa
+# from plot_util import set_fontsize, savefig  # noqa
 
-data = pd.read_pickle(os.path.join(Path.cwd(), '../data/', 'data.pkl'))
-
-cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path = Path(__file__).parent
+print(path)
+data = pd.read_pickle(os.path.join(path, '../../data/', 'data.pkl'))
+path_data = os.path.join(path, '../../results/fittingData')
 
 nblocks = 11
 include = np.setdiff1d(range(66), [25, 30])
 nsubjects = len(include)
 
 colors = sns.color_palette()
-
 
 ntrials_phase0 = (9, 12, 15, 18)
 ntrials_phase1 = (0, 5, 10, 15)
@@ -63,7 +62,7 @@ def get_data(winning_model, model_suffix, reload=False):
 
 
 def plot_BC(legend_phase1=True, legend_value=True, title=None, ylabel_as_title=False, markersize_value=10, phaselabel_pos='bottom',
-            winning_model='MonoUnspec', model_suffix='_simchoice', select_ntrials_phase1=15, reload=False, plot_mean=False):
+            winning_model='MonoUnspec', model_suffix='_simchoice', select_ntrials_phase1=15, reload=False, plot_mean=False, plot_value_levels=True):
 
     d = get_data(winning_model, model_suffix, reload)
     d = d[(d.b_ntrials_noc == select_ntrials_phase1) & d.subject.isin(include) & d.type_choice & ~d.equal_value_pair]
@@ -77,48 +76,52 @@ def plot_BC(legend_phase1=True, legend_value=True, title=None, ylabel_as_title=F
         handles_color[i] = plt.plot([100], [1], 's', markersize=markersize_value, mfc=colors[i], alpha=0.6, label='')[0]
 
     for c in range(4):
-        for i, nt in enumerate(ntrials_phase0):
-            d0 = d[(d.b_ntrials_pre == nt) & (d.phase == 0)].groupby(['subject', 'trial_phase_rev'])[f'BC{c}'].mean()
-            m = d0.groupby(level='trial_phase_rev').mean().values.astype(float)
-            se = d0.groupby(level='trial_phase_rev').sem().values.astype(float)
-            plt.plot(np.arange(-nt+2, 2), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
-            # plt.fill_between(np.arange(-nt+1, 1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
-
         plt.axvspan(1, select_ntrials_phase1, facecolor='0.9', alpha=0.5)
-        # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
-        for i, nt in enumerate(ntrials_phase0):
-            d1 = d[(d.b_ntrials_pre == nt) & (d.phase == 1)].groupby(['subject', 'trial_phase'])[f'BC{c}'].mean()
-            m = d1.groupby(level='trial_phase').mean().values.astype(float)
-            se = d1.groupby(level='trial_phase').sem().values.astype(float)
-            plt.plot(np.arange(1, select_ntrials_phase1+1), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
-            # plt.fill_between(np.arange(1, nt_phase1_max+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
-        # d1 = d[(d.phase == 1)].groupby(['subject', 'trial_phase'])[f'value{c}'].mean()
-        # m = d1.mean(level='trial_phase').values.astype(float)
-        # plt.plot(np.arange(1, nt_phase1_max+1), m, lw=3, color='k', alpha=0.6)
 
-        for i, nt in enumerate(ntrials_phase0):
-            # d2 = d[(d.b_ntrials_pre == nt) & (d.phase == 2)].groupby(['subject', 'trial_phase'])[f'BC{c}'].mean()
-            # m = d2.groupby(level='trial_phase').mean().values.astype(float)
-            # se = d2.groupby(level='trial_phase').sem().values.astype(float)
-            m = [d[(d.b_ntrials_pre == nt) & (d.phase == 2) & (d.trial_phase == t)].groupby('subject')[f'BC{c}'].mean().values.mean() for t in range(27-nt)]
-            plt.plot(np.arange(select_ntrials_phase1-1, select_ntrials_phase1+nt_phase0phase1-nt-1), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
-            # plt.fill_between(np.arange(nt_phase1_max+1, nt_phase1_max+nt_phase0phase1-nt+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
+    if plot_value_levels:
+        for c in range(4):
+            for i, nt in enumerate(ntrials_phase0):
+                d0 = d[(d.b_ntrials_pre == nt) & (d.phase == 0)].groupby(['subject', 'trial_phase_rev'])[f'BC{c}'].mean()
+                m = d0.groupby(level='trial_phase_rev').mean().values.astype(float)
+                se = d0.groupby(level='trial_phase_rev').sem().values.astype(float)
+                plt.plot(np.arange(-nt+2, 2), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
+                # plt.fill_between(np.arange(-nt+1, 1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
+
+            plt.axvspan(1, select_ntrials_phase1, facecolor='0.9', alpha=0.5)
+            # plt.axhspan(0, 0.5, facecolor='0.85', alpha=0.5)
+            for i, nt in enumerate(ntrials_phase0):
+                d1 = d[(d.b_ntrials_pre == nt) & (d.phase == 1)].groupby(['subject', 'trial_phase'])[f'BC{c}'].mean()
+                m = d1.groupby(level='trial_phase').mean().values.astype(float)
+                se = d1.groupby(level='trial_phase').sem().values.astype(float)
+                plt.plot(np.arange(1, select_ntrials_phase1+1), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
+                # plt.fill_between(np.arange(1, nt_phase1_max+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
+            # d1 = d[(d.phase == 1)].groupby(['subject', 'trial_phase'])[f'value{c}'].mean()
+            # m = d1.mean(level='trial_phase').values.astype(float)
+            # plt.plot(np.arange(1, nt_phase1_max+1), m, lw=3, color='k', alpha=0.6)
+
+            for i, nt in enumerate(ntrials_phase0):
+                # d2 = d[(d.b_ntrials_pre == nt) & (d.phase == 2)].groupby(['subject', 'trial_phase'])[f'BC{c}'].mean()
+                # m = d2.groupby(level='trial_phase').mean().values.astype(float)
+                # se = d2.groupby(level='trial_phase').sem().values.astype(float)
+                m = [d[(d.b_ntrials_pre == nt) & (d.phase == 2) & (d.trial_phase == t)].groupby('subject')[f'BC{c}'].mean().values.mean() for t in range(27-nt)]
+                plt.plot(np.arange(select_ntrials_phase1-1, select_ntrials_phase1+nt_phase0phase1-nt-1), m, lw=2, color=colors[c], alpha=0.6, ls=linestyles[i])
+                # plt.fill_between(np.arange(nt_phase1_max+1, nt_phase1_max+nt_phase0phase1-nt+1), m-se, m+se, lw=0, color=colors[c], alpha=0.4)
 
     # plot mean
     if plot_mean:
-        for i, nt in enumerate(ntrials_phase0):
-            d0 = d[(d.b_ntrials_pre == nt) & (d.phase == 0)].groupby(['subject', 'trial_phase_rev'])['BC'].mean()
-            m = d0.groupby(level='trial_phase_rev').mean().values.astype(float)
-            plt.plot(np.arange(-nt+2, 2), m, lw=2, color='k', alpha=0.6, ls=linestyles[i])
+        # for i, nt in enumerate(ntrials_phase0):
+        #     d0 = d[(d.b_ntrials_pre == nt) & (d.phase == 0)].groupby(['subject', 'trial_phase_rev'])['BC'].mean()
+        #     m = d0.groupby(level='trial_phase_rev').mean().values.astype(float)
+        #     plt.plot(np.arange(-nt+2, 2), m, lw=2, color='k', alpha=0.6, ls=linestyles[i])
         for i, nt in enumerate(ntrials_phase0):
             d1 = d[(d.b_ntrials_pre == nt) & (d.phase == 1)].groupby(['subject', 'trial_phase'])[f'BC'].mean()
             m = d1.groupby(level='trial_phase').mean().values.astype(float)
             plt.plot(np.arange(1, select_ntrials_phase1+1), m, lw=2, color='k', alpha=0.6, ls=linestyles[i])
-        for i, nt in enumerate(ntrials_phase0):
-            # d2 = d[(d.b_ntrials_pre == nt) & (d.phase == 2)].groupby(['subject', 'trial_phase'])[f'BC'].mean()
-            # m = d2.groupby(level='trial_phase').mean().values.astype(float)
-            m = [d[(d.b_ntrials_pre == nt) & (d.phase == 2) & (d.trial_phase == t)].groupby('subject')[f'BC'].mean().values.mean() for t in range(27-nt)]
-            plt.plot(np.arange(select_ntrials_phase1-1, select_ntrials_phase1+nt_phase0phase1-nt-1), m, lw=2, color='k', alpha=0.6, ls=linestyles[i])
+        # for i, nt in enumerate(ntrials_phase0):
+        #     # d2 = d[(d.b_ntrials_pre == nt) & (d.phase == 2)].groupby(['subject', 'trial_phase'])[f'BC'].mean()
+        #     # m = d2.groupby(level='trial_phase').mean().values.astype(float)
+        #     m = [d[(d.b_ntrials_pre == nt) & (d.phase == 2) & (d.trial_phase == t)].groupby('subject')[f'BC'].mean().values.mean() for t in range(27-nt)]
+        #     plt.plot(np.arange(select_ntrials_phase1-1, select_ntrials_phase1+nt_phase0phase1-nt-1), m, lw=2, color='k', alpha=0.6, ls=linestyles[i])
 
     if ylabel_as_title:
         plt.title('Behavioral confidence')
@@ -132,7 +135,10 @@ def plot_BC(legend_phase1=True, legend_value=True, title=None, ylabel_as_title=F
     elif phaselabel_pos == 'top':
         y_text = 0.9
     plt.xlim(-20, 35)
-    plt.ylim(0, 1)
+    if plot_value_levels:
+        plt.ylim(0, 1)
+    else:
+        plt.ylim(0, 0.6)
     plt.text(-10, y_text, 'Phase 1', ha='center', fontsize=11)
     plt.text(select_ntrials_phase1/2+0.5, y_text, 'Phase 2', ha='center', fontsize=11)
     plt.text(9+select_ntrials_phase1, y_text, 'Phase 3', ha='center', fontsize=11)
@@ -142,7 +148,7 @@ def plot_BC(legend_phase1=True, legend_value=True, title=None, ylabel_as_title=F
     handles_value, labels_value = handles_color[::-1], ['' for _ in range(4)]
 
     if legend_phase1:
-        leg = plt.legend(handles_phase1, labels_phase1, loc='upper left', title='No. trials in Phase 1', fontsize=9, title_fontsize=9.5, labelspacing=0.5, handlelength=4, frameon=False)
+        leg = plt.legend(handles_phase1, labels_phase1, loc='upper left' if plot_value_levels else 'lower right', title='No. trials in Phase 1', fontsize=9, title_fontsize=9.5, labelspacing=0.5, handlelength=4, frameon=False)
         leg._legend_box.align = 'left'
         plt.gca().add_artist(leg)
     if legend_value:
@@ -158,7 +164,7 @@ if __name__ == '__main__':
 
     select_ntrials_phase1 = 15
 
-    reload = False
+    reload = True
 
     plt.figure(figsize=(5.5, 4))
 

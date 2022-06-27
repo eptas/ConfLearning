@@ -175,7 +175,7 @@ class RescorlaZero(Rescorla):
 #             return self.learn_value(outcome)
 
 
-class RescorlaPerservation(Rescorla):
+class RescorlaPerseveration(Rescorla):
 
     def __init__(self, alpha=0.1, beta=1, eta=0.1, nbandits=5):
 

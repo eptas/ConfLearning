@@ -7,7 +7,7 @@ from scipy.stats import sem
 import matplotlib.pyplot as plt
 import seaborn as sns
 from ConfLearning.run_model.run_model_simchoice import run_model, RescorlaConfBaseGen
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerservation
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerseveration
 from ConfLearning.models.rl_simple_choice_simchoice import RescorlaChoiceMono
 from ConfLearning.models.rl_simple_simchoice import RescorlaConfBase, RescorlaConfBaseGen
 
@@ -15,10 +15,9 @@ from ConfLearning.models.rl_simple_simchoice import RescorlaConfBase, RescorlaCo
 sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
 
-data = pd.read_pickle(os.path.join(Path.cwd(), '../data/', 'data.pkl'))
-
-cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path = Path(__file__).parent
+data = pd.read_pickle(os.path.join(path, '../../data/', 'data.pkl'))
+path_data = os.path.join(path, '../../results/fittingData')
 
 models = np.arange(1, 10)
 
@@ -46,7 +45,7 @@ mapping = dict(
     MonoUnspec=RescorlaConfBaseGen,
     Mono_choice=RescorlaChoiceMono,
     BetaSlope=RescorlaBetaSlope,
-    Perservation=RescorlaPerservation
+    Perservation=RescorlaPerseveration
 )
 
 def get_data(winning_model, model_suffix, reload=False):
@@ -78,9 +77,9 @@ def get_data(winning_model, model_suffix, reload=False):
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'PERF{order[c]}'] = (PERF[b, p, c, ~np.isnan(PERF[b, p, c])] + PERF[b, p, c-1, ~np.isnan(PERF[b, p, c-1])]) / 2
                         else:
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'PERF{order[c]}'] = PERF[b, p, c, ~np.isnan(PERF[b, p, c])]
-        d.to_pickle(f'PERF_{winning_model}.pkl')
+        d.to_pickle(os.path.join(path, f'../data/PERF_{winning_model}.pkl'))
     else:
-        d = pd.read_pickle(f'PERF_{winning_model}.pkl')
+        d = pd.read_pickle(os.path.join(path, f'../data/PERF_{winning_model}.pkl'))
 
     return d
 

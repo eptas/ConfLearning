@@ -2,27 +2,26 @@ import os
 import numpy as np
 import pandas as pd
 
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerservation
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerseveration
 from ConfLearning.models.rl_simple_simchoice import RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen
 from ConfLearning.models.maximum_likelihood import ParameterFit
 from pathlib import Path
 
 fitting = ParameterFit()
 
-cwd = Path.cwd()
-# print(cwd)
-path_data = os.path.join(cwd, '../data/')
+path = Path(__file__).parent
+path_data = os.path.join(path, '../results/fittingData')
 
 # os.makedirs('../results/fittingData')
 # os.makedirs('../results/choiceProbab')
 
-matrix = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
+matrix = pd.read_pickle(os.path.join(path, '../data/data.pkl'))
 
 var_list = ['stim_left', 'stim_right', 'chosen_stim', 'outcome_value', 'confidence_value', 'correct_value', 'true_value']
 stim_left, stim_right, chosen_stim, outcome_value, confidence_value, correct_value, true_value = None, None, None, None, None, None, None
 
 for v, variable in enumerate(var_list):
-    locals()[variable] = np.load(os.path.join(path_data, variable + '.npy'))
+    locals()[variable] = np.load(os.path.join(path, f'../data/{variable}.npy'))
 
 # set_model = 4   # CHANGE HERE
 
@@ -93,7 +92,7 @@ grid_range = [
 
 # expect = [[0.1, 1], [0.1, 1, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0], [0.1, 1, 0, 0]]
 
-modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, RescorlaBetaSlope, RescorlaPerservation]
+modellist = [Rescorla, RescorlaZero, RescorlaConf, RescorlaConfGen, RescorlaConfBase, RescorlaConfBaseGen, RescorlaConfZero, RescorlaConfZeroGen, RescorlaConfBaseZero, RescorlaConfBaseZeroGen, RescorlaBetaSlope, RescorlaPerseveration]
 model_names = ['Static', 'Deval', 'DualSpec', 'DualUnspec', 'MonoSpec', 'MonoUnspec', 'DualSpecDeval', 'DualUnspecDeval', 'MonoSpecDeval', 'MonoUnspecDeval', 'BetaSlope', 'Perservation']
 paramlist = [
     [alpha, beta],

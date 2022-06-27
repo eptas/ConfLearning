@@ -24,17 +24,26 @@ include = np.where(np.array(100*data.groupby('subject').correct.mean().values, i
 exclude = np.setdiff1d(range(nsubjects), include)
 print(f"Subjects with performance < 0.55 (N={len(exclude)}, remain={nsubjects - len(exclude)}): [{', '.join([str(v) for v in exclude])}]")
 
+data2 = pd.DataFrame(index=range(nsubjects*nblocks*5))
+data2['subject'] = np.repeat(range(nsubjects), nblocks*5)
+data2['block'] = np.tile(np.repeat(range(nblocks), 5), nsubjects)
+data2['bandit'] = np.tile(range(5), nblocks*nsubjects)
 
 for s in range(nsubjects):
     print(f'Subject {s + 1} / {nsubjects}')
     for b in range(nblocks):
         cond = (data.subject == s) & (data.block == b)
+        for p in ['b_designated_absvaluediff', 'b_valuebase', 'b_stimulus_pool', 'b_ntrials_pre', 'b_ntrials_noc', 'absvaluediff', 'value_chosen']:
+            data2.loc[(data2.subject == s) & (data2.block == b), p] = data[cond & (data.phase == 1) & ~data.equal_value_pair & data.type_choice][p].mean()
         for c in range(5):
             if len(data[cond & (data.phase == 1) & (data.choice == c)]) >= 2:
                 data.loc[cond & (data.phase == 1) & (data.choice == c), 'conf_slope'] = linregress(range(len(data[cond & (data.phase == 1) & (data.choice == c)])), np.array(data[cond & (data.phase == 1) & (data.choice == c)].confidence.values, float)).slope
             data.loc[cond & (data.phase == 1) & (data.choice == c), 'choice_valdiff'] = data[cond & (data.phase == 1) & (data.choice == c)].value_chosen - data[cond & (data.phase == 1) & (data.choice == c)].value_unchosen
             data.loc[cond & (data.phase == 1) & (data.choice == c), 'choice_number'] = range(1, len(data[cond & (data.phase == 1) & (data.choice == c)])+1)
             data.loc[cond & (data.phase == 1) & ((data.stimulus_left == c) | (data.stimulus_right == c)), 'occurrence_number'] = range(1, len(data[cond & (data.phase == 1) & ((data.stimulus_left == c) | (data.stimulus_right == c))])+1)
+            for p in ['conf_slope', 'choice_valdiff', 'choice_number', 'occurrence_number']:
+                data2.loc[(data2.subject == s) & (data2.block == b) & (data2.bandit == c), p] = data[cond & (data.phase == 1) & (data.choice == c) & ~data.equal_value_pair & data.type_choice][p].mean()
+
 
 
 map = dict(
@@ -58,6 +67,19 @@ model = regression(
     reml=False,
     print_data=False
 )
+
+d2 = data2.copy().rename(columns=map)
+ps = ['block_difficulty', 'block_value_level', 'block_stimulus_type', 'block_ntrials_phase1', 'block_ntrials_phase2', 'trial_difficulty', 'choice_number', 'choice_valdiff']
+model = regression(
+    d2[~d2.conf_slope.isna() & ~d2.subject.isin(exclude)],
+    patsy_string='conf_slope ~ ' + ' + '.join(ps),
+    standardize_vars=True,
+    ignore_warnings=True,
+    reml=False,
+    print_data=False
+)
+
+
 
 
 # skip_var_hack = 'subject Var            &  0.382 &    0.120 &        &             &        &         \\\\\nblock Var              &  0.160 &    0.023 &        &             &        &         \\\\\n'

@@ -103,7 +103,7 @@ plt.gca().add_artist(leg)
 
 ax2 = fig.add_subplot(gs[0, 4:8])
 handles_phase1, labels_phase1, handles_value, labels_value = \
-plot_BC(legend_value=False, legend_phase1=False, ylabel_as_title=False, reload=False, plot_mean=True)
+plot_BC(legend_value=False, legend_phase1=True, ylabel_as_title=False, reload=False, plot_mean=True, plot_value_levels=True)
 # plt.text(-0.11, 1.04, 'A', transform=plt.gca().transAxes, color=(0, 0, 0), fontsize=17)
 plt.xlabel('Trial')
 plt.ylabel('Confidence')
@@ -111,9 +111,9 @@ plt.ylabel('Confidence')
 plt.text(-0.2, 0.97, 'B', transform=ax2.transAxes, color=(0, 0, 0), fontsize=20)
 
 # Plot legends
-leg = plt.legend(handles_phase1, labels_phase1, loc='upper left', bbox_to_anchor=(0, 1), title='No. trials\nin Phase 1:', fontsize=9, title_fontsize=9.5, labelspacing=0.3, handlelength=4, frameon=False)
-leg._legend_box.align = 'left'
-ax2.add_artist(leg)
+# leg = plt.legend(handles_phase1, labels_phase1, loc='upper left', bbox_to_anchor=(0.65, 0.5), title='No. trials\nin Phase 1:', fontsize=9, title_fontsize=9.5, labelspacing=0.3, handlelength=4, frameon=False)
+# leg._legend_box.align = 'left'
+# ax2.add_artist(leg)
 leg2 = plt.legend(handles_value, labels_value, loc='upper left', bbox_to_anchor=(0.45, 1), fontsize=9, labelspacing=0.1, handletextpad=2.5, framealpha=1, title='Stimulus:', title_fontsize=9.5)
 plt.gca().add_artist(leg2)
 plt.arrow(0.585, 0.725, 0, 0.19, color=(0.3, 0.3, 0.3), head_length=0.02, head_width=0.015, length_includes_head=True, clip_on=False, transform=plt.gca().transAxes, zorder=10, lw=0.75)

@@ -7,18 +7,17 @@ from scipy.stats import sem
 import matplotlib.pyplot as plt
 import seaborn as sns
 from ConfLearning.run_model.run_model_simchoice import run_model
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerservation
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero, RescorlaBetaSlope, RescorlaPerseveration
 from ConfLearning.models.rl_simple_choice_simchoice import RescorlaChoiceMono
 from ConfLearning.models.rl_simple_simchoice import RescorlaConfBase, RescorlaConfBaseGen
 
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
-from plot_util import set_fontsize, savefig  # noqa
+# from plot_util import set_fontsize, savefig  # noqa
 
-data = pd.read_pickle(os.path.join(Path.cwd(), '../data/', 'data.pkl'))
-
-cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path = Path(__file__).parent
+data = pd.read_pickle(os.path.join(path, '../../data/', 'data.pkl'))
+path_data = os.path.join(path, '../../results/fittingData')
 
 nblocks = 11
 include = np.setdiff1d(range(66), [25, 30])
@@ -44,7 +43,7 @@ mapping = dict(
     MonoUnspec=RescorlaConfBaseGen,
     Mono_choice=RescorlaChoiceMono,
     BetaSlope=RescorlaBetaSlope,
-    Perservation=RescorlaPerservation
+    Perservation=RescorlaPerseveration
 )
 
 
@@ -79,9 +78,9 @@ def get_data(winning_model, model_suffix, reload=False):
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'MC{order[c]}'] = (MC[b, p, c, ~np.isnan(MC[b, p, c])] + MC[b, p, c-1, ~np.isnan(MC[b, p, c-1])]) / 2
                         else:
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'MC{order[c]}'] = MC[b, p, c, ~np.isnan(MC[b, p, c])]
-        d.to_pickle(f'data/MC_{winning_model}.pkl')
+        d.to_pickle(os.path.join(path, f'../data/MC_{winning_model}.pkl'))
     else:
-        d = pd.read_pickle(f'data/MC_{winning_model}.pkl')
+        d = pd.read_pickle(os.path.join(path, f'../data/MC_{winning_model}.pkl'))
 
     return d
 

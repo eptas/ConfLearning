@@ -16,10 +16,9 @@ from ConfLearning.run_model.run_model_simchoice import run_model
 sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
 
-data = pd.read_pickle(os.path.join(Path.cwd(), '../data/', 'data.pkl'))
-
-cwd = Path.cwd()
-path_data = os.path.join(cwd, '../results/fittingData')
+path = Path(__file__).parent
+data = pd.read_pickle(os.path.join(path, '../../data/', 'data.pkl'))
+path_data = os.path.join(path, '../../results/fittingData')
 
 nblocks = 11
 include = np.setdiff1d(range(66), [25, 30])
@@ -68,9 +67,9 @@ def get_data(winning_model, model_suffix, reload=False):
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'EC{order[c]}'] = (EC[b, p, c, ~np.isnan(EC[b, p, c])] + EC[b, p, c-1, ~np.isnan(EC[b, p, c-1])]) / 2
                         else:
                             d.loc[(d.subject == s) & (d.block == b) & (d.phase == p), f'EC{order[c]}'] = EC[b, p, c, ~np.isnan(EC[b, p, c])]
-        d.to_pickle(f'data/EC_{winning_model}.pkl')
+        d.to_pickle(os.path.join(path, f'../data/EC_{winning_model}.pkl'))
     else:
-        d = pd.read_pickle(f'data/EC_{winning_model}.pkl')
+        d = pd.read_pickle(os.path.join(path, f'../data/EC_{winning_model}.pkl'))
 
     return d
 

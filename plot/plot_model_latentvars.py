@@ -46,7 +46,7 @@ plt.xlabel(None)
 plt.text(-0.13, 1.04, 'C', transform=ax13.transAxes, color=(0, 0, 0), fontsize=17)
 
 ax14 = fig.add_subplot(gs[0, 15:18])
-MC = pd.read_pickle('../data/MC_MonoUnspec.pkl')
+MC = pd.read_pickle('data/MC_MonoUnspec.pkl')
 conf = np.array([[linregress(range(15), MC[(MC.subject == s) & (MC.phase == 1)].groupby('trial_phase')[f"MC{c}"].mean().values)[0] for s in include] for c in range(4)])
 df = pd.DataFrame(index=range(4*len(include)))
 df['confidence'], df['value'], df['subject'] = conf.flatten(), np.repeat(range(4), len(include)), np.tile(range(len(include)), 4)

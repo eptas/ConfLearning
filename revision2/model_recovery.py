@@ -15,8 +15,8 @@ from ConfLearning.models.rl_simple_choice_simchoice import RescorlaChoiceMono
 from ConfLearning.models.rl_simple_simchoice import RescorlaConfBase, RescorlaConfBaseGen
 
 from ConfLearning.models.maximum_likelihood import ParameterFit
-from ConfLearning.recovery.bandit import BanditMoney
-from ConfLearning.recovery.gen_design_sim import GenDesign
+from ConfLearning.revision2.bandit import BanditMoney
+from ConfLearning.revision2.gen_design_sim import GenDesign
 
 # initialize data simulation
 

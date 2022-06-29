@@ -125,7 +125,7 @@ plt.xticks(ax22.get_xticks(), [])
 # ax22.yaxis.set_label_coords(-0.14, 0.5)
 
 ax24 = fig.add_subplot(gs[1, 15:19])
-BC = pd.read_pickle('MC_MonoSpec.pkl')
+BC = pd.read_pickle('data/MC_MonoSpec.pkl')
 conf = np.array([[linregress(range(15), BC[(BC.subject == s) & (BC.phase == 1)].groupby('trial_phase')[f"MC{c}"].mean().values)[0] for s in include] for c in range(4)])
 df = pd.DataFrame(index=range(4*len(include)))
 df['confidence'], df['value'], df['subject'] = conf.flatten(), np.repeat(range(4), len(include)), np.tile(range(len(include)), 4)
@@ -171,7 +171,7 @@ plt.xlabel(None)
 plt.xticks(ax33.get_xticks(), [])
 
 ax34 = fig.add_subplot(gs[2, 15:19])
-MC = pd.read_pickle('MC_Mono_choice.pkl')
+MC = pd.read_pickle('data/MC_Mono_choice.pkl')
 conf = np.array([[linregress(range(15), MC[(MC.subject == s) & (MC.phase == 1)].groupby('trial_phase')[f"MC{c}"].mean().values)[0] for s in include] for c in range(4)])
 df = pd.DataFrame(index=range(4*len(include)))
 df['confidence'], df['value'], df['subject'] = conf.flatten(), np.repeat(range(4), len(include)), np.tile(range(len(include)), 4)
@@ -213,7 +213,7 @@ plot_MC(legend_value=False, legend_phase1=False, ylabel_as_title=True, reload=Fa
 plt.xticks(ax43.get_xticks(), [str(v) for v in ax43.get_xticks()])
 
 ax44 = fig.add_subplot(gs[3, 15:19])
-MC = pd.read_pickle('MC_Perservation.pkl')
+MC = pd.read_pickle('data/MC_Perservation.pkl')
 conf = np.array([[linregress(range(15), MC[(MC.subject == s) & (MC.phase == 1)].groupby('trial_phase')[f"MC{c}"].mean().values)[0] for s in include] for c in range(4)])
 df = pd.DataFrame(index=range(4*len(include)))
 df['confidence'], df['value'], df['subject'] = conf.flatten(), np.repeat(range(4), len(include)), np.tile(range(len(include)), 4)
@@ -271,4 +271,5 @@ ax24.set_position(matplotlib.transforms.Bbox(ax24.get_position() + np.array([[0,
 
 set_fontsize(label=11, tick=8, title=11)
 savefig(f'../figures/model/compare_unspec_spec_choice_ext.png', pad_inches=0.01)
+savefig(f'../figures/model/FigureS3.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"}, pad_inches=0.01)
 plt.show()

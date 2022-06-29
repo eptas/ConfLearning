@@ -1,12 +1,12 @@
 import sys
 import os
 import matplotlib.pyplot as plt
-from plot_model_value import plot_value
-from plot_model_EC import plot_EC
-from plot_model_CPE import plot_CPE
-from plot_model_conf import plot_MC
-from plot_model_perf2 import plot_PERF
-from plot_model_ABSCPE import plot_ABSCPE
+from util.plot_model_value import plot_value
+from util.plot_model_EC import plot_EC
+from util.plot_model_CPE import plot_CPE
+from util.plot_model_conf import plot_MC
+from util.plot_model_perf import plot_PERF
+from util.plot_model_ABSCPE import plot_ABSCPE
 from scipy.stats import linregress, sem
 # from histo_params_winning import plot_histo
 import numpy as np
@@ -117,5 +117,6 @@ for ax in (ax11, ax12, ax13, ax14, ax21, ax22, ax23):
     for tick in ax.yaxis.get_majorticklabels():
         tick.set_transform(tick.get_transform() + offset)
 
-savefig(f'../../figures/model/model_latentvars_new.png', pad_inches=0.01)
+savefig(f'../figures/model/model_latentvars_new.png', pad_inches=0.01)
+savefig(f'../figures/model/Figure5.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.show()

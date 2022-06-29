@@ -12,9 +12,9 @@ sys.path.append(os.path.dirname(__file__))
 from plot_util import set_fontsize, savefig  # noqa
 from ConfLearning.stats.regression import regression
 
-path_data = os.path.join(Path.cwd(), '../data/')
+path = Path(__file__).parent
+data = pd.read_pickle(os.path.join(path, '../data/', 'data.pkl'))
 
-data = pd.read_pickle(os.path.join(path_data, 'data.pkl'))
 data = data[~data.subject.isin([25, 30])]
 
 ntrials_phase0 = (9, 12, 15, 18)
@@ -94,4 +94,5 @@ plt.title('Effect of value on rating change', fontsize=11)
 plt.xlim([-0.5, 3.5])
 plt.tight_layout()
 set_fontsize(label=11, tick=9)
-savefig('../figures/behav/ratingdiff_lengthphase2.png')
+savefig('../../figures/behav/ratingdiff_lengthphase2.png')
+savefig(f'../../figures/behav/FigureS1.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})

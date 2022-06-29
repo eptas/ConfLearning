@@ -1,5 +1,4 @@
 import os
-import sys
 import warnings
 
 import pandas as pd
@@ -10,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from ConfLearning.plot.util.plot_model_behavconf import plot_BC
 
-from ConfLearning.plot.plot_util import set_fontsize, savefig  # noqa
+from ConfLearning.plot.util.plot_util import set_fontsize, savefig  # noqa
 from ConfLearning.stats.regression import regression # noqa
 
 path_data = os.path.join(Path.cwd(), '../../data/')

@@ -3,14 +3,13 @@ import sys
 import pandas as pd
 from pathlib import Path
 import numpy as np
-from scipy.stats import sem
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pickle
 
 # This is a trick to import local packages (without Pycharm complaining)
 sys.path.append(os.path.dirname(__file__))
-from plot_util import set_fontsize, savefig  # noqa
+from ConfLearning.plot.util.plot_util import set_fontsize, savefig  # noqa
 
 path_data = os.path.join(Path.cwd(), '../data/')
 
@@ -102,5 +101,5 @@ plt.text(-0.43, 0.97, 'B', transform=ax2.transAxes, color=(0, 0, 0), fontsize=20
 set_fontsize(label=11, tick=10)
 plt.tight_layout()
 plt.subplots_adjust(wspace=0.5, left=0.11)
-savefig(f'../figures/behav/Figure3.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
+savefig(f'../figures/Figure3.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.show()

@@ -8,8 +8,8 @@ from ConfLearning.plot.plot_util import set_fontsize, savefig  # noqa
 
 HOME = os.path.expanduser("~")
 root = os.path.join(HOME, 'Dropbox/python/confidence/ConfLearning/results/')
-# path = os.path.join(root, 'p_fit_gen_ab.npy')
-path = os.path.join(root, 'p_gen_fit_ab.npy')
+path = os.path.join(root, 'p_fit_gen_ab.npy')
+# path = os.path.join(root, 'p_gen_fit_ab.npy')
 p_fit_gen_ab = np.load(path)
 
 alphas = np.linspace(0.1, 1, 5)
@@ -58,5 +58,5 @@ cb.ax.tick_params(labelsize=10)
 
 plt.subplots_adjust(left=0.13, right=0.88, wspace=0.02, hspace=0.01, top=0.91, bottom=0.07)
 savefig(f"../figures/model/model_recovery_{'fit_gen' if 'fit_gen' in path else 'gen_fit'}.png")
-# savefig(f'../figures/model/FigureSX.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
+savefig(f"../figures/model/model_recovery_{'fit_gen' if 'fit_gen' in path else 'gen_fit'}.tif", format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.show()

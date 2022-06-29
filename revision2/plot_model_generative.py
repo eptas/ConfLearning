@@ -16,21 +16,21 @@ sys.path.append(os.path.dirname(__file__))
 from ConfLearning.plot.plot_util import set_fontsize, savefig  # noqa
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 
-root = '/home/matteo/Dropbox/python/confidence/ConfLearning/revisions/'
+root = '/home/matteo/Dropbox/python/confidence/ConfLearning/'
 HOME = os.path.expanduser("~")
 
 reload = False
 
 if reload:
-    files = sorted(os.listdir(os.path.join(root, '../data/sim')))
+    files = sorted(os.listdir(os.path.join(root, 'data/sim')))
     nbulk = len(files)
     dfs = [None] * nbulk
     for i, file in enumerate(files):
-        dfs[i] = pd.read_pickle(os.path.join(root, '../data/sim', file))
+        dfs[i] = pd.read_pickle(os.path.join(root, 'data/sim', file))
     d = pd.concat(dfs).reset_index(drop=True)
-    d.to_pickle(os.path.join(root, '../data/sim_all.pkl.gz'))
+    d.to_pickle(os.path.join(root, 'data/sim_all.pkl.gz'))
 else:
-    d = pd.read_pickle(os.path.join(root, '../data/sim_all.pkl.gz'))
+    d = pd.read_pickle(os.path.join(root, 'data/sim_all.pkl.gz'))
 
 model_names = ['ConfBaseGen', 'ConfBase', 'ChoiceMono', 'Perseveration']
 model_map = dict(
@@ -146,6 +146,6 @@ for ax in axes[-4:]:
 for ax in axes[1::4]:
     ax.set_position(Bbox(ax.get_position() + np.array([[-0.007, 0], [-0.007, 0]])))
 
-savefig('../figures/model/behav_modulation.png')
-# savefig(f'../figures/model/FigureSX.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
+savefig('../figures/model/model_generative.png')
+savefig(f'../figures/model/model_generative.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.show()

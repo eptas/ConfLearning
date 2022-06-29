@@ -63,5 +63,5 @@ cb.ax.tick_params(labelsize=10)
 
 plt.subplots_adjust(left=0.075, wspace=0.05, hspace=0.03)
 savefig('../figures/model/param_recovery.png')
-# savefig(f'../figures/model/FigureSX.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
+savefig(f'../figures/model/param_recovery.tif', format='tif', dpi=600, pil_kwargs={"compression": "tiff_lzw"})
 plt.show()

@@ -10,18 +10,18 @@ The value of confidence: Confidence prediction errors drive value-based learning
 
 It is subdivided into several folders:
 
-1. **data** contains the entire dataset *[data.pkl]* as well as an *[extraction.py]*-file
-through which variable-specific .npy-arrays can be extracted.
+1. **data** contains the entire behavioral dataset *[data.pkl]* as well as an *[extraction.py]*-file
+through which variable-specific .npy-arrays can be extracted. Moreover, simulated data and 
+experimental protocols are saved in the **sim** and **para_experiment** folder, respectively.
 
 2. **model** contains different versions of the computational models either
 including *[rl_simple_simchoice.py]* or excluding *[rl_simple.py]* simulated choices
-as well as an optimization script *[maximum_likelihood.py]*.
+as well as optimization scripts *[maximum_likelihood.py]*.
 
-3. **plot** contains visualization scripts for our publication. Figures are saved
-under **figures** and seperately for behaviour-specific (**/behav/**) and 
-modelling-specific (**/model/**) outcomes.
+3. **plot** contains visualization scripts for our publication. The resulting figures are saved
+under **figures**. Please refer to the publication for further detail.
 
-4. **revision2** contains scripts for calculating, aggregating and plotting results of 
+4. **revision2** contains scripts for calculating and aggregating results of 
 parameter recovery, model recovery and the models' generative performance. 
 
 5. **run_model** contains model fitting scripts with parameter bounds. Model-specific 

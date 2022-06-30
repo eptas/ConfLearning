@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from ConfLearning.models.rl_simple import Rescorla, RescorlaZero as RescorlaDeval, RescorlaPreservation
+from ConfLearning.models.rl_simple import Rescorla, RescorlaZero as RescorlaDeval
 from ConfLearning.models.rl_simple_choice_simchoice import RescorlaChoiceMono, RescorlaChoiceDual, RescorlaChoiceMonoDeval, RescorlaChoiceDualDeval
 from ConfLearning.models.maximum_likelihood import ParameterFit
 from pathlib import Path

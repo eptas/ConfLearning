@@ -10,10 +10,6 @@ from pathlib import Path
 fitting = ParameterFit()
 
 path = Path(__file__).parent
-path_data = os.path.join(path, '../results/fittingData')
-
-# os.makedirs('../results/fittingData')
-# os.makedirs('../results/choiceProbab')
 
 matrix = pd.read_pickle(os.path.join(path, '../data/data.pkl'))
 
